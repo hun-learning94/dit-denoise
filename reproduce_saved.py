@@ -50,10 +50,14 @@ def main() -> None:
         paper.figures(model, out)
         from reports.experiment3.build_summary_assets import difference_name
         paper.tables(model, out, difference_name)
-        from reports.experiment3.build_hybrid_metrics import paper_dataset_geometry_figure
+        from reports.experiment3.build_hybrid_metrics import paper_dataset_geometry_figure, state_heatmap
         import json
         geometry = json.loads((ROOT / "reports/experiment3/metrics/dataset_geometry.json").read_text())
         paper_dataset_geometry_figure(geometry)
+        states = rows("reports/experiment3/metrics/selected_metrics_by_seed.csv")
+        for row in states:
+            row["value"] = float(row["value"])
+        state_heatmap(states)
     if "transfer-images" in assets:
         import subprocess
         import sys
