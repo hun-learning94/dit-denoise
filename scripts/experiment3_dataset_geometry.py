@@ -27,12 +27,18 @@ def write(path, data):
     path.write_text(json.dumps(data, indent=2) + '\n')
 
 
-def prepare():
+def prepare(real_manifest_path=None, protocol_path=None):
     import hashlib
     from PIL import Image
-    protocol = read(ROOT/'reports/2026-09-18/imagenet600_hybrid_metrics/protocol.json')
-    old = read(ROOT/'reports/experiment3/archive/legacy_reports/primary_metrics_1024/real_manifest.json')['domains']
-    newer = read(ROOT/'reports/2026-09-18/imagenet600_hybrid_metrics/real_manifest.json')['domains']
+    if real_manifest_path:
+        if protocol_path is None:
+            raise ValueError('--protocol is required with --real-manifest')
+        protocol = read(protocol_path)
+        old = newer = read(real_manifest_path)['domains']
+    else:
+        protocol = read(ROOT/'reports/2026-09-18/imagenet600_hybrid_metrics/protocol.json')
+        old = read(ROOT/'reports/experiment3/archive/legacy_reports/primary_metrics_1024/real_manifest.json')['domains']
+        newer = read(ROOT/'reports/2026-09-18/imagenet600_hybrid_metrics/real_manifest.json')['domains']
     banks = {}
     for domain in DOMAINS:
         roles = newer.get(domain, old.get(domain))
@@ -250,7 +256,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('stage', choices=['prepare', 'extract', 'merge'])
     parser.add_argument('--task', type=int, default=0)
+    parser.add_argument('--real-manifest', type=Path,
+                        help='Fresh real-image manifest from the hybrid metrics pipeline')
+    parser.add_argument('--protocol', type=Path,
+                        help='Pinned DINOv2 metric protocol used with --real-manifest')
     args = parser.parse_args()
-    if args.stage == 'prepare': prepare()
+    if args.stage == 'prepare': prepare(args.real_manifest, args.protocol)
     elif args.stage == 'extract': extract(args.task)
     else: merge()

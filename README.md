@@ -15,6 +15,8 @@ python reproduce_saved.py all
 
 `reproduce_saved.py all` regenerates Figure 4, the LPLD trajectory figure, the three transfer trajectory figures, the spatial-distance heatmap, the transfer statistics figure, the coordination figure, and the two correlation tables. It writes PDFs to `reports/experiment1/figures64`, `reports/experiment3/figures_summary`, and `draft/figs`. The included CSV/JSON files are fixed summaries of measured results, so this command rerenders those results; it does not rerun training or evaluation. Use the scripts below to recompute measurements from datasets and newly trained checkpoints.
 
+The repository also includes the model training programs (`train.py`, `train_dpd*.py`, `train_grouped_dpd6.py`, `experiments/imagenet64/train.py`), GPU evaluators (`eval_*.py`), hybrid state generation and metrics (`scripts/build_experiment3_primary_cube.py`, `experiments/experiment3_primary_metrics/`), and all figure plotting scripts. These are source programs; the expensive full pipeline still needs the prepared dataset splits, checkpoint paths, a pinned DINOv2 checkout and weights, and campaign manifests supplied by the reader.
+
 `python reproduce_tables.py all` prints all six draft tables. The first three use the recorded study design and parameter counts in `tables/`; the endpoints and correlation tables use the included measurement summaries. Pass one table name, such as `python reproduce_tables.py endpoints`, to print just that table.
 
 ## Figure map
@@ -50,6 +52,8 @@ The qualitative renderers verify hashes and paired latent selections. Their imag
 
 ## Experiment 1: locality and context
 
+Prepare datasets with `load_celeba.py`, `prepare_face_dataset.py`, `load_stl10.py`, `scripts/prepare_new_faces64.py`, `scripts/align_aahq_32.py`, and `experiments/imagenet64/prepare.py` as appropriate to the source dataset. For example, `python load_stl10.py --resolution 64` prepares the STL-10 split. Dataset files and downloaded archives are not included.
+
 `experiments/experiment0/synthetic.py` is the self-contained sparse-GMRF calculation for Fig. 2. For real-image probes, train 64×64 DiT checkpoints with `train.py` (the probe manifest expects model scale, dataset, epoch, and checkpoint). Then run:
 
 ```bash
@@ -75,10 +79,26 @@ The source and target scratch models are 20M-class DiTs: 64×64 RGB, patch size 
 
 Use the three evaluators above for denoising AUC, VP loss, and FID-50k. `scripts/run_snapshot_sequential.py` is the manifest-driven evaluation runner. The selected reference epoch minimizes the joint model's two-seed mean FID-50k. `reports/experiment3/build_reports.py` collects trajectories; `reports/experiment3/build_draft_trajectory_figures.py` renders the 4×3 panels. The included `tables/endpoint_selections.json` preserves the exact selected epochs and paired FID values. STL-10 and ImageNet64 source checkpoints use epoch 800 in the current draft. The original selected numeric measurements are preserved in the included CSVs; do not relabel older checkpoints as source-800 results.
 
-At each selected endpoint, use `scripts/build_experiment3_primary_cube.py` to compose the eight QK/VO/MLP source/adapted states (`000` through `111`) from the source EMA and jointly adapted EMA. Generate the same 1,024 Gaussian latents per state with the 50-step VP Heun sampler in FP32. `scripts/experiment3_dataset_geometry.py` computes the DINOv2 ViT-B/14 spatial-distance input from unpaired real images; `scripts/experiment3_hybrid_geometry.py` and `reports/experiment3/hybrid_analysis.py` compute paired cube scores. The dataset geometry record fixes the encoder revision, weights hash, image counts, bandwidth rule, and validation tests. `reports/experiment3/build_hybrid_metrics.py` and `reports/experiment3/paper_summary_assets.py` produce the statistical plots and tables.
+At each selected endpoint, use `scripts/build_experiment3_primary_cube.py` to compose the eight QK/VO/MLP source/adapted states (`000` through `111`) from the source EMA and jointly adapted EMA. `scripts/prepare_hybrid_manifest.py` does this for all twelve directions and both seeds from a JSON checkpoint map whose rows contain `source`, `target`, `seed`, `source_checkpoint`, and `adapted_checkpoint`. For example:
 
-For image figures, regenerate the eight-state banks at selected endpoints using the same latent seeds and checkpoint hashes, then run `python reproduce_saved.py transfer-images`. It expects `reports/experiment3_selection64/<source>/provenance.json` and the referenced bank files; `scripts/experiment3_selection64.py` records the selected-image protocol. No image bank is shipped here.
+```bash
+python scripts/prepare_hybrid_manifest.py \
+  --checkpoint-map checkpoint_map.json \
+  --output reports/experiment3_reproduction/manifest.json
+```
+
+Edit `experiments/experiment3_primary_metrics/protocol.json` to point to a pinned DINOv2 ViT-B/14 checkout and weights. `experiments/experiment3_primary_metrics/pipeline.py` then provides the `real-manifest`, `generate`, `features`, and `analyze` stages for the 1,024 paired latents, 50-step VP Heun sampling in FP32, fixed visual encoder features, and endpoint scores. Generate every manifest task before extracting features. `scripts/experiment3_dataset_geometry.py` computes the real-image spatial-distance input; for a fresh metric campaign its `prepare` stage accepts `--real-manifest PATH --protocol PATH`, followed by six `extract --task 0..5` tasks and `merge`. `scripts/experiment3_hybrid_geometry.py` computes spatial scores for paired hybrid images. The saved geometry record fixes the encoder revision, weights hash, image counts, bandwidth rule, and validation tests. `reports/experiment3/paper_summary_assets.py` and `reproduce_saved.py transfer-statistics` plot the included selected scores.
+
+For image figures, regenerate 64 matched latents per state from the checkpoint manifest, then render:
+
+```bash
+python scripts/build_selected_image_gallery.py \
+  --manifest reports/experiment3_reproduction/manifest.json
+python reproduce_saved.py transfer-images
+```
+
+This writes the required `reports/experiment3_selection64/<source>/provenance.json` and image banks. The gallery uses the draft's selected source-specific latent seeds and verifies checkpoint hashes. `scripts/experiment3_selection64.py` retains the original selected-image protocol. No image bank is shipped here.
 
 ## Scope and anonymity
 
-The included saved summaries permit immediate CPU rerendering of statistical panels and result tables. Exact retraining requires the original dataset splits and substantial GPU time; numerical results can vary with software, hardware, and random seeds. Qualitative image panels require newly generated bank files. Figure 6 is an author-made PowerPoint diagram outside this code artifact. No personal names, affiliations, local absolute paths, checkpoints, or raw images are intentionally included. Keep the repository private during anonymous review and share only through a separately anonymized review link if required by the venue.
+The included saved summaries permit immediate CPU rerendering of statistical panels and result tables. Exact retraining requires the original dataset splits and substantial GPU time; numerical results can vary with software, hardware, and random seeds. Qualitative image panels require newly generated bank files. Figure 6 is an author-made PowerPoint diagram outside this code artifact. No personal names, affiliations, local absolute paths, checkpoints, or raw images are intentionally included.

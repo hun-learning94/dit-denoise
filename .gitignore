@@ -10,6 +10,10 @@ outputs/
 draft/figs/
 reports/experiment0/*.npz
 reports/experiment0/synthetic_*/
+reports/experiment3_selection64/
+reports/experiment3_reproduction/
+reports/2026-09-20/
+reports/experiment3/metrics/geometry_results/
 reports/experiment1/figures64/
 reports/experiment3/figures_summary/*.tex
 reports/experiment3/figures_summary/*.pdf

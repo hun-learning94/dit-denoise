@@ -1,0 +1,31 @@
+{
+  "status": "approved",
+  "images": 1024,
+  "latent_seed": 20260911,
+  "sampler_steps": 50,
+  "precision": "fp32",
+  "generation_batch": 16,
+  "feature_model": "dinov2_vitb14",
+  "feature_repo": "/tmp/placeholder_dinov2_repo",
+  "feature_repo_commit": "placeholder_commit",
+  "feature_weights": "/tmp/placeholder_dinov2_weights.pth",
+  "feature_weights_sha256": "placeholder_sha256",
+  "feature_batch": 32,
+  "real_train_per_domain": 2000,
+  "real_validation_per_domain": 500,
+  "real_test_per_domain": 400,
+  "real_reference_per_domain": 1000,
+  "regularizations": [
+    0.001,
+    0.01,
+    0.1,
+    1.0
+  ],
+  "density_k": 50,
+  "min_score_gap": 0.05,
+  "min_endpoint_distance": 0.01,
+  "min_heldout_auroc": 0.7,
+  "bootstrap_repeats": 2000,
+  "rating_latents_per_cube": 32,
+  "routing_enabled": false
+}
