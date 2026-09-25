@@ -1,0 +1,20 @@
+{
+  "excluded_tracks": {
+    "h8_w256": "Original collapsed run remains excluded; separately labeled recovery is included."
+  },
+  "figure_note": "LPLD $H=8$, $d_h'=256$: resumed from e225 at LR $10^{-4}$; original collapsed run excluded.",
+  "recovery_run": "runs/experiment1_pld_width_ddp_recovery/celeba64_dpd4_raw_r32_h8_w256_g4_seed0_e225_lr1e4",
+  "recovery_tracks": {
+    "h8_w256_recovery_e225_lr1e4": {
+      "base_track": "h8_w256",
+      "label": "Learned PLD H8 W256 recovery",
+      "run_dir": "runs/experiment1_pld_width_ddp_recovery/celeba64_dpd4_raw_r32_h8_w256_g4_seed0_e225_lr1e4",
+      "evaluation_root": "evals/experiment1_celeba64_pld_recovery",
+      "label_prefix": "celeba64_pld_h8_w256_g4_recovery_e225_lr1e4_epoch",
+      "learning_rate": 0.0001,
+      "recovery_from_epoch": 225,
+      "approved_for_reporting": "2026-09-18",
+      "approval": "User authorized inclusion of completed recovery checkpoints; keep distinct from original run."
+    }
+  }
+}

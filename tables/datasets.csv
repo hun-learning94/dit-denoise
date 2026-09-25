@@ -1,0 +1,8 @@
+Dataset,Content,Training,Evaluation
+CelebA,Aligned celebrity photographs,162770,19962
+FFHQ,Photographic faces,60000,5000
+AAHQ,Artistic portraits,15366,1921
+AFHQ-v2,Cat dog and wild-animal faces,14335,1467
+iCartoonFace,Cartoon-face recognition crops,388710,22496
+STL-10,Natural-object images,104500,8000
+ImageNet64,Downsampled natural images,1281167,50000

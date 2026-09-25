@@ -1,0 +1,378 @@
+[
+  {
+    "source": "imagenet64",
+    "target": "celeba64",
+    "source_training_epoch": 800,
+    "reference": "celeba64",
+    "reference_epoch": 100,
+    "step": 508600,
+    "mean_fid": 14.619772775966297,
+    "paired_fid_coverage": 8,
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_celeba64/seed0/block_weights/checkpoints/ckpt_step508600.pt",
+        "sha256": "5f663066e4a12bf522af969a04c867a156de0ac1c4291b4d641960d59beb5317"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_celeba64/seed1/block_weights/checkpoints/ckpt_step508600.pt",
+        "sha256": "dd7d70886180be040507c09acef6bf68c3d92a0b1b60f00783ee1d2d8110d6b9"
+      }
+    ],
+    "campaign": "reports/2026-09-19/imagenet800_replacement",
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/celeba64.json",
+    "paired_fid_grid": [
+      {
+        "epoch": 25,
+        "fid_by_seed": [
+          16.728222926507897,
+          16.147469142295115
+        ],
+        "mean_fid": 16.437846034401506
+      },
+      {
+        "epoch": 50,
+        "fid_by_seed": [
+          15.289557792019224,
+          15.830445077046605
+        ],
+        "mean_fid": 15.560001434532914
+      },
+      {
+        "epoch": 75,
+        "fid_by_seed": [
+          14.934376010397575,
+          15.228473951523032
+        ],
+        "mean_fid": 15.081424980960303
+      },
+      {
+        "epoch": 100,
+        "fid_by_seed": [
+          14.999331533914491,
+          14.240214018018104
+        ],
+        "mean_fid": 14.619772775966297
+      },
+      {
+        "epoch": 125,
+        "fid_by_seed": [
+          15.547544042476051,
+          14.386198393229328
+        ],
+        "mean_fid": 14.96687121785269
+      },
+      {
+        "epoch": 150,
+        "fid_by_seed": [
+          15.504582918019786,
+          14.643727616955065
+        ],
+        "mean_fid": 15.074155267487425
+      },
+      {
+        "epoch": 175,
+        "fid_by_seed": [
+          14.62505017206042,
+          14.641912077587367
+        ],
+        "mean_fid": 14.633481124823893
+      },
+      {
+        "epoch": 200,
+        "fid_by_seed": [
+          14.36662520448863,
+          14.991217483473992
+        ],
+        "mean_fid": 14.678921343981312
+      }
+    ]
+  },
+  {
+    "source": "imagenet64",
+    "target": "aahq64",
+    "source_training_epoch": 800,
+    "reference": "aahq64",
+    "reference_epoch": 150,
+    "step": 72000,
+    "mean_fid": 34.49311909042167,
+    "paired_fid_coverage": 8,
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_aahq64/seed0/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "c72bdced5f5ab7304b4a03178a017502f4c646c9252498c541566e9846b935ca"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_aahq64/seed1/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "bbb89bc15a20aeaa07da7ca8245c20ef5d7893d78caebc2bde1e401c4e2b6ff2"
+      }
+    ],
+    "campaign": "reports/2026-09-19/imagenet800_replacement",
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/aahq64.json",
+    "paired_fid_grid": [
+      {
+        "epoch": 25,
+        "fid_by_seed": [
+          38.46239975435089,
+          40.22312763197503
+        ],
+        "mean_fid": 39.342763693162965
+      },
+      {
+        "epoch": 50,
+        "fid_by_seed": [
+          38.10333225713284,
+          34.52031540365432
+        ],
+        "mean_fid": 36.31182383039358
+      },
+      {
+        "epoch": 75,
+        "fid_by_seed": [
+          36.893931781914205,
+          34.0674544295934
+        ],
+        "mean_fid": 35.4806931057538
+      },
+      {
+        "epoch": 100,
+        "fid_by_seed": [
+          34.05226177586848,
+          38.280227406851736
+        ],
+        "mean_fid": 36.16624459136011
+      },
+      {
+        "epoch": 125,
+        "fid_by_seed": [
+          33.54701533827709,
+          36.24125137215892
+        ],
+        "mean_fid": 34.894133355218
+      },
+      {
+        "epoch": 150,
+        "fid_by_seed": [
+          36.04758349638181,
+          32.93865468446154
+        ],
+        "mean_fid": 34.49311909042167
+      },
+      {
+        "epoch": 175,
+        "fid_by_seed": [
+          35.68124021016742,
+          36.089750645933606
+        ],
+        "mean_fid": 35.88549542805051
+      },
+      {
+        "epoch": 200,
+        "fid_by_seed": [
+          33.63378654540139,
+          36.83545484366748
+        ],
+        "mean_fid": 35.234620694534435
+      }
+    ]
+  },
+  {
+    "source": "imagenet64",
+    "target": "ffhq64",
+    "source_training_epoch": 800,
+    "reference": "ffhq64",
+    "reference_epoch": 100,
+    "step": 187500,
+    "mean_fid": 22.639560095252705,
+    "paired_fid_coverage": 8,
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_ffhq64/seed0/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "a6689d9b12e62ab815b60c8d2ec7f55273090f91fe0adca9109b7c6f85e9f1c4"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_ffhq64/seed1/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "259b747eb2894a27175769b9b582e1eed1633f25c08686a5cbe6cd1fda3bbee1"
+      }
+    ],
+    "campaign": "reports/2026-09-19/imagenet800_replacement",
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/ffhq64.json",
+    "paired_fid_grid": [
+      {
+        "epoch": 25,
+        "fid_by_seed": [
+          25.411362702677767,
+          28.336614168747815
+        ],
+        "mean_fid": 26.87398843571279
+      },
+      {
+        "epoch": 50,
+        "fid_by_seed": [
+          22.95613159027863,
+          24.97773081607948
+        ],
+        "mean_fid": 23.966931203179055
+      },
+      {
+        "epoch": 75,
+        "fid_by_seed": [
+          24.208677266598244,
+          24.894208674053164
+        ],
+        "mean_fid": 24.551442970325702
+      },
+      {
+        "epoch": 100,
+        "fid_by_seed": [
+          21.560195986059746,
+          23.71892420444566
+        ],
+        "mean_fid": 22.639560095252705
+      },
+      {
+        "epoch": 125,
+        "fid_by_seed": [
+          22.081906263863488,
+          24.63862897502418
+        ],
+        "mean_fid": 23.36026761944383
+      },
+      {
+        "epoch": 150,
+        "fid_by_seed": [
+          23.021211564797447,
+          23.652443090580903
+        ],
+        "mean_fid": 23.336827327689175
+      },
+      {
+        "epoch": 175,
+        "fid_by_seed": [
+          22.83532365951399,
+          22.72226643803178
+        ],
+        "mean_fid": 22.778795048772885
+      },
+      {
+        "epoch": 200,
+        "fid_by_seed": [
+          26.44419727753842,
+          23.603888721425108
+        ],
+        "mean_fid": 25.024042999481765
+      }
+    ]
+  },
+  {
+    "source": "imagenet64",
+    "target": "afhq_v2_64",
+    "source_training_epoch": 800,
+    "reference": "afhq_v2_64",
+    "reference_epoch": 200,
+    "step": 89400,
+    "mean_fid": 38.839691402833715,
+    "paired_fid_coverage": 8,
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_afhq_v2_64/seed0/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "a2cff4165f32220b14f2888b5c00b00bbadad5bcbb9fcf8873283ea8b2538168"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_afhq_v2_64/seed1/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "354923055166f340fff3abf8f83fd642d351ba02997ac639c4e3e9f05c545df1"
+      }
+    ],
+    "campaign": "reports/2026-09-19/imagenet800_replacement",
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/afhq_v2_64.json",
+    "paired_fid_grid": [
+      {
+        "epoch": 25,
+        "fid_by_seed": [
+          62.61349670995269,
+          64.51656617976896
+        ],
+        "mean_fid": 63.56503144486082
+      },
+      {
+        "epoch": 50,
+        "fid_by_seed": [
+          50.959652800566474,
+          52.09351613834422
+        ],
+        "mean_fid": 51.526584469455344
+      },
+      {
+        "epoch": 75,
+        "fid_by_seed": [
+          46.107767246726986,
+          47.022238919351764
+        ],
+        "mean_fid": 46.56500308303937
+      },
+      {
+        "epoch": 100,
+        "fid_by_seed": [
+          44.445954968686976,
+          43.08387209399446
+        ],
+        "mean_fid": 43.76491353134072
+      },
+      {
+        "epoch": 125,
+        "fid_by_seed": [
+          42.17002079359395,
+          42.520912124519604
+        ],
+        "mean_fid": 42.34546645905678
+      },
+      {
+        "epoch": 150,
+        "fid_by_seed": [
+          39.520085726111816,
+          40.789577842792625
+        ],
+        "mean_fid": 40.15483178445222
+      },
+      {
+        "epoch": 175,
+        "fid_by_seed": [
+          39.6568022363825,
+          38.937480778207004
+        ],
+        "mean_fid": 39.297141507294754
+      },
+      {
+        "epoch": 200,
+        "fid_by_seed": [
+          38.2493538244169,
+          39.43002898125053
+        ],
+        "mean_fid": 38.839691402833715
+      }
+    ]
+  }
+]

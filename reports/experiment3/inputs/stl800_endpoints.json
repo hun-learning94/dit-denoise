@@ -1,0 +1,130 @@
+[
+  {
+    "source": "stl10_64",
+    "target": "celeba64",
+    "reference": "stl10_64",
+    "step": 653000,
+    "reference_epoch": 200.0,
+    "target_epoch": 128.39166338969721,
+    "status": "FID-selected epoch-800-source replacement; hybrid metrics remain at legacy endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 653000,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 17.26243843484599,
+    "source_training_epoch": 800,
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_celeba64/seed0/block_weights/checkpoints/ckpt_step653000.pt",
+        "sha256": "2ae5df5408e4d72a10a8b85c582187966d8c19fc4a7693131b8573a8cbf7a442"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_celeba64/seed1/block_weights/checkpoints/ckpt_step653000.pt",
+        "sha256": "81b348505d1cae83ca4fd776cf63a99d9c93e36880b36b1c4627e608c1524bfe"
+      }
+    ],
+    "campaign": "reports/2026-09-19/experiment3_completion",
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie"
+  },
+  {
+    "source": "stl10_64",
+    "target": "aahq64",
+    "reference": "aahq64",
+    "step": 72000,
+    "reference_epoch": 150.0,
+    "target_epoch": 150.0,
+    "status": "FID-selected epoch-800-source replacement; hybrid metrics remain at legacy endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 72000,
+    "current_grid_candidate_reference_epoch": 150.0,
+    "mean_fid": 40.592067026174945,
+    "source_training_epoch": 800,
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_aahq64/seed0/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "f65314031854ccd3c36f4436206ce73ac5e4872283a2d6061a7c74370f2e528a"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_aahq64/seed1/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "32148663c98ad60a7480d0238d9e38f307a5b206313d0e13b39ccb3acba7608f"
+      }
+    ],
+    "campaign": "reports/2026-09-19/experiment3_completion",
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie"
+  },
+  {
+    "source": "stl10_64",
+    "target": "ffhq64",
+    "reference": "ffhq64",
+    "step": 187500,
+    "reference_epoch": 100.0,
+    "target_epoch": 100.0,
+    "status": "FID-selected epoch-800-source replacement; hybrid metrics remain at legacy endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 187500,
+    "current_grid_candidate_reference_epoch": 100.0,
+    "mean_fid": 28.231079300573445,
+    "source_training_epoch": 800,
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_ffhq64/seed0/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "6b1c30b0e2e1de1388487d0f930288d1cdbceb1e94762d182d07ff1a5f6f9fa6"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_ffhq64/seed1/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "412433f794f1718b737cf30d97cbcf6c55f6af707701e20b27c1f489d978c4f5"
+      }
+    ],
+    "campaign": "reports/2026-09-19/experiment3_completion",
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie"
+  },
+  {
+    "source": "stl10_64",
+    "target": "afhq_v2_64",
+    "reference": "afhq_v2_64",
+    "step": 89400,
+    "reference_epoch": 200.0,
+    "target_epoch": 200.0,
+    "status": "FID-selected epoch-800-source replacement; hybrid metrics remain at legacy endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 89400,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 49.1188211493476,
+    "source_training_epoch": 800,
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_afhq_v2_64/seed0/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "a8e42d108dad3245722a7a89a94661d1e09759ece36b9abf466e3d3f2e4c3ae5"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_afhq_v2_64/seed1/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "f1f09a92ca946e68e7d430fa50f77deac56663394327bf42bea6b09a29691803"
+      }
+    ],
+    "campaign": "reports/2026-09-19/experiment3_completion",
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie"
+  }
+]

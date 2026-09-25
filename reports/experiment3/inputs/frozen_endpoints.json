@@ -1,0 +1,42 @@
+[
+  {
+    "source": "celeba64",
+    "target": "aahq64",
+    "target_epoch": 75
+  },
+  {
+    "source": "celeba64",
+    "target": "afhq_v2_64",
+    "target_epoch": 200
+  },
+  {
+    "source": "celeba64",
+    "target": "ffhq64",
+    "target_epoch": 100
+  },
+  {
+    "source": "celeba64",
+    "target": "stl10_64",
+    "target_epoch": 200
+  },
+  {
+    "source": "stl10_64",
+    "target": "aahq64",
+    "target_epoch": 125
+  },
+  {
+    "source": "stl10_64",
+    "target": "afhq_v2_64",
+    "target_epoch": 200
+  },
+  {
+    "source": "stl10_64",
+    "target": "celeba64",
+    "target_epoch": 125
+  },
+  {
+    "source": "stl10_64",
+    "target": "ffhq64",
+    "target_epoch": 100
+  }
+]

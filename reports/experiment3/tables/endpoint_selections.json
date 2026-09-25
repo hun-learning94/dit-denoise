@@ -1,0 +1,354 @@
+[
+  {
+    "source": "celeba64",
+    "target": "aahq64",
+    "reference": "aahq64",
+    "step": 36000,
+    "reference_epoch": 75.0,
+    "target_epoch": 75.0,
+    "status": "Frozen measured endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 36000,
+    "current_grid_candidate_reference_epoch": 75.0,
+    "mean_fid": 40.76658287917589
+  },
+  {
+    "source": "celeba64",
+    "target": "ffhq64",
+    "reference": "ffhq64",
+    "step": 187500,
+    "reference_epoch": 100.0,
+    "target_epoch": 100.0,
+    "status": "Frozen measured endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 187500,
+    "current_grid_candidate_reference_epoch": 100.0,
+    "mean_fid": 25.251793850395952
+  },
+  {
+    "source": "celeba64",
+    "target": "stl10_64",
+    "reference": "stl10_64",
+    "step": 653000,
+    "reference_epoch": 200.0,
+    "target_epoch": 200.0,
+    "status": "Frozen measured endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 653000,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 68.05016699938093
+  },
+  {
+    "source": "celeba64",
+    "target": "afhq_v2_64",
+    "reference": "afhq_v2_64",
+    "step": 89400,
+    "reference_epoch": 200.0,
+    "target_epoch": 200.0,
+    "status": "Frozen measured endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 89400,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 44.82142629050918
+  },
+  {
+    "source": "celeba64",
+    "target": "icartoonface64",
+    "reference": "celeba64",
+    "step": 1017200,
+    "reference_epoch": 200.0,
+    "target_epoch": 83.74084136000658,
+    "status": "FID-selected; paired hybrid metrics measured at this endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 1017200,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 37.95035471178437
+  },
+  {
+    "source": "stl10_64",
+    "target": "celeba64",
+    "reference": "stl10_64",
+    "step": 653000,
+    "reference_epoch": 200.0,
+    "target_epoch": 128.39166338969721,
+    "status": "Final source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 653000,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 17.26243843484599,
+    "source_training_epoch": 800,
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie",
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_celeba64/seed0/block_weights/checkpoints/ckpt_step653000.pt",
+        "sha256": "2ae5df5408e4d72a10a8b85c582187966d8c19fc4a7693131b8573a8cbf7a442"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_celeba64/seed1/block_weights/checkpoints/ckpt_step653000.pt",
+        "sha256": "81b348505d1cae83ca4fd776cf63a99d9c93e36880b36b1c4627e608c1524bfe"
+      }
+    ]
+  },
+  {
+    "source": "stl10_64",
+    "target": "aahq64",
+    "reference": "aahq64",
+    "step": 72000,
+    "reference_epoch": 150.0,
+    "target_epoch": 150.0,
+    "status": "Final source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 72000,
+    "current_grid_candidate_reference_epoch": 150.0,
+    "mean_fid": 40.592067026174945,
+    "source_training_epoch": 800,
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie",
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_aahq64/seed0/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "f65314031854ccd3c36f4436206ce73ac5e4872283a2d6061a7c74370f2e528a"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_aahq64/seed1/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "32148663c98ad60a7480d0238d9e38f307a5b206313d0e13b39ccb3acba7608f"
+      }
+    ]
+  },
+  {
+    "source": "stl10_64",
+    "target": "ffhq64",
+    "reference": "ffhq64",
+    "step": 187500,
+    "reference_epoch": 100.0,
+    "target_epoch": 100.0,
+    "status": "Final source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 187500,
+    "current_grid_candidate_reference_epoch": 100.0,
+    "mean_fid": 28.231079300573445,
+    "source_training_epoch": 800,
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie",
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_ffhq64/seed0/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "6b1c30b0e2e1de1388487d0f930288d1cdbceb1e94762d182d07ff1a5f6f9fa6"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_ffhq64/seed1/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "412433f794f1718b737cf30d97cbcf6c55f6af707701e20b27c1f489d978c4f5"
+      }
+    ]
+  },
+  {
+    "source": "stl10_64",
+    "target": "afhq_v2_64",
+    "reference": "afhq_v2_64",
+    "step": 89400,
+    "reference_epoch": 200.0,
+    "target_epoch": 200.0,
+    "status": "Final source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 89400,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 49.1188211493476,
+    "source_training_epoch": 800,
+    "selection_evidence": "Complete epochs 25:25:200; minimum two-seed mean FID; earlier exact tie",
+    "source_checkpoint": {
+      "path": "runs/experiment3_20m/stl10_64/seed0/scratch/checkpoints/ckpt_step2612000.pt",
+      "sha256": "c09435398c39e6e9682b30918e55f71b3b73c6cd0db7eed4a4bdc0b0b7b79139"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_afhq_v2_64/seed0/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "a8e42d108dad3245722a7a89a94661d1e09759ece36b9abf466e3d3f2e4c3ae5"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_stl800/stl10_64_to_afhq_v2_64/seed1/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "f1f09a92ca946e68e7d430fa50f77deac56663394327bf42bea6b09a29691803"
+      }
+    ]
+  },
+  {
+    "source": "ffhq64",
+    "target": "celeba64",
+    "reference": "ffhq64",
+    "step": 328125,
+    "reference_epoch": 175.0,
+    "target_epoch": 64.51533621706646,
+    "status": "FID-selected; paired hybrid metrics measured at this endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 328125,
+    "current_grid_candidate_reference_epoch": 175.0,
+    "mean_fid": 18.039425952429134
+  },
+  {
+    "source": "aahq64",
+    "target": "celeba64",
+    "reference": "aahq64",
+    "step": 72000,
+    "reference_epoch": 150.0,
+    "target_epoch": 14.156508061344867,
+    "status": "FID-selected; paired hybrid metrics measured at this endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 72000,
+    "current_grid_candidate_reference_epoch": 150.0,
+    "mean_fid": 21.137955077141896
+  },
+  {
+    "source": "afhq_v2_64",
+    "target": "celeba64",
+    "reference": "afhq_v2_64",
+    "step": 89400,
+    "reference_epoch": 200.0,
+    "target_epoch": 17.57766417616988,
+    "status": "FID-selected; paired hybrid metrics measured at this endpoint",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 89400,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 26.684205879221864
+  },
+  {
+    "source": "imagenet64",
+    "target": "celeba64",
+    "reference": "celeba64",
+    "step": 508600,
+    "reference_epoch": 100.0,
+    "target_epoch": 100.0,
+    "status": "Frozen source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 508600,
+    "current_grid_candidate_reference_epoch": 100.0,
+    "mean_fid": 14.619772775966297,
+    "source_training_epoch": 800,
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/celeba64.json",
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_celeba64/seed0/block_weights/checkpoints/ckpt_step508600.pt",
+        "sha256": "5f663066e4a12bf522af969a04c867a156de0ac1c4291b4d641960d59beb5317"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_celeba64/seed1/block_weights/checkpoints/ckpt_step508600.pt",
+        "sha256": "dd7d70886180be040507c09acef6bf68c3d92a0b1b60f00783ee1d2d8110d6b9"
+      }
+    ]
+  },
+  {
+    "source": "imagenet64",
+    "target": "aahq64",
+    "reference": "aahq64",
+    "step": 72000,
+    "reference_epoch": 150.0,
+    "target_epoch": 150.0,
+    "status": "Frozen source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 72000,
+    "current_grid_candidate_reference_epoch": 150.0,
+    "mean_fid": 34.49311909042167,
+    "source_training_epoch": 800,
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/aahq64.json",
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_aahq64/seed0/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "c72bdced5f5ab7304b4a03178a017502f4c646c9252498c541566e9846b935ca"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_aahq64/seed1/block_weights/checkpoints/ckpt_step72000.pt",
+        "sha256": "bbb89bc15a20aeaa07da7ca8245c20ef5d7893d78caebc2bde1e401c4e2b6ff2"
+      }
+    ]
+  },
+  {
+    "source": "imagenet64",
+    "target": "ffhq64",
+    "reference": "ffhq64",
+    "step": 187500,
+    "reference_epoch": 100.0,
+    "target_epoch": 100.0,
+    "status": "Frozen source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 187500,
+    "current_grid_candidate_reference_epoch": 100.0,
+    "mean_fid": 22.639560095252705,
+    "source_training_epoch": 800,
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/ffhq64.json",
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_ffhq64/seed0/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "a6689d9b12e62ab815b60c8d2ec7f55273090f91fe0adca9109b7c6f85e9f1c4"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_ffhq64/seed1/block_weights/checkpoints/ckpt_step187500.pt",
+        "sha256": "259b747eb2894a27175769b9b582e1eed1633f25c08686a5cbe6cd1fda3bbee1"
+      }
+    ]
+  },
+  {
+    "source": "imagenet64",
+    "target": "afhq_v2_64",
+    "reference": "afhq_v2_64",
+    "step": 89400,
+    "reference_epoch": 200.0,
+    "target_epoch": 200.0,
+    "status": "Frozen source800 endpoint; paired hybrid metrics measured",
+    "paired_fid_coverage": 8,
+    "current_grid_candidate_step": 89400,
+    "current_grid_candidate_reference_epoch": 200.0,
+    "mean_fid": 38.839691402833715,
+    "source_training_epoch": 800,
+    "selection_evidence": "reports/2026-09-19/imagenet800_replacement/selections/afhq_v2_64.json",
+    "source_checkpoint": {
+      "path": "runs/imagenet64_20m/seed0/h200_b256/checkpoints/ckpt_step4003647.pt",
+      "sha256": "599f9bd95f6cbb0ae724f320b2d71520116c8b6c2e280983148636809b905570"
+    },
+    "adapted_checkpoints": [
+      {
+        "seed": 0,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_afhq_v2_64/seed0/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "a2cff4165f32220b14f2888b5c00b00bbadad5bcbb9fcf8873283ea8b2538168"
+      },
+      {
+        "seed": 1,
+        "path": "runs/experiment3_transfer_20m_imagenet800/imagenet64_to_afhq_v2_64/seed1/block_weights/checkpoints/ckpt_step89400.pt",
+        "sha256": "354923055166f340fff3abf8f83fd642d351ba02997ac639c4e3e9f05c545df1"
+      }
+    ]
+  }
+]

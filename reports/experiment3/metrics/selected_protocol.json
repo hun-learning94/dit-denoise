@@ -1,0 +1,1548 @@
+{
+  "directions": [
+    [
+      "celeba64",
+      "aahq64"
+    ],
+    [
+      "celeba64",
+      "ffhq64"
+    ],
+    [
+      "celeba64",
+      "afhq_v2_64"
+    ],
+    [
+      "celeba64",
+      "stl10_64"
+    ],
+    [
+      "stl10_64",
+      "aahq64"
+    ],
+    [
+      "stl10_64",
+      "ffhq64"
+    ],
+    [
+      "stl10_64",
+      "afhq_v2_64"
+    ],
+    [
+      "stl10_64",
+      "celeba64"
+    ],
+    [
+      "imagenet64",
+      "aahq64"
+    ],
+    [
+      "imagenet64",
+      "ffhq64"
+    ],
+    [
+      "imagenet64",
+      "afhq_v2_64"
+    ],
+    [
+      "imagenet64",
+      "celeba64"
+    ]
+  ],
+  "states": [
+    "000",
+    "100",
+    "010",
+    "001",
+    "110",
+    "101",
+    "011",
+    "111"
+  ],
+  "reported_scores": [
+    "P",
+    "G"
+  ],
+  "images_per_state": 1024,
+  "bootstrap_repeats": 2000,
+  "bootstrap_seed": 20260911,
+  "normalization_guards": {
+    "P": 0.01,
+    "G": 1e-06
+  },
+  "minimum_valid_fraction": 0.95,
+  "linear_contrasts": {
+    "joint_nonadditivity": {
+      "111": 1,
+      "100": -1,
+      "010": -1,
+      "001": -1,
+      "000": 2
+    },
+    "QK_restoration": {
+      "111": 1,
+      "011": -1
+    },
+    "VO_restoration": {
+      "111": 1,
+      "101": -1
+    },
+    "MLP_restoration": {
+      "111": 1,
+      "110": -1
+    },
+    "three_way_interaction": {
+      "111": 1,
+      "110": -1,
+      "101": -1,
+      "011": -1,
+      "100": 1,
+      "010": 1,
+      "001": 1,
+      "000": -1
+    },
+    "QK_only_minus_source": {
+      "100": 1,
+      "000": -1
+    },
+    "QK_given_VO": {
+      "110": 1,
+      "010": -1
+    },
+    "QK_given_MLP": {
+      "101": 1,
+      "001": -1
+    },
+    "VO_given_MLP": {
+      "011": 1,
+      "001": -1
+    },
+    "MLP_given_VO": {
+      "011": 1,
+      "010": -1
+    },
+    "VO_MLP_minus_QK": {
+      "011": 1,
+      "100": -1
+    },
+    "MLP_minus_QK": {
+      "001": 1,
+      "100": -1
+    },
+    "MLP_only_minus_source": {
+      "001": 1,
+      "000": -1
+    },
+    "QK_VO_interaction_context0": {
+      "110": 1,
+      "100": -1,
+      "010": -1,
+      "000": 1
+    },
+    "QK_VO_interaction_context1": {
+      "111": 1,
+      "101": -1,
+      "011": -1,
+      "001": 1
+    },
+    "QK_MLP_interaction_context0": {
+      "101": 1,
+      "100": -1,
+      "001": -1,
+      "000": 1
+    },
+    "QK_MLP_interaction_context1": {
+      "111": 1,
+      "110": -1,
+      "011": -1,
+      "010": 1
+    },
+    "VO_MLP_interaction_context0": {
+      "011": 1,
+      "010": -1,
+      "001": -1,
+      "000": 1
+    },
+    "VO_MLP_interaction_context1": {
+      "111": 1,
+      "110": -1,
+      "101": -1,
+      "100": 1
+    }
+  },
+  "nonlinear_contrasts": {
+    "minimum_reversion": "min(QK_restoration, VO_restoration, MLP_restoration), recomputed within each bootstrap resample"
+  },
+  "implementation_sha256": "e37dc68e68689ffc38907437356f37e0dda99f4bac0218a42141d2e6515b8dd7",
+  "cubes": {
+    "20m_celeba64_to_aahq64_seed0_epoch75": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/14/measurements/20m_celeba64_to_aahq64_seed0_epoch75.npz",
+      "measurement_sha256": "e49703aeac3b37c88ebcf49b2bcac70912d8ada39b54a160dd7e6a9e85f2e463",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/14/cubes/20m_celeba64_to_aahq64_seed0_epoch75.json",
+      "cube_sha256": "d357ef51036c3083f7d0cf5a514d2b4789fea7d5d1715cba7d59afb4d4a75ae5",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_aahq64_seed0_epoch75.npz",
+        "measurement_sha256": "8973f38327746d2dd8b210370734e2aae1ec6fdf218794eeb9bdc413f2eddd10",
+        "provenance": {
+          "id": "20m_celeba64_to_aahq64_seed0_epoch75",
+          "cube_sha256": "d357ef51036c3083f7d0cf5a514d2b4789fea7d5d1715cba7d59afb4d4a75ae5",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/f0bf300c151bb92199067484e8bb4267c614ed87accc60617d5179c0c5028182.npz",
+              "sha256": "3f7986d20ee885a788d8f1f985ed2ab301e5c5b687654d0b7347f00c9c6027e5"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/befe10dbe0bd252a27f1a075ef2526ff1ff881f4f0b789eda2f98fb50429f7bc.npz",
+              "sha256": "37874f23ee68f5a106ee91ecddc52af5b3b71983913522bbd5b6489ad82b4587"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4d577ed0ce292374be2e0ed84c536ff6de6b4d8ac6ed6c1fb18db710a450e669.npz",
+              "sha256": "25b4032445faad7e9ca4ba16eb6af06bd9ee4fb880352353c1e3114a7bf6b847"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/cf4ef51710d6294e6cf231e6306d7aca2d4e30c1336e3a5028ea1dac713d5364.npz",
+              "sha256": "a3f0db61fbafeec07c720108b471442796bdab31af5c8c2b2dce7c60fa91b928"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/66c6d9f658adfba321c50812bf33ed06254246dc6aec58a88493f8022199f756.npz",
+              "sha256": "980368083efb59bc80521634ca9caad82be2ed5c35e93887123992c1ff41c803"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a3e279f6d674288e4d488a44e1a737324217d01723ada9726decd6cb6e3e76bf.npz",
+              "sha256": "f7e24ccbadd65455e267138f5ff3957de74b5d0a58f917c5c4524e944e5a9391"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/890b3d3eadffb375012145e53da19ccdf41e2e1938d869b6a89978d621af931c.npz",
+              "sha256": "b8c6c90cf96f7c744a4533089bb4bd625bda5e6ff689baee775edc7eb91ee3b8"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/14/cubes/20m_celeba64_to_aahq64_seed0_epoch75.json",
+          "measurement_sha256": "8973f38327746d2dd8b210370734e2aae1ec6fdf218794eeb9bdc413f2eddd10",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_aahq64_seed1_epoch75": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/15/measurements/20m_celeba64_to_aahq64_seed1_epoch75.npz",
+      "measurement_sha256": "252a62864a9841568a3f39d4560db40ca68058a17764753d9e05123dee843995",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/15/cubes/20m_celeba64_to_aahq64_seed1_epoch75.json",
+      "cube_sha256": "2eefd6b967185533b7ac909d221cc6234e59a5ca00d155eac912766e98de1c78",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_aahq64_seed1_epoch75.npz",
+        "measurement_sha256": "1ecb11b254f66a31c3fb990b00f400eb756bd2bdbf1db0decd7b1f797c28e72e",
+        "provenance": {
+          "id": "20m_celeba64_to_aahq64_seed1_epoch75",
+          "cube_sha256": "2eefd6b967185533b7ac909d221cc6234e59a5ca00d155eac912766e98de1c78",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/faaab676a3b5105fe1b28730ee5bd7d1592ecf7e2de42f7194b81b0ce2a2797d.npz",
+              "sha256": "a53abd2dd9ffefada7b578448fc0efab94b4a13149338cf6dd4ed70639d93120"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/9000f3f1c09dbb71d06f90d136c4a6384fd6d9fc18292323b3b93cb1272cc006.npz",
+              "sha256": "4eff89ed0232a78c9ea08e0db7ba829536a1fe857195011b4e54c39adcd3c60f"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4f1b584d5276e14d1bcff1d6023ff959697749b86925087d5ab5f5bfab62f884.npz",
+              "sha256": "a563dcfbff39ece5781217f772f9a9ee1100607c54ab2ea01b11140500865185"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/116505f52d957c9f3f0ac4de19ceff17abfddddddb79d2087d6912a4f2ad262c.npz",
+              "sha256": "36f3975c487ea5bebfb3b03e9fd2673d4e5587af065383e70900aad00d56e5af"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4d03e8df565719bfb9d6624978499ba4419dac4decd936c77a38eea1edc095d7.npz",
+              "sha256": "4ff41da78290fb5af755dddd9a5d77bf59c2cbbcd7122ddfe2911fd7c9b810c4"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/b5f94cff5582f30e35fd40c47709b345a33b2f50f0d204fd54918acc9faf2375.npz",
+              "sha256": "73b83a871405826b6e54fdb555f5875c2b65618dc77e9369f8c54c68c70e8227"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/be4bb732ac0c5234390f9ac3dbefbc3c97c06394b7942ce489af83d3a29b9111.npz",
+              "sha256": "8a866c6a7d81ec5401e944aaf06ec02e053e9d679aef013c9931d2f9341ab61d"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/15/cubes/20m_celeba64_to_aahq64_seed1_epoch75.json",
+          "measurement_sha256": "1ecb11b254f66a31c3fb990b00f400eb756bd2bdbf1db0decd7b1f797c28e72e",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_ffhq64_seed0_epoch100": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/16/measurements/20m_celeba64_to_ffhq64_seed0_epoch100.npz",
+      "measurement_sha256": "d4a7a8d7b196cd9c8b7aaeeec656e4022daa6e00d9af2ebc08c6a0d9c2341111",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/16/cubes/20m_celeba64_to_ffhq64_seed0_epoch100.json",
+      "cube_sha256": "79ebc67245ac59b87b82dfe3ec7120e634e3c2b3178aa89d46a7ca505c03acf1",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_ffhq64_seed0_epoch100.npz",
+        "measurement_sha256": "a80fbdfde8f907e219149e37867f5c706183441b40d62be1819f4c307b067bf7",
+        "provenance": {
+          "id": "20m_celeba64_to_ffhq64_seed0_epoch100",
+          "cube_sha256": "79ebc67245ac59b87b82dfe3ec7120e634e3c2b3178aa89d46a7ca505c03acf1",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/e3dae04081c2ebf99957cf95702ac2c5d98cbcd6b7bf627c901b30f189c01a07.npz",
+              "sha256": "1eded28593507e0b605a2c8376a28af9ed8ee323c2f7e125506e1ada3315fef2"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/2a7a7a56968a2eb8bbc86b0ce64a2dcbb4461848fd78710017ca52732c095b86.npz",
+              "sha256": "6d5f32ab26b35a500b0683966cc4a8c62729505738255d1b428d2e85566ed55f"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/f44cecabd36f74777d34610533bd5df43beda56e91d7aacea880c0ca0fb8373b.npz",
+              "sha256": "ef37c43f1447c41548dfaa6f962e21dd5d20c22a35b5c60bd9bc0d15496333ca"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/3791a475fe2a36682496ebfdf8f990cc87478572587a659f851036064ffd9042.npz",
+              "sha256": "1671004e1a3fa91892152d7d9577ec011dedf58f635faf96702cee25fafcac70"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/3c980fbc3d65be98509fdf835294206d151e82fe99fdf95f28f385601d29ee5a.npz",
+              "sha256": "c8d0fb574ae3f06bd70c11ef614eee73e5456ba4dd6df842ff575c9caeea6cda"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/38ccc8a21918d84f8db41cd8a15398b0fe29af33fa34b10495fb4f88b044d6c1.npz",
+              "sha256": "77f5f631dca908104440196b198603da388701b0331b11a4ce1db499e3aae1ab"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/77ada14e08495cf3a25b941a32f4b77e1d2b0dc98de7d7ae8861ab47560fa80e.npz",
+              "sha256": "65042c9b244cb1a1304ace84897635ba4bd607caf840bf520d0885074383e298"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/16/cubes/20m_celeba64_to_ffhq64_seed0_epoch100.json",
+          "measurement_sha256": "a80fbdfde8f907e219149e37867f5c706183441b40d62be1819f4c307b067bf7",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_ffhq64_seed1_epoch100": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/17/measurements/20m_celeba64_to_ffhq64_seed1_epoch100.npz",
+      "measurement_sha256": "724107649ce03d11a8ae01b472e64edd61717d07852700dce86883cb413fbd2e",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/17/cubes/20m_celeba64_to_ffhq64_seed1_epoch100.json",
+      "cube_sha256": "a5253b01a044794776a102a9bf6083532d2bafa012230664ca9cbf6c99ddebd3",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_ffhq64_seed1_epoch100.npz",
+        "measurement_sha256": "fdb34c37239eab67d3d2c60555b8b05645f60748358042570bd06f3dae9182ec",
+        "provenance": {
+          "id": "20m_celeba64_to_ffhq64_seed1_epoch100",
+          "cube_sha256": "a5253b01a044794776a102a9bf6083532d2bafa012230664ca9cbf6c99ddebd3",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/60f4782faa26351ac3c323d7b91373e0f59a412a7f37e3f11b77e3bfb1cb65ec.npz",
+              "sha256": "0fe357d1be87caf240cadecee4eb670b8e84f1ceb33a35f53f105e7c35641f6f"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/9550e685b59e3a48d73e497bdd50a8bf30de4dacce0a58c401441d1cbdd98c5e.npz",
+              "sha256": "d3ec160f9db5b84d84038615be5c68ba477c337ed0abdaa3250eb9123ab881e5"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/1cfc1cca599ccc494ebba777be353d43e0297327c989a9570e39fddda7b64622.npz",
+              "sha256": "6f3ba6fdde59e328555202b55b8ac487385218044fa236c463024b9d5cecb665"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4b509c0427c767944e75f6af160b78d2551743c0480c75175db053312bce8344.npz",
+              "sha256": "f78a325fb599afc958df4f95ca053f4cb7623e81cd315c7e8fed1e69ccef6302"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4a0b1c27da5805bcc789388873c695f53831556877a581b73bdd336408a23d39.npz",
+              "sha256": "791cf309cd417799f7fa20d4f7ebb0c2fcd6a20d2f03fc9a7c51d117af8b3a8b"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/1791bde79dc0d3046bc11c4dde298d01decc703cd49d17db2f0f8f14a6c18bb6.npz",
+              "sha256": "c230ad938673014421e3da0f01d2f24a7b2fadbeeddd6d1bcb84ee2838b9d8c5"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/e70301a2986f7ccad9d4e341a00bda94c01ba6a76ecc489549f46d32af0e818f.npz",
+              "sha256": "7b682217769833389c16399a1cb4ce166aa6e2bf694764a967be30926596c266"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/17/cubes/20m_celeba64_to_ffhq64_seed1_epoch100.json",
+          "measurement_sha256": "fdb34c37239eab67d3d2c60555b8b05645f60748358042570bd06f3dae9182ec",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_afhq_v2_64_seed0_epoch200": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/20/measurements/20m_celeba64_to_afhq_v2_64_seed0_epoch200.npz",
+      "measurement_sha256": "e80f687c794c646b8bbb829fafa005771e8d87820da6d177e976da53ed52922d",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/20/cubes/20m_celeba64_to_afhq_v2_64_seed0_epoch200.json",
+      "cube_sha256": "f0cfa727c1e7205e15a3b462fa3508554eccac140825c36021e4ff7e02688d19",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_afhq_v2_64_seed0_epoch200.npz",
+        "measurement_sha256": "dfbc79e9b24d87b0e6facafa3bbcd7a195b3941b1377cda57723968123404dd6",
+        "provenance": {
+          "id": "20m_celeba64_to_afhq_v2_64_seed0_epoch200",
+          "cube_sha256": "f0cfa727c1e7205e15a3b462fa3508554eccac140825c36021e4ff7e02688d19",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a5094fe412ad0059376f79faee9af5adf5a180946d6f86a06422aec4b76fd2e3.npz",
+              "sha256": "f6106d5b0a0195c03f5e17d041ba1a163dec116d22bd77b21a0dd24ba72cbcdc"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/0ec3d87497159a7656079e946bc84ab13e3226a4af7ad8c7018521b6da2da558.npz",
+              "sha256": "1bac1b6321b70dbf34093bf8854d9e291b86245497f73dbc77b70eb011982450"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/41546c3c3de1c251be2c174492efb02b4bc0d831008af009c8938a51de108c08.npz",
+              "sha256": "e7f2c5e6303418bd76b0f98cfa5c855fe1a4ac65024116df419429127f80c5c5"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/ba540a23daad81ea43480787ec0258120d606300e1228f7020b0c139215d32b2.npz",
+              "sha256": "8044ee7a3934d6f094c302f77e628e5701219c6169db086e437459bf0a02beec"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/df3152d3fd57e21431506cbab61d6afff4c610c2c8dc3bbe63388e39f9c7ad55.npz",
+              "sha256": "d75f525def6218506b282b01c06b8ea32407495cee06169ccd666d4bdfe02940"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/5e38b83e08a78ac2d794860a391bdc818fd9587c1fb5b171aa6bc9969844470a.npz",
+              "sha256": "fac21d5ed9492f22297e822bc160f4d1fc4dd0d90c03c6e57cfa4f1b04db7327"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/57e1fcb6184eef76e11a5fd6c21fa7c4adb6fde94e3ed9bbeca027e008d2f8d4.npz",
+              "sha256": "7eadd15da9fbd1af2d6bd358820c8c847f788e76bb16eb973650c09ddc47fdd0"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/20/cubes/20m_celeba64_to_afhq_v2_64_seed0_epoch200.json",
+          "measurement_sha256": "dfbc79e9b24d87b0e6facafa3bbcd7a195b3941b1377cda57723968123404dd6",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_afhq_v2_64_seed1_epoch200": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/21/measurements/20m_celeba64_to_afhq_v2_64_seed1_epoch200.npz",
+      "measurement_sha256": "f9448539d0ff42fd7c404e0a392774386ff79b234e0207cc048cdf88677eaedc",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/21/cubes/20m_celeba64_to_afhq_v2_64_seed1_epoch200.json",
+      "cube_sha256": "c42ee604c1a52b27858f33e215df59aad064ef3b2edd1132fa974f140669613c",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_afhq_v2_64_seed1_epoch200.npz",
+        "measurement_sha256": "c4d3da8a452f192b40ab28c7e3f942624452f5fb310f687b349fe83bedfe1b8e",
+        "provenance": {
+          "id": "20m_celeba64_to_afhq_v2_64_seed1_epoch200",
+          "cube_sha256": "c42ee604c1a52b27858f33e215df59aad064ef3b2edd1132fa974f140669613c",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/cbd350e041e7d3e79881380b6316c9cae4b430dc04384a5bf33e576524bb2a48.npz",
+              "sha256": "9c382d6947c19536cee32d460908a8509000ce250234f0aff9fff28929c12f8d"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/730980bf5a39ffa83ddca8e0ee55620bea5a379186098fdabad634fc6cef2976.npz",
+              "sha256": "977ae51901bcaf186706d7635a5c09b6f89cbc987efc1e8f33b1163b90a37868"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/7e7bdd43ae9492a7a0a28b5ace6cf471d6e8dfb6ce28f26bce2f8826c4d4fc20.npz",
+              "sha256": "7f0ded0cc5cf92b6a400b268b09ac156fbb97d56e3f0d059122faa7458b5d8d2"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4183dc166203e17fb8996bb40376a2f7263a52ca32d6c1a7f66b672106085c10.npz",
+              "sha256": "7130b4916daa1a377053fbc2ae974f99f9f1e1ccff9a43f2390a012b45b957e3"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a147f7802f98b23a8ddf67a482a86b04b444f669b6ed5b2c5efe79eb89e4aa2c.npz",
+              "sha256": "125a6fb155372c5cf353f4ae1e8c3601de0d9c93247e5c2b85ec9e02492f72d7"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/aea7236dcb4c45c299314d77b743b793d745496c89b17ecffe9ca52db3a3c674.npz",
+              "sha256": "ffac797b08148c7a022a51fd7b35db6c52fd74c1ff40893b9131e24b280eb569"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/49bf760b897036c62a02e9c2999077bc4f54315121260b3c17ff9548901275f2.npz",
+              "sha256": "189c6b6636b31f037fb9b1f80c74e6a482263c604c3dc76782049ba4364ea739"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/21/cubes/20m_celeba64_to_afhq_v2_64_seed1_epoch200.json",
+          "measurement_sha256": "c4d3da8a452f192b40ab28c7e3f942624452f5fb310f687b349fe83bedfe1b8e",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_stl10_64_seed0_epoch200": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/18/measurements/20m_celeba64_to_stl10_64_seed0_epoch200.npz",
+      "measurement_sha256": "e62369c549d8ec656a84344757e16a60f7f79bc6c1eba77f4f958f8f1bd55395",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/18/cubes/20m_celeba64_to_stl10_64_seed0_epoch200.json",
+      "cube_sha256": "556f63fa06a806ea314c2e5931a6bcb392965c7bb0340ea1c93c502541b70746",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_stl10_64_seed0_epoch200.npz",
+        "measurement_sha256": "fab1e1c3f68785a621d31e8400b49be0a112648e1fc2abba458033e58fbf578c",
+        "provenance": {
+          "id": "20m_celeba64_to_stl10_64_seed0_epoch200",
+          "cube_sha256": "556f63fa06a806ea314c2e5931a6bcb392965c7bb0340ea1c93c502541b70746",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/9f5c24f3215e36743d2652a0e3fb87d78e8e54d0080f9fa494aca9d0c3ceaf0f.npz",
+              "sha256": "97c0ef706aa293e425f6bef0208d54c6fe29f0b73063d0502c52a5a1dfcd8b94"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/4a809cc2caa4bae61b7f30df15f76da34530274663ea98261077efe853e62e04.npz",
+              "sha256": "30062346b99f27ea2eb8f0e2c97163f34977198d8ed05eb93bc04a453fa4b96e"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/53228d8d4b9168caa3827b88fbe98c3a6180959bb1d6e3808f7696d644161cdc.npz",
+              "sha256": "7923263b27214b338a32f9dfa7f122f4ec196d0492b4e88790c10d6c99c89799"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/bff41d65f6747e700244aaafd4c9ec1b55931af3a04b3ce84bbf9d0761739325.npz",
+              "sha256": "6c8b1f57fa9e0e5917a5c141725c53281d605690e0577d2f2c92f5d53b846028"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/f960286fe8bbf491220d7875a25729a166386c7906f272ac30bd8fc8552088a5.npz",
+              "sha256": "0505c5ea2e2b8164022cbf76faab0175b82a302557ce08aadc990938c40bc53e"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/b16443f21d2251a23ed4ef06ab2194298b0624cfd9ee817a73f671f6e181eb0f.npz",
+              "sha256": "068116da6320b3dd7584b6a92a075d3b944bdecc8b0e243340ef6b99631132e3"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/54bfd6cccc618bb2a4802eb7d7a919a00c21c5911dc27ba0ef2379a546dd3ae0.npz",
+              "sha256": "421f7c952edd78ddd7352d308ba72ec4dde21fd536a197f69b1769edc8a1a52b"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/18/cubes/20m_celeba64_to_stl10_64_seed0_epoch200.json",
+          "measurement_sha256": "fab1e1c3f68785a621d31e8400b49be0a112648e1fc2abba458033e58fbf578c",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_celeba64_to_stl10_64_seed1_epoch200": {
+      "measurement": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/19/measurements/20m_celeba64_to_stl10_64_seed1_epoch200.npz",
+      "measurement_sha256": "800cb39b1b78185d39bf894189c41135b43bb9c446ed1884b7affcc8197e4f16",
+      "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/19/cubes/20m_celeba64_to_stl10_64_seed1_epoch200.json",
+      "cube_sha256": "1496aa472f1f2c6eb2d15bdd5bf91dc63932b38bf9ca3da6dee6bb27a71c0d9b",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_celeba64_to_stl10_64_seed1_epoch200.npz",
+        "measurement_sha256": "77a8f4a330551f3e5d188b4b201ebb6a0f96edbf1b670ea730eb7fa8de7f9bb7",
+        "provenance": {
+          "id": "20m_celeba64_to_stl10_64_seed1_epoch200",
+          "cube_sha256": "1496aa472f1f2c6eb2d15bdd5bf91dc63932b38bf9ca3da6dee6bb27a71c0d9b",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/a41613ead92fb6610acca5da4d843c25748c3e23cb309d256acb94389625429d.npz",
+              "sha256": "4ddd239008b6d132526315cb14b39c304433c4bc8c7549bf605abbb707406bf0"
+            },
+            "100": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/f002e53a61b5de2cf10cc79f7c328ca55b823ff58b662b8e96f6749ec36bb35a.npz",
+              "sha256": "cd8530999dcc3e03da1468c2ce63c3ce01b0b7d563740ef9c6b95c1cd5669680"
+            },
+            "010": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/3fef1f9c5ec49ed0efd882c05010c9943844bc613b9fafd2b6d6bd9080a9786a.npz",
+              "sha256": "4b6f3d398e55796cdacd260fb88f4c11b0bede04a3ee7d4de4a619213dfda5a2"
+            },
+            "001": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/7fe8b3810486d8f158b69cae483f94e27602f2b319b523ef07f555c1a3c86497.npz",
+              "sha256": "2a6c481fb7e5e276272c7927aec3b1d6c8f25f55485fa06f96da861aa546689b"
+            },
+            "110": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/8cab88d6908c67a2fcf472db13f52dc280d6b6e897e373b953d8ea03ccade937.npz",
+              "sha256": "67b93658299d13b0fcf693cf1319f0f5776f89ea2acce9d33f9871fcf914213d"
+            },
+            "101": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/6e059873d3e47f7df952f8f7e0d3a9fc93d6a8309916b4abc15d70354075c8ed.npz",
+              "sha256": "19e7ef6eeca73e0a55302fbc147e8282e7535f1ddd74ec3034764886b759570d"
+            },
+            "011": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/97f0a471a253c4579c1063e0bb84da6a1e3000eb3d49c155092b6f28c1c6e81f.npz",
+              "sha256": "8c94d0ccba0aa0bee5580fe34f6f4d104108fdb0886bf2482d92ecca713575df"
+            },
+            "111": {
+              "path": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/cache/images/d591b11e111f122f9cdcc400f7b6c0cd1aba37d4cd1eadc0ed9be853b04795bb.npz",
+              "sha256": "7ca57599dfdcd2c29dd754e4007e607ea93bf713835460b18c0b399f06d8358b"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/experiment3/archive/legacy_reports/primary_metrics_1024/evaluation/tasks/19/cubes/20m_celeba64_to_stl10_64_seed1_epoch200.json",
+          "measurement_sha256": "77a8f4a330551f3e5d188b4b201ebb6a0f96edbf1b670ea730eb7fa8de7f9bb7",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_aahq64_seed0_epoch150": {
+      "measurement": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/measurements/20m_stl10_64_source800_to_aahq64_seed0_epoch150.npz",
+      "measurement_sha256": "ae589738fbaf051e7806077ac7a68e296535828d1ba1f711321d265c1f01a680",
+      "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_aahq64_seed0_epoch150.json",
+      "cube_sha256": "593f7665676f508f277141c617e4ebc9bf812e8545b04475aca61e5983727694",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_aahq64_seed0_epoch150.npz",
+        "measurement_sha256": "16f9a9f7760a67d643bce611be453a23ec0abe880e836f44e5617154b09a8c38",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_aahq64_seed0_epoch150",
+          "cube_sha256": "593f7665676f508f277141c617e4ebc9bf812e8545b04475aca61e5983727694",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/1fff831e2af2a62f8464b86293e9a5bac1afbfaa0b7d20528c9b775db969b556.npz",
+              "sha256": "58b7f4ee007a7eee438bcaf887f0272ba47f6bdbbd4168e6948ee2b822ed6512"
+            },
+            "010": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/009c04904d0023994d05c9fd27cb79d656429ccb3f3cde75ae7866d9639028dc.npz",
+              "sha256": "e038046e3fe1d1c0c51c11a64c7bcf3ef57037a0becdadc885512eca4469ea36"
+            },
+            "001": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/ba5d3ee0fdd4bdd53c02ff9fb7201cda0b41794c480bceb28f4389d9abd7514a.npz",
+              "sha256": "073591adb86ac16abe737b5c4a71a80e9d3c14932ff196abe807bd6de472be09"
+            },
+            "110": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/a99f6457cbb451901cb67d3fc0d8643a1fe701a702eabf505c15a135013c57ba.npz",
+              "sha256": "f0aff50d8cdd753a6ae70e4e16c31dd65f16ae08af56a2f703f49d3dae210b66"
+            },
+            "101": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/f40f49e7db9d9a0ce87f847d9959f955b03463a7a229be68c8e9256b347f7986.npz",
+              "sha256": "acd19459c25bfb5939bd8d9467f8a4ad09ccfc0f29d028a975973059b6b94244"
+            },
+            "011": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/87d3970141c4f089abee79423f949803ee39055c206dc2e9df5305ded1e7c391.npz",
+              "sha256": "ba59b76a1ab000b37584171506d2d8ab768739fab80ae59bd242a0d180aefb8c"
+            },
+            "111": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/66defe31b6a33b4d77aa889624bde2786e87c8f6fb29fccfae4537389ab3e5ce.npz",
+              "sha256": "39f5c9f01dc4227e2721ee99e09a6989871e3ca9d0b965b60236a1f3132df7a8"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_aahq64_seed0_epoch150.json",
+          "measurement_sha256": "16f9a9f7760a67d643bce611be453a23ec0abe880e836f44e5617154b09a8c38",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_aahq64_seed1_epoch150": {
+      "measurement": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/measurements/20m_stl10_64_source800_to_aahq64_seed1_epoch150.npz",
+      "measurement_sha256": "51f74a2c7d95b4a5407507b281ecf28ad65035202a51e46c41a9cf4971a07391",
+      "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_aahq64_seed1_epoch150.json",
+      "cube_sha256": "bb2678c96f6a35608fd07c61977575907800c5a93ec4596ebe2b1716035d7739",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_aahq64_seed1_epoch150.npz",
+        "measurement_sha256": "b1deecdadcf9700905a8070600e16bafdfa4bc761291daee8a8d4b47dc1dd061",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_aahq64_seed1_epoch150",
+          "cube_sha256": "bb2678c96f6a35608fd07c61977575907800c5a93ec4596ebe2b1716035d7739",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/f4b067b8a629a42b53bd146afc47d14248fa577c47f8ea2e3439aa591d796164.npz",
+              "sha256": "84b46d7c405740ba29d0609b413199aa770df9b33149984dcd5cc0219e4364ab"
+            },
+            "010": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/87bba9c759c1e7cfcb4fcda10aae95bd768830dadd5b09e19b803a7e2f38e5a6.npz",
+              "sha256": "16d3b75504184581ff347615e1f5a92d243d20bc3702073dccfdb7cb7358d91f"
+            },
+            "001": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/00322fa5bfc04ae957fdfc52eb9d88486e341660f5e2535c67b5006ba11535a8.npz",
+              "sha256": "1f0f3b10c8e96b783f64e1df2ee5b7c9f9adabdbb6676d2c7dfc0b2391f78cfb"
+            },
+            "110": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/770543a6a14244286d67b5f04538bbc9bd2daf1f2eea1932676e77cc974f43a8.npz",
+              "sha256": "91db012484470cfc1bf20b7058a0d9399757125246ac69b11cfe5c1bc7a65059"
+            },
+            "101": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/b0c74516990826f00592630b54deee1fdbf2ff95a61cecc18805e30e3043f64f.npz",
+              "sha256": "1ff4c7e4d1eab6bde690ddfdb1883c251b8ac10c7f6cdd12416c7b0ebffecd12"
+            },
+            "011": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9222898dacc3bcb494ba29f5655d858d4453cd370acac7be16236626054dd751.npz",
+              "sha256": "59d5e4e25c56c0ade3cd3e16ac7988e1d6c87612326dfb24ccf6e013870d7a22"
+            },
+            "111": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/e2ac87a6989e8598d65b04bae751fed81cc74bdad5ebdc8ba09b241695f1b59c.npz",
+              "sha256": "d4f5a563851fc0da8d6aa87bc7e3c93f7bbf45564a5b0c18ecb9f4d862d32217"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_aahq64_seed1_epoch150.json",
+          "measurement_sha256": "b1deecdadcf9700905a8070600e16bafdfa4bc761291daee8a8d4b47dc1dd061",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_ffhq64_seed0_epoch100": {
+      "measurement": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/measurements/20m_stl10_64_source800_to_ffhq64_seed0_epoch100.npz",
+      "measurement_sha256": "d23573b1072b2e47dba78b0448cd8268a17a4b6eea6f1c4f8ea715dcfa89d8dc",
+      "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_ffhq64_seed0_epoch100.json",
+      "cube_sha256": "53951712e296d410f9734088a766fec13d206531e945fd36f16fa688d36078e5",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_ffhq64_seed0_epoch100.npz",
+        "measurement_sha256": "d8a609b336d8bb21feaf956cb6fecc389a58222fe9070326a6897318d33a513b",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_ffhq64_seed0_epoch100",
+          "cube_sha256": "53951712e296d410f9734088a766fec13d206531e945fd36f16fa688d36078e5",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/aba7915a9a6a62c7525e26b6d790c082ccda81ba3bfc84d6293047d134bd3340.npz",
+              "sha256": "f0fb54efcd848e32107a15ea342cfd758d3c17b571068408f6aeb06bd853c42e"
+            },
+            "010": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/e79ad96dd569dc6f75152f7a87ba9cfa8930016ebc7349d2668f0ae4fb192745.npz",
+              "sha256": "e2fa94797318c746a6f2042516e981ec3786eeb3df50f0e58cc3af0d37a131ad"
+            },
+            "001": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/b459e5d38a5e467116ea4970e0379e32a4b595e8935bea08fe8d2b1d5839688e.npz",
+              "sha256": "fd9293ddbe834bada81d645810b2c085c9c906262c5715a3e83b1ba2f1a73c9a"
+            },
+            "110": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/c443337533e73e5f6ecd2e72814e52e1627f45470b119995c151917229b6cac7.npz",
+              "sha256": "5adfacc61f5f9b6439dfd8e14141e556a9c3aea73cff41b227e9f5075df91bd8"
+            },
+            "101": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/b8182eb9cb13496e26cc845d4d8e3e0fe206da4b91c3d70553c6552d4a53feca.npz",
+              "sha256": "53ffaeb5f0161a47e78082c84c39934ae26caec2d585edf49b3e14ae7b55aaef"
+            },
+            "011": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/7300122e71cf14ea9886c94b3cd9caaee21c29f769b773f11b4a24a011788d7e.npz",
+              "sha256": "84568809a24c65754fde58e70f3549dfb0b7ee4e7e2e0436a15f0b58bf422664"
+            },
+            "111": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/55994e756337983c7554d4612785f31b6013a73d221b5d0fba8d5a42f9efa03c.npz",
+              "sha256": "e3aecdc567b4f80443e0e9474af63387fecdf82f51ee2e538804710e70e22056"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_ffhq64_seed0_epoch100.json",
+          "measurement_sha256": "d8a609b336d8bb21feaf956cb6fecc389a58222fe9070326a6897318d33a513b",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_ffhq64_seed1_epoch100": {
+      "measurement": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/measurements/20m_stl10_64_source800_to_ffhq64_seed1_epoch100.npz",
+      "measurement_sha256": "5f59a050e1cf400290ef2fc1c72947b7e98b3d942c4e5837e6347cda5b799546",
+      "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_ffhq64_seed1_epoch100.json",
+      "cube_sha256": "c85aea92b964146b348f17622d3e8dedb1d796197eed55a104b417fa10d32791",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_ffhq64_seed1_epoch100.npz",
+        "measurement_sha256": "0f2259eb60c8e7d5c7201bb85a14314fdea6453ff74a9d82f242aa6456b568c9",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_ffhq64_seed1_epoch100",
+          "cube_sha256": "c85aea92b964146b348f17622d3e8dedb1d796197eed55a104b417fa10d32791",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/ac1595d32130a57e4cae7e5566274470c742147310a73df483e6ca8415c20aa6.npz",
+              "sha256": "f13803d739c0b321826e6dc6640ec47f8344fe9ae4f7bc74db5e9e6f6fce2938"
+            },
+            "010": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/5d5cd948d272f119c7f9a4168e61c20e460dc2473ae28b9513385d1cabb0d5a1.npz",
+              "sha256": "b14ab3df4c2c822ad64b55fb4c623fbf0297ad69a4e81c896059ee0cb4523b8d"
+            },
+            "001": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/227cc644fcfff454337f24445f5803ee861e7db7de84d740e2e59f452a3aaa18.npz",
+              "sha256": "83cb7731c2953f403c98fe9f7a2d996ebb9b2ff0e052f902d78965070a7980b3"
+            },
+            "110": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/56e2c86bab760d6f480ae6f353ca91a1078fe1543fab0a4bc0538707bc419e49.npz",
+              "sha256": "14a396330d50a432e635c1be8c6359633475a2459afe8c559963e75983543c88"
+            },
+            "101": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/b905be79f84ff0870a7f3bcf2797f51a108af74cb254ac13fd32f491fa3062fd.npz",
+              "sha256": "680d7202ec585f502f99142ca6587932c4a46e056c1464e7d5e2ab2bb9243709"
+            },
+            "011": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/736841237116cac5daed0208f8ef92c21a56e933ca6f9c4543d7f405046287b9.npz",
+              "sha256": "6422132a8034431291ba702af56ced3116a2822d9ee4260b25de7beaa062528e"
+            },
+            "111": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/4933e88d3bbd283c0560324f8d1dd4ab098646fdb716199181a9593eb4efb0cf.npz",
+              "sha256": "e9c90cbb8328f4fbe74b72354500bceb9f22a1a65ba1a6ef19abeaf08406cf79"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_ffhq64_seed1_epoch100.json",
+          "measurement_sha256": "0f2259eb60c8e7d5c7201bb85a14314fdea6453ff74a9d82f242aa6456b568c9",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_afhq_v2_64_seed0_epoch200": {
+      "measurement": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/measurements/20m_stl10_64_source800_to_afhq_v2_64_seed0_epoch200.npz",
+      "measurement_sha256": "8776b9fa87ed045593fb56dbddf3c440c7c287a4a66824e810f7ed68bcf0f700",
+      "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_afhq_v2_64_seed0_epoch200.json",
+      "cube_sha256": "88fb677883342c32ce6fdd145f5371203782a9192f837037fed154370560f5d5",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_afhq_v2_64_seed0_epoch200.npz",
+        "measurement_sha256": "53d35728cc4a1bd6db2f723a5773172d77a0a78b0a09abdb3fd5c852995638b6",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_afhq_v2_64_seed0_epoch200",
+          "cube_sha256": "88fb677883342c32ce6fdd145f5371203782a9192f837037fed154370560f5d5",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/05db5704cb964d655c0748ee8e2b30fb503a5c5393e4dfaa457aa33152a30510.npz",
+              "sha256": "71c8a7c5a3bada67c39f5ea970a685d82ea07f8eae364a44fbb2e7142f6bd719"
+            },
+            "010": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9da6a6e0634091049663fb0ec5239bad5a37b989caa56997614b3178e4ddc984.npz",
+              "sha256": "6e958657d7015d87a8043cb2afbd87d013d35e16bf1cc48a3c612189088219cb"
+            },
+            "001": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/c7cbe17f114a652e26f86fdf452398eaff4c3f260e4fb870788af5eb75e73215.npz",
+              "sha256": "34b7c935cd711a3276a4ba261f624c1faece89d623b0be8bb082578eef1b6b8d"
+            },
+            "110": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/cc3cd60f869d1cf2ea5b915ca501a92d8d131b7ba689a6cb3c04569c27b858df.npz",
+              "sha256": "c76ab1000338c40110eb8dbefd68e04c4e07de60a4680221f134463fe85a9ecb"
+            },
+            "101": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/0de014255ab987b99c493d617aab713ef8b07fe43e4018216bcfe54140b94788.npz",
+              "sha256": "1a7677921dc73c5482bbbbfb043ba061c5cfa9c08a3e65dd940897120624233c"
+            },
+            "011": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/13978217074e5813db51c81f69a2f407423b8c97bc5db9abb29c89d68fa256a7.npz",
+              "sha256": "beb354797d5566ca364445d85198afa2074704e6f7b0c59867ea3f071af1244a"
+            },
+            "111": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9bdbb536e370c22e2e61c3d8a9a548bcf13fef6987a89bf4d6d1d836f9d4019e.npz",
+              "sha256": "6269850989c5b3d3cdfe3f2059a93642b846c916a96fc3d163b4016fa6e30dbf"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_afhq_v2_64_seed0_epoch200.json",
+          "measurement_sha256": "53d35728cc4a1bd6db2f723a5773172d77a0a78b0a09abdb3fd5c852995638b6",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_afhq_v2_64_seed1_epoch200": {
+      "measurement": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/measurements/20m_stl10_64_source800_to_afhq_v2_64_seed1_epoch200.npz",
+      "measurement_sha256": "1329bec3ee3d4a7a167e02067f82c2902859c579f1c0aba7300001e9a250b15d",
+      "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_afhq_v2_64_seed1_epoch200.json",
+      "cube_sha256": "43feefa4d013b5b7c635e85bfae57eae6448687ffd861677b3bfb3c940160710",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_afhq_v2_64_seed1_epoch200.npz",
+        "measurement_sha256": "d9364275082014ef0d5aa1d348b1df33c93c71329074a150d7e4ac600a7dcdd3",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_afhq_v2_64_seed1_epoch200",
+          "cube_sha256": "43feefa4d013b5b7c635e85bfae57eae6448687ffd861677b3bfb3c940160710",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/c6a107bb6dcd8c964231840bb0013c887b50ade882f5a2437b57d0b8eef483c6.npz",
+              "sha256": "c66fe1a532323f2870dc713bf17cf9efee15e55e7292ba00c62f2ebc5593a01e"
+            },
+            "010": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/ed92a1da7b7797b27104c70f7cea6d8b794b57ca7d0edec97c5c9730147164d7.npz",
+              "sha256": "03e589984483309a47172d17e4e8cf976a88bc264524caf5578c9df498de3ec2"
+            },
+            "001": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/845aca359d004b30d1b840037336a5c9258fd46d30eda065e89779b2e86d4cd9.npz",
+              "sha256": "0f7ffef160b7157a14b5e43dd50bb4fdb424c7cb5f2c673731254f5a0cd90907"
+            },
+            "110": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/032f977ab1b1aafc1b46e68887ede25934e371be6050e0033a6593daa2e1d2ef.npz",
+              "sha256": "1cd605462038a00264d0f8d9a41e1940a3976b89627bc7ae9220e91211ac4cb2"
+            },
+            "101": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/c05013be8cbf066e91915f3726ef2d8d769a9f3259475d77a496cd03716aa3d0.npz",
+              "sha256": "e3911e1d545fcc5acc2b1103af374a57105560713347922785376d5aeae5d529"
+            },
+            "011": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/5d5142f0ae8ffdaad482af0c1e8e450a7ce9264bd1c0e1ef499c59c1785aff6a.npz",
+              "sha256": "8b8e4ca5e6d7aa3abe14d5db4bf2d97bff6cd3e577665c8186f364fc0424a671"
+            },
+            "111": {
+              "path": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/images/11fc170a78dbecce5fe732bd9d26c9254308894b453b06d8c1f4268dde18a578.npz",
+              "sha256": "8d6c39f282f97b666bffb4287014f40014eda00529e2db8b47465ef73aa35135"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-16/stl10_source800_hybrid_metrics/cache/cubes/20m_stl10_64_source800_to_afhq_v2_64_seed1_epoch200.json",
+          "measurement_sha256": "d9364275082014ef0d5aa1d348b1df33c93c71329074a150d7e4ac600a7dcdd3",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_celeba64_seed0_epoch200": {
+      "measurement": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/measurements/20m_stl10_64_source800_to_celeba64_seed0_epoch200.npz",
+      "measurement_sha256": "b2ef5523671ab319adfa17997150a4d82050116b6a8dfc143a88fe9f04aea40e",
+      "cube": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/cubes/20m_stl10_64_source800_to_celeba64_seed0_epoch200.json",
+      "cube_sha256": "9476f41f50e26e11a5bbfe9f2a4cbd9f75481cb4938704a23bdb6b37e762c503",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_celeba64_seed0_epoch200.npz",
+        "measurement_sha256": "a0ed8943cc5c3dc53b802f13413c80ffced994c0fb04e8af46e4a8471badd556",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_celeba64_seed0_epoch200",
+          "cube_sha256": "9476f41f50e26e11a5bbfe9f2a4cbd9f75481cb4938704a23bdb6b37e762c503",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/5ac19b883e271f3f83f1f78803431b59b937e0d70dabd24a50c993936430ab11.npz",
+              "sha256": "d1237a77b7423940b491289fa0a859e0981fa81f86830ec6b095fef7a14f2a8a"
+            },
+            "010": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/a6ef52253167f2bdf40fa9dbf4a087eba4584f86d30ed4597d089303e9c57117.npz",
+              "sha256": "4f6af4002e01c34aca17cd3886282e6ad51c5d27934b489f12571d4bfd5038d1"
+            },
+            "001": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/1fdd87090c0e8c63f331d7ec367070f331037e2bc7cb67ec4096903a90da01b7.npz",
+              "sha256": "38593c6b5b77d4a9fde98acf70aea40831e56aaacd57efccb9ca175cb34465d6"
+            },
+            "110": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/9ef3e14e686c3e8bc00fda1edb819c8c59a55c626f07f700329fe6e44dcd7f2d.npz",
+              "sha256": "58e8a62718c347d92d645b0bc9a98990d9fe8145bc18a47bad120e70b38d826b"
+            },
+            "101": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/fb04d99f53fd43f03e3de5ba0a23c0f579a148b968df742e2081791f688da17b.npz",
+              "sha256": "d6b964c28f69b27dcd54483a9590654882f65c5557fafbd185d6ecdc5fe8c49e"
+            },
+            "011": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/0d29a0175fadcc61c991e032ce65365b5a5faf2f0bba40f36755ea8c48780a9a.npz",
+              "sha256": "9ddb378c5ad09304ad0c2425e9f834694e219ffc031912e0f7b6d12d781fd5a3"
+            },
+            "111": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/images/d7dd194e5e2fbeed2bc7b50f885f35c1973d96d490a5db4972da49f44e0b328b.npz",
+              "sha256": "a2502f8e202027c659bdf7d49f201726049353fc58fb9e4c73e99b6639464887"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed0_epoch200/cache/cubes/20m_stl10_64_source800_to_celeba64_seed0_epoch200.json",
+          "measurement_sha256": "a0ed8943cc5c3dc53b802f13413c80ffced994c0fb04e8af46e4a8471badd556",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_stl10_64_source800_to_celeba64_seed1_epoch200": {
+      "measurement": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/measurements/20m_stl10_64_source800_to_celeba64_seed1_epoch200.npz",
+      "measurement_sha256": "2e4b1d58e05172ce73d8e270fbdc544ba2a77ea6d5d6d46fe65a7f537f7a35a2",
+      "cube": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/cubes/20m_stl10_64_source800_to_celeba64_seed1_epoch200.json",
+      "cube_sha256": "d3aea42161c788964f4b93530d70c2b62e316273090f22bf632a45c0355e36ab",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_stl10_64_source800_to_celeba64_seed1_epoch200.npz",
+        "measurement_sha256": "37c99d6b3c80605658fa13296c32feb85c403906697f719678b9a2ce4566765c",
+        "provenance": {
+          "id": "20m_stl10_64_source800_to_celeba64_seed1_epoch200",
+          "cube_sha256": "d3aea42161c788964f4b93530d70c2b62e316273090f22bf632a45c0355e36ab",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/9d17d881b56071a25afbc7b58031897e355f60c6b9a2153e3f1ca759f350c333.npz",
+              "sha256": "17efc68b6d9c7241449b593ee7ff1052d3b094042fa4757d0fc6abcd16c6e634"
+            },
+            "100": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/c2cb0bb346a36eab6170a220be2498cc58067fe4fff615d6a976432278f85aab.npz",
+              "sha256": "18c413cca75067140f7860cf1c4c168dd9675bf496dfa74c86e6f00c651de557"
+            },
+            "010": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/3bf5eeb629241e43500d34b1e8b884cb2c0e82188151cfb11285b759b003e856.npz",
+              "sha256": "60414ce53647b0bdf07420e8e37ce2c881b6de06d7c2a216e0ae1a8688b4c5aa"
+            },
+            "001": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/f077ca803e99c0561580965ca43cd7c75ed6ff4a08591c6e429d4a619b928ca2.npz",
+              "sha256": "30cee1d7fe9e3c4e1513470d8131bd7d5d7202ee3a1767b21a1f5094e879c319"
+            },
+            "110": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/9adcb4cfef680e3402375a8195886c853d3f7fd53fb9e472872ee9b01cf3d26f.npz",
+              "sha256": "e00e9f0e3eff6671d34e825bbdacf173ae2b43248214fdd0b7b020404aeef938"
+            },
+            "101": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/58dba2ea6813dda400eed0fbcdf87141e008c23cce68339724840442d461abba.npz",
+              "sha256": "188d2903e34c19aeaf31814c551bef86851ec35dde1ee7b4720ceedb013419b8"
+            },
+            "011": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/7441d2343c6b2d41d4a59e6523a291a64d7152b6259ece836788fbbc19fb6cec.npz",
+              "sha256": "831705d16f1556f77bf8f317104dc230ae6c3ecd09682e4cffee01e8225a7490"
+            },
+            "111": {
+              "path": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/images/6a082226f3af4ae2f11bc27cccb1fc1c7756f484165779bc4b4d658dfeb82e96.npz",
+              "sha256": "c522304804e8ba6b6e6686f74dd14829606bb4fcc4fe6a96273a432d6688ecef"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/experiment3_completion/hybrids/20m_stl10_64_source800_to_celeba64_seed1_epoch200/cache/cubes/20m_stl10_64_source800_to_celeba64_seed1_epoch200.json",
+          "measurement_sha256": "37c99d6b3c80605658fa13296c32feb85c403906697f719678b9a2ce4566765c",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_aahq64_seed0_epoch150": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/measurements/20m_imagenet64_source800_to_aahq64_seed0_epoch150.npz",
+      "measurement_sha256": "510fcc8e2b448c37d99866d09ac327f51ebc05bd6d8dc1fc9f6d1b4b1593be92",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/cubes/20m_imagenet64_source800_to_aahq64_seed0_epoch150.json",
+      "cube_sha256": "cf1fce11ec376541ae8920eb091d90db15f5336d5da7b492cb7da2fafb620db3",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_aahq64_seed0_epoch150.npz",
+        "measurement_sha256": "83f45cc2468d2c3141aedc4d03f3d429b6afbc6bcb6e2293ff23cf5348970732",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_aahq64_seed0_epoch150",
+          "cube_sha256": "cf1fce11ec376541ae8920eb091d90db15f5336d5da7b492cb7da2fafb620db3",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/ed8dbe9a9b23ce27463a768fc4c9c9d9cdd689cd8a567100a751d41740b1ccd7.npz",
+              "sha256": "31aca435a4520b28d79bc3e28b89465b3d37854aeafa9626c7e6b36595b0310e"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/0d171f9658c1174131e896ab3aa71794f81c7ff6cf35d05e99d15a633a9a5234.npz",
+              "sha256": "cf38114437feb45bb5ef57ad551ca0a49aa467c9a15f5b2e61dbae83f4437892"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/13a23f69b7f88c48871a28e1a04403935c1a3bde12a730d1850ed2a0d3bf6be6.npz",
+              "sha256": "6fbb86416759f8c2523f63c9ac84236fd39d9a6337af011dd60abfe56b67e07f"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/cee96848ab7dbfc44d108281d41eadeb1049b4d81a93dd09753564ee1c6b94fb.npz",
+              "sha256": "6cc2903caa1a42ad47534588d2b7f6777b8adbdc7972d626e50a3e675d5a6658"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/5f5293589891d46b5188c5cd64ee8b108a1cc933387af679cb199f16cd4fc694.npz",
+              "sha256": "fef3c4bc185c3400c1f722c61145e1d5c435dbb7f5b032ce326ef4a16217ef0b"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/d049eb0bc40ee193db50beacc49b58a872c75fc7370b0ff907da224c3da979c9.npz",
+              "sha256": "7682e26785ec56eda73ca0d27004902b04082d023ffc98dd8762c58d50c0ba61"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/images/b4003cfb72237924b250383304ca456eef7e8ab25e0c8c2c90efb851ae8c76f1.npz",
+              "sha256": "5f1ae624a04d16942d1e2f5350598fe4dcac5ee27e9e8b0a73369d677687e36d"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed0_epoch150/cache/cubes/20m_imagenet64_source800_to_aahq64_seed0_epoch150.json",
+          "measurement_sha256": "83f45cc2468d2c3141aedc4d03f3d429b6afbc6bcb6e2293ff23cf5348970732",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_aahq64_seed1_epoch150": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/measurements/20m_imagenet64_source800_to_aahq64_seed1_epoch150.npz",
+      "measurement_sha256": "1bca8435c14bd28d89b6a62a7ed5faea1f96034bf6c1d4e84fa42432c7e7d773",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/cubes/20m_imagenet64_source800_to_aahq64_seed1_epoch150.json",
+      "cube_sha256": "6d971394bd999e015201ae13133b8d665edcbeeaa066eb44794fe7c2c3b02620",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_aahq64_seed1_epoch150.npz",
+        "measurement_sha256": "130aeaeff9ac644299b758362711e5a3cb2ae9ce5860685137384c3f6b86dc0c",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_aahq64_seed1_epoch150",
+          "cube_sha256": "6d971394bd999e015201ae13133b8d665edcbeeaa066eb44794fe7c2c3b02620",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/61077a9a639a0e8619b98b98757f092c39a2161b9ff7db65c615a973d554bff5.npz",
+              "sha256": "14c185d0560c999dbc0e43b051e06b45cb008947989e2eaa206b42d591d2d37e"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/2924396788d4184efcc0d753366712a3ac01336bbd4b0201dd1e858bf39bf5db.npz",
+              "sha256": "714e0eccc7333c33e02f7b358fbea06c9ad5a4a570fe0d771c413caa736c54d2"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/be40137de3e43cf41d6ca99b90ebe84bbdcb54c9643792f13594e4afea6e3e4f.npz",
+              "sha256": "be454854a06027d9fd8fb9acfc8c0c1ed79e5bc87d3f5e83268cc16d144d829e"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/23a763b844e7789c2354d8692d7d54020186866632deffd71982a33b767a03e5.npz",
+              "sha256": "a6e3e35815ae6c9b0666011620d0d03150bbe9cccd28e5dabf202c6a65bb9fcf"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/8fdf4cacaf7f05787114defb538417b8c3991690bb11da4068c8775c1156d89b.npz",
+              "sha256": "edf507766137d93e660b99739a6355c44bfbb94b5e68fed6e0c8b974294b8b9d"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/56eaea4e94ef9462e6b593c4c68c3be071dd5a1509e32a7374e850d8c13392a9.npz",
+              "sha256": "99aea5aa655fe710412ad5f3ec6a7affc854316baf0cc9fd2c7700970ca23c65"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/images/90bfdc40b1f3fc695942241624b5675b43cf80a38ce78f15b192ccf50bff6d4f.npz",
+              "sha256": "e221072dd490e5772bc1e9fa458e3c13ea7db01eaa483a63cc2debf203f10b81"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_aahq64_seed1_epoch150/cache/cubes/20m_imagenet64_source800_to_aahq64_seed1_epoch150.json",
+          "measurement_sha256": "130aeaeff9ac644299b758362711e5a3cb2ae9ce5860685137384c3f6b86dc0c",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_ffhq64_seed0_epoch100": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/measurements/20m_imagenet64_source800_to_ffhq64_seed0_epoch100.npz",
+      "measurement_sha256": "a6314a221bcc9b08c23cc0aca09e75e4eed6bfa05acfd1b5da478217296a4776",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/cubes/20m_imagenet64_source800_to_ffhq64_seed0_epoch100.json",
+      "cube_sha256": "6dc4b726f9b44467dd4d011b478439617170a676a4c972f932c96e0419212487",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_ffhq64_seed0_epoch100.npz",
+        "measurement_sha256": "4f4e9f62b91e5dc15caca727cf159e5d720a586026802cf3f718597d97033749",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_ffhq64_seed0_epoch100",
+          "cube_sha256": "6dc4b726f9b44467dd4d011b478439617170a676a4c972f932c96e0419212487",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/ff6dfd9499a7f6b647e378b53c230bec577db46fd113135b46fea69772b7b110.npz",
+              "sha256": "09808cabff4a32f0024539bba2fc652d713d9608452f948a10176e389c740e72"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/84084dfbc4cc8769bd7196895ff7fca35e7e5820c8aa1f03dc57917aa236858c.npz",
+              "sha256": "ba521a53f71b9021e9a64a5634bd5f643fe946c20c8fda7d887050a070391ded"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/f2b44dd069863c9ae4d64a6062efa93463fa0451bb5862f967dc3aa57d729a21.npz",
+              "sha256": "b0cbdde6bafeb6e1ceec208d98b823a3828e38e9bdecf4a976d2e8c525b5a046"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/05d51d5f39d5756870d25c3de33045f4849799629ef9e889356895769ccb9d3c.npz",
+              "sha256": "e92132dbd86375069fc77facb300697d07ba47aa41a5d6372753a952fa972e87"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/a96e368453472f5919521ef010ad08a6f7684b34d8630f63a6ad5ee083434989.npz",
+              "sha256": "0f178678fae5fa5ca8e9d417cbb7f6d699ac697be75ac42fe93e9853fb9bb849"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/898ace2a3237a92b2fc43b582bfaf3c682b71191584411437b668dbc86d34fd4.npz",
+              "sha256": "afc42f268ccaea4210706a5f7c0905d787cee3154305d8d79b4acc52788ea577"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/images/b7af9597a65db218fc9748aeae9439c38a0ba944137a3c075244b2be839c38dc.npz",
+              "sha256": "c7d877fab290cdfb2da3c83f92a341f66f49ed7d64e5d5d842bfe63d6d45e395"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed0_epoch100/cache/cubes/20m_imagenet64_source800_to_ffhq64_seed0_epoch100.json",
+          "measurement_sha256": "4f4e9f62b91e5dc15caca727cf159e5d720a586026802cf3f718597d97033749",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_ffhq64_seed1_epoch100": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/measurements/20m_imagenet64_source800_to_ffhq64_seed1_epoch100.npz",
+      "measurement_sha256": "e4a39263106656350f81edb8372e2cf3ff2fd4078894388fddcf4970ba3ba3b1",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/cubes/20m_imagenet64_source800_to_ffhq64_seed1_epoch100.json",
+      "cube_sha256": "63899b139ea178beecdf8168830eaf3b532b06c2cc40080960acef34d1402185",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_ffhq64_seed1_epoch100.npz",
+        "measurement_sha256": "fafd128ab4d4657913a0f7e003d0b7f4ffffef32f0590a28412b1cb1c9d9a3e6",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_ffhq64_seed1_epoch100",
+          "cube_sha256": "63899b139ea178beecdf8168830eaf3b532b06c2cc40080960acef34d1402185",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/17de6388a5561dfa5e74d55fda7e2a93e7e3f37496cf0272135eca82f106155d.npz",
+              "sha256": "c0d5149a12cb0bcb82a1b77506c5e9343cd53a5f9c55038f10048ed7b7f4aa21"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/c015e5f3bac987dddd1bb40cd7c083b72858ff48356e6536d3918a84ea08d8f6.npz",
+              "sha256": "fced8adbe40829984799d79b7eeb41bee6743e409039e18b95b56c94a48cf0c3"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/b93a14b283038e01aabaff9e75a3599baffbd4a4ac725a86dd1ce45f36a3804b.npz",
+              "sha256": "6b4872b1f0c0d6c9c8ae7ceda2efce46e84dabed90170aa00221a07c564f22ca"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/bb57134f55146afde9995ea092fb7271341ca6cf976b8427cc8b39dd5ccf61b2.npz",
+              "sha256": "0626d3cec68e7a91681c5ef5a23af94f043966d21241867be9157b7a3f57c3f4"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/e50ffc4dba09af789fc5862dd7c6dd633c65d27cb2197d6e60f51c55b2f92f92.npz",
+              "sha256": "97f4dac137b3e17b40dab41a44a1ed00a7995a2bf808c16cd59c9bdc02139e78"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/3878e7e102583d2059d3a87003e5bd58cccf967a080d60ef04b2b386178dbd93.npz",
+              "sha256": "421b31a252111b371f76b9a2dcf86350f9bd638744bef612610225f4bd56bf59"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/images/859b35402613123aadfcb19c1c97c14bf3a2813cbcfc12be0233187e43deeab7.npz",
+              "sha256": "5898ee812975183ca8f3e96a82f2e3e5024b4dea70db48fbfcb6fff8933356a2"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_ffhq64_seed1_epoch100/cache/cubes/20m_imagenet64_source800_to_ffhq64_seed1_epoch100.json",
+          "measurement_sha256": "fafd128ab4d4657913a0f7e003d0b7f4ffffef32f0590a28412b1cb1c9d9a3e6",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/measurements/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200.npz",
+      "measurement_sha256": "0a96229cd82593e8a1cf2698957af8fc7c714c0091a5aaa28f644b2aba6fefd7",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/cubes/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200.json",
+      "cube_sha256": "c1f47367fc6b0a3dc53079cd4d83c5082bc8712552a3fc0bc9f87a1e304e2e45",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200.npz",
+        "measurement_sha256": "18f7b59e0c4040e97d61a1d6ecb638bc5659590a151022c9369486a35f3dd45a",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200",
+          "cube_sha256": "c1f47367fc6b0a3dc53079cd4d83c5082bc8712552a3fc0bc9f87a1e304e2e45",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/96efffef6c9da9f3c34cc209bbd822c0a287d177ff06f9dcde4fa1d549f20160.npz",
+              "sha256": "43db4e4549bcfad15e15241343d824997a0ac54c3391ff9e35c2557eb2ea872b"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/c0ca38e03623be7eb94cc4994eb63cb69998c4d192154a6ec88927e9ea159e73.npz",
+              "sha256": "cc20398aae0931a7841f81305474dc2d2edabde55835005e3c7f1f4b02015c38"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/4795167fe18c9aadd60d4a07bd6edbce5a8f0e55ac49f5aa75c0b1585e856ba4.npz",
+              "sha256": "301400cafe08c4a6226806350f0a88722edb7db11573210ed82ef8a433414af0"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/b704ed726f37a814b6fce649977de3ef391f3f16a640f05ca6a888e1077c5c87.npz",
+              "sha256": "ff346240e20af3b6f724d31df33e0f664329ed18628c0dbb865055444b3e87e5"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/58c453cc94a9e80846e9192635c27c870ce4c5a510bb4faf3aaf52c460795307.npz",
+              "sha256": "c46eaa37d160b55b163add9b652c2e1d2ffca4c609c5dcb0763948dd8f585037"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/edcf944b29422787c6816c98dcaf830a2330e2b13f8b07b97405dce68a83d9be.npz",
+              "sha256": "a89b514a813064f3cc43fecdbbbb8016563a0a93ce588a4a50c2c412d057215e"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/images/a815e50fa559c063b35e2b0fd2aa65a6d7efe0114924296f43bac10d8acf8dc6.npz",
+              "sha256": "e538495d07e68981d560cb8793ff8c86479a3a5e490d3db4ff9b4c656f4b2387"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200/cache/cubes/20m_imagenet64_source800_to_afhq_v2_64_seed0_epoch200.json",
+          "measurement_sha256": "18f7b59e0c4040e97d61a1d6ecb638bc5659590a151022c9369486a35f3dd45a",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/measurements/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200.npz",
+      "measurement_sha256": "c60e02e37b0e05de269660bb7bc5390790e32ac25e152bf0b47ecce112109be6",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/cubes/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200.json",
+      "cube_sha256": "5041cfde0848b8b49d1f3a1ca213ab60ecbe8093a40cfd654f54752e6f8e8567",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200.npz",
+        "measurement_sha256": "4c148d848642af0cf08bdc02f72666efe4625fee127fe45d490a6da374e30139",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200",
+          "cube_sha256": "5041cfde0848b8b49d1f3a1ca213ab60ecbe8093a40cfd654f54752e6f8e8567",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/0f5f856ddc64eba3dd1cff06f83cd0ec803c7370a661aa8add567eabb8561b23.npz",
+              "sha256": "c1568daf72444ba8d1eae539b34923278f9b95e16a343ad3d0df1af5dd0f9c40"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/0a4ae123b49aae5e6c2fca78e86ba9aa4e52dcb5ccdc08c22e361a3a20c63316.npz",
+              "sha256": "15d94e285f4dddb65a9eaed6b7f20ee36009ffc71f831f8113acdedbcefd161e"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/637a3c6ebaca550be1dd87dbf313b7ec8e20956b9961c53a2332b91c07af13e8.npz",
+              "sha256": "b2760dd68c2d8cdb3d9ef3781930729e389706830adae3e56f58d6fca1133358"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/ea09d6a836b393acdc21724341e20c1879c3243825c1e52f00475fff59ce7bf1.npz",
+              "sha256": "3489d927f7822ea99d9d43f6d9f5b3c3b6fec30c0e08c6ad8a9f2c07e5614150"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/d1bce6045435839a9e44fadba4e12800599c752e2d4453ec92a943d0e9f01188.npz",
+              "sha256": "09e2f6b9bf4c252a0ddd53bff5cc3886254a7d62a84cec3dca83bb193b669e04"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/1806af415dafaec5e2a59d8db53152f37c29a83baba79ada8a6635f2ad064f3d.npz",
+              "sha256": "f6ed61fec0d422d2328e602dea48e4f0b920a25682e5f9b65a3b03ee9bc9528d"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/images/017e20871de051d7568337a5cf6990d8db746d38b2033c39a41677a7ed534488.npz",
+              "sha256": "e0f829eb5174e0f46b9547ad02fa437963a2a579be1e3085fd6999e923e95fb5"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200/cache/cubes/20m_imagenet64_source800_to_afhq_v2_64_seed1_epoch200.json",
+          "measurement_sha256": "4c148d848642af0cf08bdc02f72666efe4625fee127fe45d490a6da374e30139",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_celeba64_seed0_epoch100": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/measurements/20m_imagenet64_source800_to_celeba64_seed0_epoch100.npz",
+      "measurement_sha256": "18a968a72b98daedd2b3510ed3ceb7d8ac18f83e9497cde7a6dd62b283bb6b1e",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/cubes/20m_imagenet64_source800_to_celeba64_seed0_epoch100.json",
+      "cube_sha256": "4fa5b21062c4053bef7b02d022beb27293327b37c143b5d53d4b4b000c081f01",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_celeba64_seed0_epoch100.npz",
+        "measurement_sha256": "19dfe13477f9905310c8ecb44544dca8acde35f2186c88e3fcea622d580c92ea",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_celeba64_seed0_epoch100",
+          "cube_sha256": "4fa5b21062c4053bef7b02d022beb27293327b37c143b5d53d4b4b000c081f01",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/e24b8d3177ceb9cf5c7c32231d419334e7afb9fc34b67ba4c558f217e9e213e1.npz",
+              "sha256": "5eb987caa4b95ae7aa6649de2a340c35aed4fb24b6ce3ff435622bb08f248c6e"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/fc7c6d368a96a89e4e645767e34cffcfe470633735b580fb2cc6093e07e1b318.npz",
+              "sha256": "bd3ab755ae53960cff386d9e118381b706dba0712c48f0c09e4d97586d31d82e"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/64fc490a637dfa46891bcedb0d735d4cba9654f5576343cce04b37ea4f4fca9a.npz",
+              "sha256": "207b88ee555cccd0082eef282a68233f934053cdfb544bbade05097be157e29c"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/61ccd341e32b476624ce95bc27a401263ef6c617918d4a92b7c2df54dc83e897.npz",
+              "sha256": "5013f26207957417c80d37b72bf5c6c55db24d59ee6ad2a757797b9c8a09ac71"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/4949faaa1cd6cbc38e635d7f8544867eb2b4227242c413bc6352798a768683a4.npz",
+              "sha256": "293bba3decfa5ad185ecd3ef1403acc25cc8b78bc0e26095d9938c19319e09de"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/ae2682f0dfb21d3e60ee897dbe9837df821b799bdc9d789bf9896d81e1434e4b.npz",
+              "sha256": "0c09e476b2ddb56dae691a8116026c6095f3916008fd0739b35374b5f8dd3452"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/images/948b35147427f084343afc575f997512467dd78d05dc936787debbb30ed6f110.npz",
+              "sha256": "4fc356f5cea767025d090fb1f4f284e18f4f4b041e1f21ae120bdbdfc35c556a"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed0_epoch100/cache/cubes/20m_imagenet64_source800_to_celeba64_seed0_epoch100.json",
+          "measurement_sha256": "19dfe13477f9905310c8ecb44544dca8acde35f2186c88e3fcea622d580c92ea",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    },
+    "20m_imagenet64_source800_to_celeba64_seed1_epoch100": {
+      "measurement": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/measurements/20m_imagenet64_source800_to_celeba64_seed1_epoch100.npz",
+      "measurement_sha256": "10eac3183877d878449840d06e48ca4772be349f83907e9f122eb14315af6368",
+      "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/cubes/20m_imagenet64_source800_to_celeba64_seed1_epoch100.json",
+      "cube_sha256": "b838a38fa14706c4a15528fd18e30164d052b275389450dd3517b34af2666813",
+      "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+      "geometry": {
+        "measurement": "metrics/geometry_results/20m_imagenet64_source800_to_celeba64_seed1_epoch100.npz",
+        "measurement_sha256": "d2771caa441beb3ac43c56ab029953d9564e98c7b686c206022efd7d4f574d07",
+        "provenance": {
+          "id": "20m_imagenet64_source800_to_celeba64_seed1_epoch100",
+          "cube_sha256": "b838a38fa14706c4a15528fd18e30164d052b275389450dd3517b34af2666813",
+          "code_sha256": "3b69669ec98616ed0a8c5c108e68bfc1f09b7c33db2d502650e6b57246e30f58",
+          "dataset_manifest_sha256": "97789a19ccccb3e4239b584661fc25056604d27ac8d07bdcbc327ed126960f41",
+          "images": {
+            "000": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/49a4d000a16cb9b7fa349f2b832c88e4a3dfe66f92a7a3198a5de19cdf10cb80.npz",
+              "sha256": "5bd4eb6bd24e95f56ad096a742bc261c3d88e67d0c0aa0a1587f05bbf26f1d6f"
+            },
+            "100": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/0c3ff3acc80dd759bfbbe3668792b22f463d3c21202addc674e76eed8f296b2e.npz",
+              "sha256": "c2402323187783e4082705aa01720ff9ec4c322a99010265fe4b30bbe40c4d68"
+            },
+            "010": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/d7635f53d22a93c9fa24c9b9e1efd8f863410a18d373370cf8b49ba4bcd5f859.npz",
+              "sha256": "302b9eaac502af5f214b9c5e834d898286c41dcef89d1ea3ff60d9c0c555c848"
+            },
+            "001": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/d510575307b410a6ac04626cb815719285739dbd6f356330c6146a7b9353029f.npz",
+              "sha256": "f9ed412465baca795187b8e1bdefb293f16b6b35492716ce2555df1b7121cd9b"
+            },
+            "110": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/40cb7ad908caa082bc52f621744527f51ca7fdb59cfd840a883dd39ed261dbbc.npz",
+              "sha256": "d0bd61e967a2386539762edbd36fea40ccf359b382d93c9e1aab3c6b8fb6a162"
+            },
+            "101": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/b7e07808eb2f18de7e3b962cd684a4cc142a1ad987d0ed38014a73c125cecc87.npz",
+              "sha256": "cf3c1cdffe7641f24bdd67a01f0066eb68130355bab84a0614358c530034b45f"
+            },
+            "011": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/044c888a7a6d5dea7f971c03e9bd0ea9864d6a923e0c129a5e9f893d7be571a3.npz",
+              "sha256": "0f84ee740b2ebeaa117a24837609a4299807762c2fa41319dab8949d51b280bf"
+            },
+            "111": {
+              "path": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/images/a958911b0ec181ec9f17c6f3be276c95157f4e83ac3eb3fb8efad345c03799ce.npz",
+              "sha256": "6d9de8b359f34f749cc35ff2405885152bc8c5329360b1ed0bd09af8c2facbb5"
+            }
+          },
+          "latent_hash": "d284ad7f7b3329e4b2ec0503351959c0c197d49f925651fe2498eb0bdb94ef43",
+          "cube": "reports/2026-09-19/imagenet800_replacement/hybrids/20m_imagenet64_source800_to_celeba64_seed1_epoch100/cache/cubes/20m_imagenet64_source800_to_celeba64_seed1_epoch100.json",
+          "measurement_sha256": "d2771caa441beb3ac43c56ab029953d9564e98c7b686c206022efd7d4f574d07",
+          "descriptor_dimension": 32640,
+          "paired_latents": 1024,
+          "note": "Mean squared difference of fixed-grid spatial self-similarity descriptors; matches the validated real-dataset descriptor"
+        }
+      }
+    }
+  },
+  "geometry_stage": "Real-dataset controls passed before applying the same descriptor to matched-latent generated cubes"
+}
