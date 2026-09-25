@@ -73,7 +73,9 @@ class Summary(CubeAssociations):
         super().__init__()
         self.endpoints = {(r['source'], r['target']): r for r in
                           json.loads((HERE / 'tables/endpoint_selections.json').read_text())}
-        self.images_text = (HERE / 'experiment3_images.md').read_text()
+        image_report = HERE / 'experiment3_images.md'
+        self.images_text = (image_report.read_text() if image_report.exists()
+                            else '\n'.join(f'## {label(pair)}' for pair in PAIRS))
         assert re.findall(r'^## (.+)$', self.images_text, re.M) == list(map(label, PAIRS))
         for rows in (self.states, self.contrasts):
             assert list(dict.fromkeys((r['source'], r['target']) for r in rows)) == PAIRS

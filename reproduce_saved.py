@@ -15,7 +15,7 @@ def rows(path: str) -> list[dict]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("asset", choices=("efficiency", "pld-trajectories", "transfer-trajectories", "transfer-statistics", "all"))
+    parser.add_argument("asset", choices=("efficiency", "pld-trajectories", "transfer-trajectories", "transfer-statistics", "transfer-images", "all"))
     args = parser.parse_args()
     assets = ("efficiency", "pld-trajectories", "transfer-trajectories", "transfer-statistics") if args.asset == "all" else (args.asset,)
     if "efficiency" in assets:
@@ -54,6 +54,20 @@ def main() -> None:
         import json
         geometry = json.loads((ROOT / "reports/experiment3/metrics/dataset_geometry.json").read_text())
         paper_dataset_geometry_figure(geometry)
+    if "transfer-images" in assets:
+        import subprocess
+        import sys
+        sys.path.insert(0, str(ROOT / "reports/experiment3"))
+        from reports.experiment3.build_summary_assets import Summary, OUT
+        OUT.mkdir(parents=True, exist_ok=True)
+        (ROOT / "draft/figs").mkdir(parents=True, exist_ok=True)
+        Summary().image_overview()
+        for command in (
+            ["reports/experiment3/build_flagship_figure.py", "--source", "celeba64"],
+            ["reports/experiment3/build_flagship_figure.py", "--source", "imagenet64"],
+            ["reports/experiment3/build_combined_appendix_cubes.py"],
+        ):
+            subprocess.run([sys.executable, *command], cwd=ROOT, check=True)
 
 
 if __name__ == "__main__":
