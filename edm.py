@@ -265,7 +265,8 @@ class VelocityXPredLoss:
 class VPVelocityXPredLoss:
     """Exact Li--He direct-x velocity loss for z_t=t*x+(1-t)*epsilon."""
 
-    def __init__(self, logit_mean=-0.8, logit_std=0.8, denominator_floor=0.05):
+    def __init__(self, logit_mean=-0.8, logit_std=0.8, denominator_floor=0.05,
+                 noise_scale=1.0):
         if logit_std <= 0:
             raise ValueError("logit_std must be positive")
         if not (0 < denominator_floor <= 1):
@@ -273,6 +274,9 @@ class VPVelocityXPredLoss:
         self.logit_mean = float(logit_mean)
         self.logit_std = float(logit_std)
         self.denominator_floor = float(denominator_floor)
+        if not (0 < noise_scale < float('inf')):
+            raise ValueError("noise_scale must be finite and positive")
+        self.noise_scale = float(noise_scale)
 
     def sample_t(self, batch_size, device):
         logits = torch.randn([batch_size, 1, 1, 1], device=device, dtype=torch.float32)
@@ -282,7 +286,7 @@ class VPVelocityXPredLoss:
         clean, augment_labels = augment_pipe(images) if augment_pipe is not None else (images, None)
         clean_f = clean.float()
         t = self.sample_t(clean.shape[0], clean.device)
-        eps = torch.randn_like(clean_f)
+        eps = torch.randn_like(clean_f) * self.noise_scale
         z = t * clean_f + (1 - t) * eps
         x_pred = net(z, t.flatten(), labels, augment_labels=augment_labels)
         denom = (1 - t).clamp_min(self.denominator_floor)

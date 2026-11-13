@@ -1,0 +1,141 @@
+{
+  "report": "@ROOT@/outputs/metfaces_uvit64",
+  "code": "@ROOT@",
+  "source": {
+    "family": "uvit",
+    "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+    "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+    "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+    "source_train_count": 162770,
+    "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+    "upstream_code": "@ROOT@/external/U-ViT",
+    "model_cfg": {
+      "img_size": 64,
+      "patch_size": 4,
+      "in_chans": 3,
+      "embed_dim": 512,
+      "depth": 12,
+      "num_heads": 8,
+      "mlp_ratio": 4,
+      "qkv_bias": false,
+      "mlp_time_embed": false,
+      "num_classes": -1,
+      "conv": true,
+      "skip": true
+    },
+    "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+    "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA"
+  },
+  "data": "@ROOT@/assets/manifests/metfaces_uvit64.json",
+  "data_sha256": "6dff540f82a0b86512cf2d6d0c894de95553f91e95cea0ce9403900cbee6e003",
+  "arms": [
+    "qk",
+    "vo",
+    "mlp",
+    "vo_mlp",
+    "qk_vo_mlp",
+    "full"
+  ],
+  "runs": {
+    "qk": "@ROOT@/outputs/metfaces_uvit64/runs/qk",
+    "vo": "@ROOT@/outputs/metfaces_uvit64/runs/vo",
+    "mlp": "@ROOT@/outputs/metfaces_uvit64/runs/mlp",
+    "vo_mlp": "@ROOT@/outputs/metfaces_uvit64/runs/vo_mlp",
+    "qk_vo_mlp": "@ROOT@/outputs/metfaces_uvit64/runs/qk_vo_mlp",
+    "full": "@ROOT@/outputs/metfaces_uvit64/runs/full"
+  },
+  "steps_per_epoch": 33,
+  "recipe": {
+    "training_seed": 0,
+    "corruption_seed": 20261109,
+    "epochs": 1000,
+    "global_batch": 32,
+    "microbatch": 8,
+    "lr": 0.0001,
+    "betas": [
+      0.99,
+      0.99
+    ],
+    "weight_decay": 0,
+    "clip": 1,
+    "warmup_target_epochs": 5,
+    "ema_decay": 0.9999,
+    "precision": "bf16",
+    "validation_every_epochs": 25
+  },
+  "evaluation_tasks": [
+    {
+      "arm": "source",
+      "endpoint": "source",
+      "seed": 202611091,
+      "label": "source_seed202611091"
+    },
+    {
+      "arm": "qk",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "qk_final_seed202611091"
+    },
+    {
+      "arm": "vo",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "vo_final_seed202611091"
+    },
+    {
+      "arm": "mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "mlp_final_seed202611091"
+    },
+    {
+      "arm": "vo_mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "vo_mlp_final_seed202611091"
+    },
+    {
+      "arm": "qk_vo_mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "qk_vo_mlp_final_seed202611091"
+    },
+    {
+      "arm": "full",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "full_final_seed202611091"
+    }
+  ],
+  "eval_output": "@ROOT@/outputs/metfaces_uvit64/evaluation",
+  "feature_weights": "@ROOT@/assets/pretrained/inception_v3_google-0cc3c7bd.pth",
+  "feature_weights_sha256": "0cc3c7bd75056d25e46cba549dc184522069b81e9787eff6df84f397bd52a5ef",
+  "evaluation": {
+    "generated_images": 5000,
+    "batch": 64,
+    "seeds": [
+      202611091
+    ],
+    "sampling_steps": 50,
+    "extractor": "torchvision Inception IMAGENET1K_V1; bilinear299, ImageNet normalization; not standard pytorch-fid",
+    "precision": "BF16 predictor; FP32 solver and features",
+    "algorithm": "official U-ViT DPM-Solver-fast"
+  },
+  "loss_tasks": [],
+  "every100_provenance": {
+    "original_manifest": "@ROOT@/reports/2026-11-09/uvit_metfaces_case_study/manifest.json",
+    "family": "uvit",
+    "sampling_seeds": [
+      202611091
+    ],
+    "missing_historical_snapshots": [],
+    "selection": "fixed epoch; no best checkpoint selection"
+  },
+  "sampling_protocol": {
+    "nfe": 50
+  },
+  "original_sampling_manifest": "@ROOT@/reports/2026-11-11/metfaces_every100/uvit0/manifest.json",
+  "original_sampling_manifest_sha256": "6dcd15b067a204124c99d12dc55b2b63561877d415c5e5df4c2cdb69b0a27623",
+  "sampling_protocol_amendment": "@ROOT@/reports/2026-11-13/uvit_metfaces_dpm50/SAMPLER_AMENDMENT.json",
+  "release_template": "metfaces_uvit64"
+}

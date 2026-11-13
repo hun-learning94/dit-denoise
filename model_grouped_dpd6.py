@@ -120,6 +120,7 @@ class GroupedDPD6Config:
     proj_drop: float = 0.0
     fused_expansion: bool = False
     print_params: bool = True
+    output_head_fp32: bool = False
 
 
 class GroupedDPD6Backbone(nn.Module):
@@ -223,7 +224,13 @@ class GroupedDPD6Backbone(nn.Module):
             if return_all:
                 states.append(tokens)
         shift, scale = self.final_adaLN(cond).chunk(2, dim=-1)
-        output = self.unpatchify(self.head(_modulate(self.final_norm(tokens), shift, scale)))
+        prediction = _modulate(self.final_norm(tokens), shift, scale)
+        if self.cfg.output_head_fp32:
+            with torch.autocast(device_type=prediction.device.type, enabled=False):
+                prediction = self.head(prediction.float())
+        else:
+            prediction = self.head(prediction)
+        output = self.unpatchify(prediction)
         if return_all:
             return {"final": output, "states": states, "coefficients": coefficients}
         return (output, coefficients) if return_coefficients else output

@@ -25,6 +25,8 @@ from model_dpd5 import DPD5Backbone, DPD5Config
 from model_dpd6 import DPD6Backbone, DPD6Config
 from model_grouped_dpd6 import GroupedDPD6Backbone, GroupedDPD6Config
 from train import EMA, build_dataloader, save_samples, seed_everything
+from checkpointing import save_training_checkpoint
+from gradient_clipping import clip_grad_norm_stable_
 
 
 class GroupedEDMLoss(EDMLoss):
@@ -186,6 +188,8 @@ def build_parser(model_type: ModelType) -> argparse.ArgumentParser:
 
     parser.add_argument("--log_every", type=int, default=100)
     parser.add_argument("--ckpt_every", type=int, default=5000)
+    parser.add_argument("--latest_every", type=int, default=0,
+                        help="Overwrite checkpoints/latest.pt at this update interval; 0 disables rolling saves")
     parser.add_argument("--sample_every", type=int, default=5000)
     parser.add_argument("--sample_n", type=int, default=36)
     parser.add_argument("--sample_steps", type=int, default=18)
@@ -310,7 +314,8 @@ def _build_model(model_type: str, args, img_res: int, img_ch: int, ckpt: Optiona
     return model_cls(cfg), cfg
 
 
-def _save_checkpoint(path: Path, net, cfg, model_type: str, opt, scaler, ema, step: int, args):
+def _save_checkpoint(path: Path, net, cfg, model_type: str, opt, scaler, ema, step: int, args,
+                     *, archive=True, latest=False):
     payload = {
         "step": int(step),
         "model_type": model_type,
@@ -336,7 +341,8 @@ def _save_checkpoint(path: Path, net, cfg, model_type: str, opt, scaler, ema, st
     if ema is not None:
         payload["ema"] = {key: value.detach().cpu() for key, value in ema.shadow.items()}
     path.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(payload, path)
+    save_training_checkpoint(payload, archive_path=path if archive else None,
+                             latest_path=path.parent / "latest.pt" if latest else None)
 
 
 def _report_nonfinite_gradients(net: torch.nn.Module, step: int) -> None:
@@ -377,7 +383,9 @@ def run(model_type: ModelType) -> None:
     # each rank owns one local noise group so that a global batch of W*B
     # contains W shared-noise groups (one per GPU/rank).  This also keeps the
     # grouped memory branch as small as possible on each rank.
-    requested_noise_groups = args.noise_groups
+    # SCA and SMLP sample times independently per image and do not expose the
+    # LPLD-only --noise_groups option.
+    requested_noise_groups = args.noise_groups if model_type == "dpd4" else args.batch
     effective_noise_groups = 1 if distributed and model_type == "dpd4" else requested_noise_groups
     outdir = Path(args.outdir)
     if model_type == "dpd4" and not args.resume and (
@@ -532,9 +540,7 @@ def run(model_type: ModelType) -> None:
             if args.grad_clip > 0:
                 scaler.unscale_(optimizer)
                 try:
-                    torch.nn.utils.clip_grad_norm_(
-                        net.parameters(), args.grad_clip, error_if_nonfinite=True
-                    )
+                    clip_grad_norm_stable_(net.parameters(), args.grad_clip, step=step + 1)
                 except RuntimeError:
                     if args.diagnose_nonfinite_grads:
                         _report_nonfinite_gradients(net, step + 1)
@@ -545,9 +551,7 @@ def run(model_type: ModelType) -> None:
             loss.backward()
             if args.grad_clip > 0:
                 try:
-                    torch.nn.utils.clip_grad_norm_(
-                        net.parameters(), args.grad_clip, error_if_nonfinite=True
-                    )
+                    clip_grad_norm_stable_(net.parameters(), args.grad_clip, step=step + 1)
                 except RuntimeError:
                     if args.diagnose_nonfinite_grads:
                         _report_nonfinite_gradients(net, step + 1)
@@ -568,11 +572,17 @@ def run(model_type: ModelType) -> None:
             running_loss = 0.0
             running_count = 0
 
-        if step1 % args.ckpt_every == 0 or step1 == args.steps:
+        save_archive = step1 % args.ckpt_every == 0 or step1 == args.steps
+        save_latest = args.latest_every > 0 and (step1 % args.latest_every == 0 or save_archive)
+        if save_archive or save_latest:
             path = outdir / "checkpoints" / f"ckpt_step{step1:07d}.pt"
             if is_main:
-                _save_checkpoint(path, raw_net, cfg, model_type, optimizer, scaler, ema, step1, args)
-                print(f"[ckpt] saved {path}")
+                _save_checkpoint(path, raw_net, cfg, model_type, optimizer, scaler, ema, step1, args,
+                                 archive=save_archive, latest=save_latest)
+                if save_archive:
+                    print(f"[ckpt] saved {path}")
+                if save_latest:
+                    print(f"[ckpt] updated latest at step {step1}")
             if distributed:
                 dist.barrier()
 

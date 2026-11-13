@@ -2,7 +2,7 @@
 
 Initial CelebA32 experiment (R=32):
 
-  python train_dpd4.py \
+  envs/pixel-dit/bin/python train_dpd4.py \
     --dataset folder \
     --data_root ./datasets/celeba32/train \
     --resolution 32 --channels 3 \

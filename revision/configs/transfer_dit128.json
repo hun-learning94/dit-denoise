@@ -1,0 +1,118 @@
+{
+  "report": "@ROOT@/outputs/transfer_dit128",
+  "code": "@ROOT@",
+  "sources": {
+    "pixel": {
+      "family": "pixel",
+      "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+      "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+      "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+      "source_train_count": 162770,
+      "lr": 0.0001,
+      "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+      "schedule": "5 reference epochs linear warmup then constant"
+    },
+    "lfm": {
+      "family": "lfm",
+      "name": "Released LFM ImageNet256 DiT-B/2 checkpoint875",
+      "checkpoint": "@ROOT@/assets/pretrained/lfm_imagenet256_dit_b2/model_875.pth",
+      "checkpoint_sha256": "29bcc32f9cd0e7698cb0532602da881b32d1f4f42ab95f96cacaefe9bf76b6a6",
+      "source_train_count": 1281167,
+      "lr": 0.0001,
+      "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+      "schedule": "constant1e-4 as released ImageNet DiT-B/2 command --no_lr_decay",
+      "conditioning": "null class1000 for all target/source/hybrid face evaluations; no CFG",
+      "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+      "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+      "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+      "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815"
+    }
+  },
+  "runs": [
+    {
+      "id": "celeba128_to_aahq128_seed0",
+      "family": "pixel",
+      "target": "aahq128",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/aahq128.json",
+      "output": "@ROOT@/outputs/transfer_dit128/runs/celeba128_to_aahq128_seed0",
+      "reference_epochs": 200
+    },
+    {
+      "id": "celeba128_to_afhq_v2_128_seed0",
+      "family": "pixel",
+      "target": "afhq_v2_128",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/afhq_v2_128.json",
+      "output": "@ROOT@/outputs/transfer_dit128/runs/celeba128_to_afhq_v2_128_seed0",
+      "reference_epochs": 200
+    },
+    {
+      "id": "celeba128_to_ffhq128_seed0",
+      "family": "pixel",
+      "target": "ffhq128",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/ffhq128.json",
+      "output": "@ROOT@/outputs/transfer_dit128/runs/celeba128_to_ffhq128_seed0",
+      "reference_epochs": 100
+    }
+  ],
+  "smoke_data": {
+    "pixel": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/aahq128.json",
+    "lfm": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/aahq256.json"
+  },
+  "reference_epochs": 200,
+  "group_counts": {
+    "QK": 14155776,
+    "VO": 14155776,
+    "MLP": 14100480
+  },
+  "mlp_rank": 153,
+  "effective_batch": 32,
+  "gpu": "untyped, eligible nodes restricted to validated GPU families",
+  "endpoint_diagnostics": "all8 paired target test losses and effective per-group/layer update norms",
+  "precision": "BF16 body / FP32 loss, trainable weights, optimizer, EMA and VAE; pixel output head FP32",
+  "allowed_gpu_names": [
+    ""
+  ],
+  "checkpoint_manifest_sha256": "573b87327f022d380df6f8cbcb84be5f3c8c71c77f0416cdd1d80a3d9e11b27e",
+  "eligible_nodes_at_submission": [
+    "dcc-allenlab-gpu-ferc-s-ab32-15",
+    "dcc-carlsonlab-gpu-ferc-s-h36-15",
+    "dcc-core-gpu-ferc-s-aa32-1",
+    "dcc-core-gpu-ferc-s-aa32-5",
+    "dcc-core-gpu-ferc-s-aa32-9",
+    "dcc-majoroslab-gpu-ferc-a-r32-34",
+    "dcc-majoroslab-gpu-ferc-g-r32-29",
+    "excluded-cuda-node",
+    "dcc-plusds-gpu-01",
+    "dcc-plusds-gpu-02",
+    "dcc-plusds-gpu-03",
+    "dcc-rental-gpu-01",
+    "dcc-rental-gpu-02",
+    "dcc-rental-gpu-03",
+    "dcc-rental-gpu-04",
+    "dcc-rental-gpu-11",
+    "dcc-rental-gpu-12",
+    "dcc-rental-gpu-13",
+    "dcc-rental-gpu-14",
+    "dcc-rental-gpu-15",
+    "dcc-viplab-gpu-ferc-s-aa25-4",
+    "dcc-vossenlab-gpu-ferc-s-g36-19",
+    "dcc-wrapplab-gpu-ferc-g-aa32-13"
+  ],
+  "continuation_authorization": "User requested both completed CelebA128 transfers continue to epoch400",
+  "parent_scientific_manifest": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/manifest.json",
+  "parent_execution_manifest": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/manifest_generic.json",
+  "created_utc": "2026-11-07T05:44:48.366492+00:00",
+  "preserved": "Original epoch200 directories/checkpoints/eight endpoint losses and previews",
+  "changed": "Training horizon and new output directory; recipe and continuation state preserved",
+  "release_template": "transfer_dit128",
+  "reference_epochs_by_target": {
+    "aahq": 200,
+    "afhq": 200,
+    "ffhq": 100,
+    "ffhq128": 100
+  },
+  "scientific_aim": "Diagnostic comparison of QK and VO+MLP compatibility across related face domains."
+}

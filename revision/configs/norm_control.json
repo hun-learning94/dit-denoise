@@ -1,0 +1,1144 @@
+{
+  "root": "@ROOT@/.",
+  "report": "@ROOT@/reports/2026-11-13/transplant_norm_matched",
+  "code": "@ROOT@",
+  "cases": [
+    {
+      "id": "uvit64_aahq",
+      "family": "uvit64",
+      "target": "aahq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/uvit64-00.pt",
+      "checkpoint_sha256": "36d905f5e3e176c3a5bb915b630cee5f7272903a2dad35434124fbc2973d20bc",
+      "source": {
+        "family": "uvit",
+        "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+        "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+        "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+        "source_train_count": 162770,
+        "lr": 0.0001,
+        "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+        "upstream_code": "@ROOT@/external/U-ViT",
+        "model_cfg": {
+          "img_size": 64,
+          "patch_size": 4,
+          "in_chans": 3,
+          "embed_dim": 512,
+          "depth": 12,
+          "num_heads": 8,
+          "mlp_ratio": 4,
+          "qkv_bias": false,
+          "mlp_time_embed": false,
+          "num_classes": -1,
+          "conv": true,
+          "skip": true
+        },
+        "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+        "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+        "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+        "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+      },
+      "model_spec": {
+        "code": "@ROOT@/.",
+        "source": {
+          "family": "uvit",
+          "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+          "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+          "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+          "source_train_count": 162770,
+          "lr": 0.0001,
+          "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+          "upstream_code": "@ROOT@/external/U-ViT",
+          "model_cfg": {
+            "img_size": 64,
+            "patch_size": 4,
+            "in_chans": 3,
+            "embed_dim": 512,
+            "depth": 12,
+            "num_heads": 8,
+            "mlp_ratio": 4,
+            "qkv_bias": false,
+            "mlp_time_embed": false,
+            "num_classes": -1,
+            "conv": true,
+            "skip": true
+          },
+          "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+          "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+          "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+          "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+        },
+        "resolution": 64,
+        "noise_scale": 1.0,
+        "python": "@ROOT@/assets/external/python"
+      },
+      "row": {
+        "id": "uvit64_aahq",
+        "model": "uvit64",
+        "target": "aahq",
+        "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/uvit64-00.pt",
+        "sha256": "36d905f5e3e176c3a5bb915b630cee5f7272903a2dad35434124fbc2973d20bc",
+        "step": 47900,
+        "epoch": 100,
+        "run_id": "uvit_celeba64_to_aahq64_facecrop_seed0",
+        "campaign": "@ROOT@/reports/2026-11-08/uvit_facecrop_transfers_seed0/manifest.json",
+        "campaign_sha256": "e1f3ff70fcda65a23362f7286b2b6fdd37b9bba597356a47cc0062bf24031920",
+        "checkpoint_identity": {
+          "manifest_sha256": "e1f3ff70fcda65a23362f7286b2b6fdd37b9bba597356a47cc0062bf24031920",
+          "run_id": "uvit_celeba64_to_aahq64_facecrop_seed0",
+          "data_sha256": "20fb3a5c2ae89a20fe26546029b36909581cc863809fc2868c46de5e7ea33334"
+        },
+        "data": "@ROOT@/reports/2026-11-08/uvit_facecrop_transfers_seed0/data/aahq64.json"
+      },
+      "manifest": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/manifest.json",
+      "batch": 256,
+      "view": {
+        "id": "uvit64_aahq",
+        "model": "uvit64",
+        "domain": "aahq",
+        "resolution": 64,
+        "transform": "identity",
+        "calibration_role": "validation",
+        "inputs": {
+          "record/aahq64.json": "20fb3a5c2ae89a20fe26546029b36909581cc863809fc2868c46de5e7ea33334"
+        },
+        "test": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_aahq/test.txt",
+          "sha256": "8d91fbfc13b2e13a44c70dad94880aa308ee1d47caf2fcd636e8d8b067a2bdb9",
+          "count": 1921
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_aahq/calibration.txt",
+          "sha256": "d8a7741713ec344b901752437ca3756084aa520a725771de3d357601f35947b2",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_aahq/spatial.txt",
+          "sha256": "d82e2a72ba860426238e279ffea6ed871d80caffd8a123f807f57b22a907bd9f",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_aahq/denoising.txt",
+          "sha256": "56df0832e68b9f833e18a82cbe94777ead67861f198487f4557959a9566829fa",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "uvit64_afhq",
+      "family": "uvit64",
+      "target": "afhq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/uvit64-01.pt",
+      "checkpoint_sha256": "a7124ade4af900ce5abc7bb320553aee8f068596a620d81b91956e602edcd94a",
+      "source": {
+        "family": "uvit",
+        "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+        "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+        "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+        "source_train_count": 162770,
+        "lr": 0.0001,
+        "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+        "upstream_code": "@ROOT@/external/U-ViT",
+        "model_cfg": {
+          "img_size": 64,
+          "patch_size": 4,
+          "in_chans": 3,
+          "embed_dim": 512,
+          "depth": 12,
+          "num_heads": 8,
+          "mlp_ratio": 4,
+          "qkv_bias": false,
+          "mlp_time_embed": false,
+          "num_classes": -1,
+          "conv": true,
+          "skip": true
+        },
+        "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+        "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+        "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+        "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+      },
+      "model_spec": {
+        "code": "@ROOT@/.",
+        "source": {
+          "family": "uvit",
+          "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+          "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+          "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+          "source_train_count": 162770,
+          "lr": 0.0001,
+          "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+          "upstream_code": "@ROOT@/external/U-ViT",
+          "model_cfg": {
+            "img_size": 64,
+            "patch_size": 4,
+            "in_chans": 3,
+            "embed_dim": 512,
+            "depth": 12,
+            "num_heads": 8,
+            "mlp_ratio": 4,
+            "qkv_bias": false,
+            "mlp_time_embed": false,
+            "num_classes": -1,
+            "conv": true,
+            "skip": true
+          },
+          "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+          "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+          "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+          "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+        },
+        "resolution": 64,
+        "noise_scale": 1.0,
+        "python": "@ROOT@/assets/external/python"
+      },
+      "row": {
+        "id": "uvit64_afhq",
+        "model": "uvit64",
+        "target": "afhq",
+        "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/uvit64-01.pt",
+        "sha256": "a7124ade4af900ce5abc7bb320553aee8f068596a620d81b91956e602edcd94a",
+        "step": 42500,
+        "epoch": 100,
+        "run_id": "uvit_celeba64_to_afhq_v2_64_facecrop_seed0",
+        "campaign": "@ROOT@/reports/2026-11-08/uvit_facecrop_transfers_seed0/manifest.json",
+        "campaign_sha256": "e1f3ff70fcda65a23362f7286b2b6fdd37b9bba597356a47cc0062bf24031920",
+        "checkpoint_identity": {
+          "manifest_sha256": "e1f3ff70fcda65a23362f7286b2b6fdd37b9bba597356a47cc0062bf24031920",
+          "run_id": "uvit_celeba64_to_afhq_v2_64_facecrop_seed0",
+          "data_sha256": "89172b49777c5431e241960221bb3263dc72d507201496d5275e8564e17a02c1"
+        },
+        "data": "@ROOT@/reports/2026-11-08/uvit_facecrop_transfers_seed0/data/afhq_v2_64.json"
+      },
+      "manifest": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/manifest.json",
+      "batch": 256,
+      "view": {
+        "id": "uvit64_afhq",
+        "model": "uvit64",
+        "domain": "afhq",
+        "resolution": 64,
+        "transform": "identity",
+        "calibration_role": "validation",
+        "inputs": {
+          "record/afhq_v2_64.json": "89172b49777c5431e241960221bb3263dc72d507201496d5275e8564e17a02c1"
+        },
+        "test": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_afhq/test.txt",
+          "sha256": "83476feb6c04933bac20f7d861c7da45c0fd760dee45ad74de0885064eaa2d2d",
+          "count": 1467
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_afhq/calibration.txt",
+          "sha256": "829070a6057994e9f9094deb4d0fa5f54e14123357823ac2a04b4c49b1ed015d",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_afhq/spatial.txt",
+          "sha256": "4575e8685ce6bc5732b0dca88b584d0cfb6907268a5c28949759780b33086ac7",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_afhq/denoising.txt",
+          "sha256": "307a1c3e1ba46bf828312ecc833db65848cb539101f18c56be2a9e1d7a7ee631",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "dit128_afhq",
+      "family": "dit128",
+      "target": "afhq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/dit128-06.pt",
+      "checkpoint_sha256": "2444dff6a3470ed763f89cd43e0529f7125631ab46eb6c88f8ba8f145be057ab",
+      "source": {
+        "family": "pixel",
+        "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+        "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+        "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+        "source_train_count": 162770,
+        "lr": 0.0001,
+        "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+        "schedule": "5 reference epochs linear warmup then constant"
+      },
+      "model_spec": {
+        "code": "@ROOT@/.",
+        "source": {
+          "family": "pixel",
+          "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+          "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+          "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+          "source_train_count": 162770,
+          "lr": 0.0001,
+          "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+          "schedule": "5 reference epochs linear warmup then constant"
+        },
+        "resolution": 128,
+        "noise_scale": 0.5,
+        "python": "@ROOT@/envs/pixel-dit/bin/python"
+      },
+      "row": {
+        "id": "dit128_afhq",
+        "model": "dit128",
+        "target": "afhq",
+        "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/dit128-06.pt",
+        "sha256": "2444dff6a3470ed763f89cd43e0529f7125631ab46eb6c88f8ba8f145be057ab",
+        "step": 42500,
+        "epoch": 100,
+        "run_id": "celeba128_to_afhq_v2_128_seed0",
+        "campaign": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/manifest.json",
+        "campaign_sha256": "573b87327f022d380df6f8cbcb84be5f3c8c71c77f0416cdd1d80a3d9e11b27e",
+        "checkpoint_identity": null,
+        "data": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/afhq_v2_128.json"
+      },
+      "manifest": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/manifest.json",
+      "batch": 256,
+      "view": {
+        "id": "dit128_afhq",
+        "model": "dit128",
+        "domain": "afhq",
+        "resolution": 128,
+        "transform": "identity",
+        "calibration_role": "validation",
+        "inputs": {
+          "record/afhq_v2_128.json": "bd050361d53f733a083e1bd47f50c476a60c5f9540c10e5697c44eb3a3995cd5"
+        },
+        "test": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_afhq/test.txt",
+          "sha256": "767ef79f936d64d93faf5583002b967a4dae838d89e36df02971bb127246ca70",
+          "count": 1467
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_afhq/calibration.txt",
+          "sha256": "78fc2da41134c84244f4143271bc972918b529f069dedd26f62f2ba2213846a4",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_afhq/spatial.txt",
+          "sha256": "553f036ac3b04ee34ef560ee4c019318da4f00d1c5bda69ab9811cf3ee96ba34",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_afhq/denoising.txt",
+          "sha256": "cf77cda87e567afc9231b02dec1d364d48a23bcb4776100d5b280a5e811401a2",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "dit128_aahq",
+      "family": "dit128",
+      "target": "aahq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/dit128-07.pt",
+      "checkpoint_sha256": "fa631878f79d7b93bbbe7e6f71e12d9a2196b765ce0204aa0b748b95643acdb9",
+      "source": {
+        "family": "pixel",
+        "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+        "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+        "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+        "source_train_count": 162770,
+        "lr": 0.0001,
+        "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+        "schedule": "5 reference epochs linear warmup then constant"
+      },
+      "model_spec": {
+        "code": "@ROOT@/.",
+        "source": {
+          "family": "pixel",
+          "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+          "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+          "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+          "source_train_count": 162770,
+          "lr": 0.0001,
+          "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+          "schedule": "5 reference epochs linear warmup then constant"
+        },
+        "resolution": 128,
+        "noise_scale": 0.5,
+        "python": "@ROOT@/envs/pixel-dit/bin/python"
+      },
+      "row": {
+        "id": "dit128_aahq",
+        "model": "dit128",
+        "target": "aahq",
+        "checkpoint": "@ROOT@/runs/transplant_epoch100_quantitative_pins_20261109/dit128-07.pt",
+        "sha256": "fa631878f79d7b93bbbe7e6f71e12d9a2196b765ce0204aa0b748b95643acdb9",
+        "step": 47900,
+        "epoch": 100,
+        "run_id": "celeba128_to_aahq128_seed0",
+        "campaign": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/manifest.json",
+        "campaign_sha256": "573b87327f022d380df6f8cbcb84be5f3c8c71c77f0416cdd1d80a3d9e11b27e",
+        "checkpoint_identity": null,
+        "data": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/aahq128.json"
+      },
+      "manifest": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/manifest.json",
+      "batch": 256,
+      "view": {
+        "id": "dit128_aahq",
+        "model": "dit128",
+        "domain": "aahq",
+        "resolution": 128,
+        "transform": "identity",
+        "calibration_role": "validation",
+        "inputs": {
+          "record/aahq128.json": "721bdfecb69ead6fd2597b3fb59f327d50cee6fda7a939b945a0d2995b950cf4"
+        },
+        "test": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_aahq/test.txt",
+          "sha256": "093d108b338212b5e19a8c651b59ef143ba56bcd4bf9bee97a9b02459fdd2ef6",
+          "count": 1921
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_aahq/calibration.txt",
+          "sha256": "506723332778f213acd60275940e3fe51fd15172a301c8f02a3ca1926ac6045d",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_aahq/spatial.txt",
+          "sha256": "598e3aaeaf905a4e062b1eaa00dcd73b15bd1c16baa5cb72f93fe76c0d6e58bf",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_aahq/denoising.txt",
+          "sha256": "39ce3a52af8881d0257f59be5387db3618f19f2b09014c235bcc0f6628af15f6",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "lfm256_aahq",
+      "family": "lfm256",
+      "target": "aahq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_aahq256_seed0/ema_epoch0100.pt",
+      "checkpoint_sha256": "93fca277f2d6478232c67109c06dc2328858178e3da530049ca0ef06bc8c593f",
+      "source": {
+        "family": "lfm",
+        "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+        "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+        "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+        "source_train_count": 27000,
+        "lr": 0.0001,
+        "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+        "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+        "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+        "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+        "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+        "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+        "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+        "model_type": "DiT-L/2",
+        "constructor": {
+          "img_resolution": 32,
+          "num_classes": 1,
+          "label_dropout": 0.0,
+          "learn_sigma": false
+        },
+        "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+        "group_counts": {
+          "QK": 50331648,
+          "VO": 50331648,
+          "MLP": 50380800
+        },
+        "mlp_rank": 205,
+        "microbatch": 2,
+        "evaluation_batch": 2,
+        "source_preview": true,
+        "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+        "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+      },
+      "model_spec": {
+        "source": {
+          "family": "lfm",
+          "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+          "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+          "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+          "source_train_count": 27000,
+          "lr": 0.0001,
+          "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+          "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+          "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+          "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+          "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+          "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+          "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "model_type": "DiT-L/2",
+          "constructor": {
+            "img_resolution": 32,
+            "num_classes": 1,
+            "label_dropout": 0.0,
+            "learn_sigma": false
+          },
+          "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+          "group_counts": {
+            "QK": 50331648,
+            "VO": 50331648,
+            "MLP": 50380800
+          },
+          "mlp_rank": 205,
+          "microbatch": 2,
+          "evaluation_batch": 2,
+          "source_preview": true,
+          "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+          "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+        },
+        "resolution": 256,
+        "code": "@ROOT@/."
+      },
+      "row": {
+        "id": "lfm256_aahq",
+        "model": "lfm256",
+        "target": "aahq",
+        "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_aahq256_seed0/ema_epoch0100.pt",
+        "step": 47900,
+        "run_id": "lfm_celeba_hq256_to_aahq256_seed0",
+        "checkpoint_identity": {
+          "manifest_sha256": "7a50b55bcc3194979f7877e8867804d1ba4f568ecf6e74e9013f98b8f3859d90",
+          "run_id": "lfm_celeba_hq256_to_aahq256_seed0",
+          "data_sha256": "4b1488462158a43f4dd0e820eeac7a699604f886ec8987e86983339b6309d712"
+        }
+      },
+      "manifest": "@ROOT@/reports/2026-11-11/lfm_aahq_afhq_quantitative/manifest.json",
+      "batch": 16,
+      "view": {
+        "id": "lfm256_aahq",
+        "model": "lfm256",
+        "domain": "aahq",
+        "resolution": 256,
+        "transform": "identity",
+        "calibration_role": "held-out validation; disjoint from spatial/denoising membership",
+        "test": {
+          "path": "@ROOT@/reports/2026-11-11/lfm_aahq_afhq_quantitative/data/lfm256_aahq/test.txt",
+          "sha256": "ba484b71d7d491c2a5d6e41384988cd8901ffef50cf2253046f59a63297ad631",
+          "count": 1921
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-11/lfm_aahq_afhq_quantitative/data/lfm256_aahq/calibration.txt",
+          "sha256": "376aa6c534b5c8f0d6f818a1ec204aefa070138d0f16944b135f52151a87e627",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-11/lfm_aahq_afhq_quantitative/data/lfm256_aahq/spatial.txt",
+          "sha256": "5f3db5058302a56cce181e11677c169ca6fb9f3c456a3b9575421c2480e6fc6b",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-11/lfm_aahq_afhq_quantitative/data/lfm256_aahq/denoising.txt",
+          "sha256": "33b6a226b405fd98a1a10b0ef68a951ac6179243c8bef3bbc18c40cc8219ab90",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "lfm256_afhq",
+      "family": "lfm256",
+      "target": "afhq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_afhq_v2_256_seed0/ema_epoch0100.pt",
+      "checkpoint_sha256": "ae54623614de46c1ef2b31f8b22146ae16c473561859242aaa2394c8d4fc79df",
+      "source": {
+        "family": "lfm",
+        "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+        "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+        "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+        "source_train_count": 27000,
+        "lr": 0.0001,
+        "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+        "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+        "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+        "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+        "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+        "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+        "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+        "model_type": "DiT-L/2",
+        "constructor": {
+          "img_resolution": 32,
+          "num_classes": 1,
+          "label_dropout": 0.0,
+          "learn_sigma": false
+        },
+        "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+        "group_counts": {
+          "QK": 50331648,
+          "VO": 50331648,
+          "MLP": 50380800
+        },
+        "mlp_rank": 205,
+        "microbatch": 2,
+        "evaluation_batch": 2,
+        "source_preview": true,
+        "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+        "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+      },
+      "model_spec": {
+        "source": {
+          "family": "lfm",
+          "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+          "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+          "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+          "source_train_count": 27000,
+          "lr": 0.0001,
+          "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+          "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+          "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+          "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+          "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+          "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+          "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "model_type": "DiT-L/2",
+          "constructor": {
+            "img_resolution": 32,
+            "num_classes": 1,
+            "label_dropout": 0.0,
+            "learn_sigma": false
+          },
+          "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+          "group_counts": {
+            "QK": 50331648,
+            "VO": 50331648,
+            "MLP": 50380800
+          },
+          "mlp_rank": 205,
+          "microbatch": 2,
+          "evaluation_batch": 2,
+          "source_preview": true,
+          "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+          "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+        },
+        "resolution": 256,
+        "code": "@ROOT@/."
+      },
+      "row": {
+        "id": "lfm256_afhq",
+        "model": "lfm256",
+        "target": "afhq",
+        "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_afhq_v2_256_seed0/ema_epoch0100.pt",
+        "step": 42500,
+        "run_id": "lfm_celeba_hq256_to_afhq_v2_256_seed0",
+        "checkpoint_identity": {
+          "manifest_sha256": "7a50b55bcc3194979f7877e8867804d1ba4f568ecf6e74e9013f98b8f3859d90",
+          "run_id": "lfm_celeba_hq256_to_afhq_v2_256_seed0",
+          "data_sha256": "464b5a3ec891dc0a50ca425ffdaf96e741dcb8d7d780b02b3de9ec8bf0445133"
+        }
+      },
+      "manifest": "@ROOT@/reports/2026-11-11/lfm_aahq_afhq_quantitative/manifest.json",
+      "batch": 16,
+      "view": {
+        "id": "lfm256_afhq",
+        "model": "lfm256",
+        "domain": "afhq",
+        "resolution": 256,
+        "transform": "identity",
+        "calibration_role": "held-out validation; disjoint from spatial/denoising membership",
+        "test": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_afhq/test.txt",
+          "sha256": "930a64584047c0d581a1ad5c8d57f4b6e9b102f5e6dcc43a8ce40329663d5b84",
+          "count": 1467
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_afhq/calibration.txt",
+          "sha256": "8c08520e9ab694b3e8144bd1e4d3e53b91a6d1a6e6b799041d89ea2934a8812d",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_afhq/spatial.txt",
+          "sha256": "45be73d946a5fdb8da9758e5c6a4a825c6772876e9be628e9973859ac7b93ded",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_afhq/denoising.txt",
+          "sha256": "f98501cf610247dbeeeb65583db5037784bef4c75f9ec9b620a57e0c572746d2",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "uvit64_ffhq",
+      "family": "uvit64",
+      "target": "ffhq",
+      "epoch": 50,
+      "checkpoint": "@ROOT@/runs/component_transfer_uvit_facecrop_20261108/uvit_celeba64_to_ffhq64_facecrop_seed0/ema_epoch0050.pt",
+      "checkpoint_sha256": "60e50c7c07aa8a9116d46894b54ef0368a7e1dcccef53719263c5e7fed8dc280",
+      "source": {
+        "family": "uvit",
+        "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+        "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+        "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+        "source_train_count": 162770,
+        "lr": 0.0001,
+        "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+        "upstream_code": "@ROOT@/external/U-ViT",
+        "model_cfg": {
+          "img_size": 64,
+          "patch_size": 4,
+          "in_chans": 3,
+          "embed_dim": 512,
+          "depth": 12,
+          "num_heads": 8,
+          "mlp_ratio": 4,
+          "qkv_bias": false,
+          "mlp_time_embed": false,
+          "num_classes": -1,
+          "conv": true,
+          "skip": true
+        },
+        "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+        "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+        "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+        "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+      },
+      "model_spec": {
+        "code": "@ROOT@/.",
+        "source": {
+          "family": "uvit",
+          "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+          "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+          "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+          "source_train_count": 162770,
+          "lr": 0.0001,
+          "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+          "upstream_code": "@ROOT@/external/U-ViT",
+          "model_cfg": {
+            "img_size": 64,
+            "patch_size": 4,
+            "in_chans": 3,
+            "embed_dim": 512,
+            "depth": 12,
+            "num_heads": 8,
+            "mlp_ratio": 4,
+            "qkv_bias": false,
+            "mlp_time_embed": false,
+            "num_classes": -1,
+            "conv": true,
+            "skip": true
+          },
+          "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+          "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+          "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+          "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+        },
+        "resolution": 64,
+        "noise_scale": 1.0,
+        "python": "@ROOT@/assets/external/python"
+      },
+      "row": {
+        "id": "uvit64_ffhq",
+        "model": "uvit64",
+        "target": "ffhq",
+        "checkpoint": "@ROOT@/runs/component_transfer_uvit_facecrop_20261108/uvit_celeba64_to_ffhq64_facecrop_seed0/ema_epoch0050.pt",
+        "sha256": "60e50c7c07aa8a9116d46894b54ef0368a7e1dcccef53719263c5e7fed8dc280",
+        "step": 93750,
+        "epoch": 100,
+        "run_id": "uvit_celeba64_to_ffhq64_facecrop_seed0",
+        "campaign": "@ROOT@/reports/2026-11-08/uvit_facecrop_transfers_seed0/manifest.json",
+        "campaign_sha256": "e1f3ff70fcda65a23362f7286b2b6fdd37b9bba597356a47cc0062bf24031920",
+        "checkpoint_identity": {
+          "manifest_sha256": "e1f3ff70fcda65a23362f7286b2b6fdd37b9bba597356a47cc0062bf24031920",
+          "run_id": "uvit_celeba64_to_ffhq64_facecrop_seed0",
+          "data_sha256": "33fb197ca260ebc6254ec32bd816b47309572afcd1fe67ab89d73709c04966e4"
+        },
+        "data": "@ROOT@/reports/2026-11-08/uvit_facecrop_transfers_seed0/data/ffhq64.json",
+        "evaluation_epoch": 50
+      },
+      "manifest": "@ROOT@/reports/2026-11-11/ffhq_epoch50_revision/manifest.json",
+      "batch": 256,
+      "view": {
+        "id": "uvit64_ffhq",
+        "model": "uvit64",
+        "domain": "ffhq",
+        "resolution": 64,
+        "transform": "identity",
+        "calibration_role": "validation",
+        "inputs": {
+          "record/ffhq64.json": "33fb197ca260ebc6254ec32bd816b47309572afcd1fe67ab89d73709c04966e4"
+        },
+        "test": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_ffhq/test.txt",
+          "sha256": "c0fc00460dc6711226a90b274d50895970faacd8bad67640bdbfd2cfbc331581",
+          "count": 5000
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_ffhq/calibration.txt",
+          "sha256": "a5966f2298de6ed1d73bd2edd3b505c6a806bb939fa6f4c126c4d5f3892cd3da",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_ffhq/spatial.txt",
+          "sha256": "a9e942f3149966f2b2fa559daf8567a35bddf268fe976c4b62ac7dea0c4a17c1",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/uvit64_ffhq/denoising.txt",
+          "sha256": "fdc633be1b96e8e0fec607d47f63aee9e5ebe1a0694d5bdd1608cfb5e87f7fd2",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "dit128_ffhq",
+      "family": "dit128",
+      "target": "ffhq",
+      "epoch": 50,
+      "checkpoint": "@ROOT@/runs/component_transfer_matched_20261106/celeba128_to_ffhq128_seed0/ema_epoch0050.pt",
+      "checkpoint_sha256": "438c95e588e153133487e8b00bf486ec5e9c0c766c0d74e8cc9635d192a59acb",
+      "source": {
+        "family": "pixel",
+        "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+        "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+        "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+        "source_train_count": 162770,
+        "lr": 0.0001,
+        "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+        "schedule": "5 reference epochs linear warmup then constant"
+      },
+      "model_spec": {
+        "code": "@ROOT@/.",
+        "source": {
+          "family": "pixel",
+          "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+          "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+          "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+          "source_train_count": 162770,
+          "lr": 0.0001,
+          "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+          "schedule": "5 reference epochs linear warmup then constant"
+        },
+        "resolution": 128,
+        "noise_scale": 0.5,
+        "python": "@ROOT@/envs/pixel-dit/bin/python"
+      },
+      "row": {
+        "id": "dit128_ffhq",
+        "model": "dit128",
+        "target": "ffhq",
+        "checkpoint": "@ROOT@/runs/component_transfer_matched_20261106/celeba128_to_ffhq128_seed0/ema_epoch0050.pt",
+        "sha256": "438c95e588e153133487e8b00bf486ec5e9c0c766c0d74e8cc9635d192a59acb",
+        "step": 93750,
+        "epoch": 100,
+        "run_id": "celeba128_to_ffhq128_seed0",
+        "campaign": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/manifest.json",
+        "campaign_sha256": "573b87327f022d380df6f8cbcb84be5f3c8c71c77f0416cdd1d80a3d9e11b27e",
+        "checkpoint_identity": {
+          "manifest_sha256": "573b87327f022d380df6f8cbcb84be5f3c8c71c77f0416cdd1d80a3d9e11b27e",
+          "run_id": "celeba128_to_ffhq128_seed0",
+          "data_sha256": "f8d4963177a0ee759f1bf7499856ac0b0e284a3a72617f52799569acded22f31"
+        },
+        "data": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/ffhq128.json",
+        "evaluation_epoch": 50
+      },
+      "manifest": "@ROOT@/reports/2026-11-11/ffhq_epoch50_revision/manifest.json",
+      "batch": 256,
+      "view": {
+        "id": "dit128_ffhq",
+        "model": "dit128",
+        "domain": "ffhq",
+        "resolution": 128,
+        "transform": "identity",
+        "calibration_role": "validation",
+        "inputs": {
+          "record/ffhq128.json": "f8d4963177a0ee759f1bf7499856ac0b0e284a3a72617f52799569acded22f31"
+        },
+        "test": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_ffhq/test.txt",
+          "sha256": "732e35e01c5512165b2e73566cd27de63e85899e5bd41c848e61c737513977cb",
+          "count": 5000
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_ffhq/calibration.txt",
+          "sha256": "8cb88606797f2144e5c8c5e26937b08c808b413a7fb6163baf3f825bddec0c0f",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_ffhq/spatial.txt",
+          "sha256": "0751ea21fd637e8f395a1d3d9e17fbdbefee6b9f1050fd9123fffee6a57b2cf8",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-09/transplant_epoch100_quantitative/data/dit128_ffhq/denoising.txt",
+          "sha256": "bfa75535e39a7309a2d940ecb5e44c8bc5dd713c6b4e293d18c4d9a24721b717",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    },
+    {
+      "id": "lfm256_ffhq",
+      "family": "lfm256",
+      "target": "ffhq",
+      "epoch": 50,
+      "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_ffhq256_seed0/ema_epoch0050.pt",
+      "checkpoint_sha256": "9e55efdb71ecc9046deb24cffa1d6ba140c883afcd79ded1bceb339f94f295eb",
+      "source": {
+        "family": "lfm",
+        "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+        "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+        "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+        "source_train_count": 27000,
+        "lr": 0.0001,
+        "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+        "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+        "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+        "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+        "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+        "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+        "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+        "model_type": "DiT-L/2",
+        "constructor": {
+          "img_resolution": 32,
+          "num_classes": 1,
+          "label_dropout": 0.0,
+          "learn_sigma": false
+        },
+        "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+        "group_counts": {
+          "QK": 50331648,
+          "VO": 50331648,
+          "MLP": 50380800
+        },
+        "mlp_rank": 205,
+        "microbatch": 2,
+        "evaluation_batch": 2,
+        "source_preview": true,
+        "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+        "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+      },
+      "model_spec": {
+        "source": {
+          "family": "lfm",
+          "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+          "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+          "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+          "source_train_count": 27000,
+          "lr": 0.0001,
+          "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+          "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+          "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+          "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+          "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+          "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+          "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+          "model_type": "DiT-L/2",
+          "constructor": {
+            "img_resolution": 32,
+            "num_classes": 1,
+            "label_dropout": 0.0,
+            "learn_sigma": false
+          },
+          "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+          "group_counts": {
+            "QK": 50331648,
+            "VO": 50331648,
+            "MLP": 50380800
+          },
+          "mlp_rank": 205,
+          "microbatch": 2,
+          "evaluation_batch": 2,
+          "source_preview": true,
+          "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+          "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+        },
+        "resolution": 256,
+        "code": "@ROOT@/."
+      },
+      "row": {
+        "id": "lfm256_ffhq",
+        "model": "lfm256",
+        "target": "ffhq",
+        "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_ffhq256_seed0/ema_epoch0050.pt",
+        "step": 42150,
+        "run_id": "lfm_celeba_hq256_to_ffhq256_seed0",
+        "checkpoint_identity": {
+          "manifest_sha256": "7a50b55bcc3194979f7877e8867804d1ba4f568ecf6e74e9013f98b8f3859d90",
+          "run_id": "lfm_celeba_hq256_to_ffhq256_seed0",
+          "data_sha256": "c955c4c89e2210332e8a61f22047385cd3c5b7adb866a234727651ded2c26989"
+        },
+        "sha256": "9e55efdb71ecc9046deb24cffa1d6ba140c883afcd79ded1bceb339f94f295eb",
+        "evaluation_epoch": 50
+      },
+      "manifest": "@ROOT@/reports/2026-11-11/ffhq_epoch50_revision/manifest.json",
+      "batch": 16,
+      "view": {
+        "id": "lfm256_ffhq",
+        "model": "lfm256",
+        "domain": "ffhq",
+        "resolution": 256,
+        "transform": "identity",
+        "calibration_role": "held-out validation; disjoint from spatial/denoising membership",
+        "test": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_ffhq/test.txt",
+          "sha256": "ca302522ebdbeafd3c900a99663e5cb1ac00ffabdc3e301bb7446f305367db29",
+          "count": 5000
+        },
+        "calibration": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_ffhq/calibration.txt",
+          "sha256": "ae3c01fed7ba146ebc09f0d410514e16f8e86747cb318e830359e3eb23ab0308",
+          "count": 128
+        },
+        "spatial": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_ffhq/spatial.txt",
+          "sha256": "7a4b8ccc928ca9305c2632eb1aca9291bc7f37b1c16d3e1bcbd9f55628cdb4b8",
+          "count": 1000
+        },
+        "denoising": {
+          "path": "@ROOT@/reports/2026-11-10/lfm_jarvis/data/lfm256_ffhq/denoising.txt",
+          "sha256": "3ffd61323548a3d40c15e9164c5c31c4a67d0d4443da75b358a7e619e7c71146",
+          "count": 1024
+        }
+      },
+      "sampling_seed": 2026110907,
+      "path_seed": 2026111907,
+      "loss_seed": 2026110909,
+      "loss_replicates": 4
+    }
+  ],
+  "qualitative": [
+    {
+      "family": "uvit64",
+      "case": "uvit64_afhq",
+      "epoch": 25,
+      "checkpoint": "@ROOT@/runs/component_transfer_uvit_facecrop_20261108/uvit_celeba64_to_afhq_v2_64_facecrop_seed0/ema_epoch0025.pt",
+      "checkpoint_sha256": "465862cb8704ebebf281df7bbfba6e3ae36bd073b56b4a10ebc2cd3b7ff71bca",
+      "seed": 202611082,
+      "latent": 1,
+      "initial_noise_sha256": "fd613ebd0ce3c0687f74de810baddb73d5f775125b4e7306193f5d40b16a2caa",
+      "path_seed": 202711082,
+      "draw": 6,
+      "bank": 2
+    },
+    {
+      "family": "uvit64",
+      "case": "uvit64_afhq",
+      "epoch": 50,
+      "checkpoint": "@ROOT@/runs/component_transfer_uvit_facecrop_20261108/uvit_celeba64_to_afhq_v2_64_facecrop_seed0/ema_epoch0050.pt",
+      "checkpoint_sha256": "64d224c89acd4c7b1739259bf85732a2cae531bc66544a71c2805c071d8c3343",
+      "seed": 202611082,
+      "latent": 1,
+      "initial_noise_sha256": "fd613ebd0ce3c0687f74de810baddb73d5f775125b4e7306193f5d40b16a2caa",
+      "path_seed": 202711082,
+      "draw": 6,
+      "bank": 2
+    },
+    {
+      "family": "uvit64",
+      "case": "uvit64_afhq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/component_transfer_uvit_facecrop_20261108/uvit_celeba64_to_afhq_v2_64_facecrop_seed0/ema_epoch0100.pt",
+      "checkpoint_sha256": "a7124ade4af900ce5abc7bb320553aee8f068596a620d81b91956e602edcd94a",
+      "seed": 202611082,
+      "latent": 1,
+      "initial_noise_sha256": "fd613ebd0ce3c0687f74de810baddb73d5f775125b4e7306193f5d40b16a2caa",
+      "path_seed": 202711082,
+      "draw": 6,
+      "bank": 2
+    },
+    {
+      "family": "lfm256",
+      "case": "lfm256_aahq",
+      "epoch": 25,
+      "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_aahq256_seed0/ema_epoch0025.pt",
+      "checkpoint_sha256": "ec090c1880ecdae9180fa811e3a1969fde7bf47554c58771d02dd0ac8acc1101",
+      "seed": 202611083,
+      "latent": 0,
+      "initial_noise_sha256": "f743f247db1b6d5f1b7d7c08d5f5d00c4f189c79bfc6d264ef498ae23eaae45a",
+      "path_seed": null,
+      "draw": 9,
+      "bank": 3
+    },
+    {
+      "family": "lfm256",
+      "case": "lfm256_aahq",
+      "epoch": 50,
+      "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_aahq256_seed0/ema_epoch0050.pt",
+      "checkpoint_sha256": "b7ca71af90cc50477a55890a61b4307e17709aac6afcc6386e921938f91f0187",
+      "seed": 202611083,
+      "latent": 0,
+      "initial_noise_sha256": "f743f247db1b6d5f1b7d7c08d5f5d00c4f189c79bfc6d264ef498ae23eaae45a",
+      "path_seed": null,
+      "draw": 9,
+      "bank": 3
+    },
+    {
+      "family": "lfm256",
+      "case": "lfm256_aahq",
+      "epoch": 100,
+      "checkpoint": "@ROOT@/runs/component_transfer_lfm_face_20261107/lfm_celeba_hq256_to_aahq256_seed0/ema_epoch0100.pt",
+      "checkpoint_sha256": "93fca277f2d6478232c67109c06dc2328858178e3da530049ca0ef06bc8c593f",
+      "seed": 202611083,
+      "latent": 0,
+      "initial_noise_sha256": "f743f247db1b6d5f1b7d7c08d5f5d00c4f189c79bfc6d264ef498ae23eaae45a",
+      "path_seed": null,
+      "draw": 9,
+      "bank": 3
+    }
+  ],
+  "input_sha256": {
+    "record/manifest.json": "ab602730f64f8de45512b4e411cfbc70d651f48fff8ea80694346aaeec56adf5"
+  },
+  "driver_sha256": {},
+  "dino": {
+    "feature_model": "dinov2_vitb14",
+    "feature_repo": "@ROOT@/tools/dinov2",
+    "feature_repo_commit": "7764ea0f912e53c92e82eb78a2a1631e92725fc8",
+    "feature_weights": "@ROOT@/dinov2_vitb14_pretrain.pth",
+    "feature_weights_sha256": "0b8b82f85de91b424aded121c7e1dcc2b7bc6d0adeea651bf73a13307fad8c73"
+  },
+  "original_figure_receipt": "@ROOT@/reports/2026-11-11/component_transfer_flagship/VERIFIED.json",
+  "original_figure_receipt_sha256": "61da2742b5d518446866ffb960e09315ba5dc564a7af254e9087e4f32972b7d2",
+  "cache": "@ROOT@/runs/transplant_norm_matched_20261113",
+  "paired_size": 1024,
+  "shard_size": 256,
+  "groups": [
+    "100",
+    "001",
+    "011"
+  ],
+  "states": [
+    "000",
+    "100",
+    "001",
+    "011",
+    "111"
+  ],
+  "normalization": "Global effective-weight Frobenius norm; radius = same-checkpoint QK norm",
+  "reference": "Unscaled Source and jointly adapted Target; all sampled on A5000 in this campaign",
+  "training_seed": 0,
+  "quantitative_precision": "BF16 denoiser; FP32 integration, VAE and features",
+  "qualitative_precision": "FP32; original Gaussian draws; CPU path RNG for qualitative U-ViT",
+  "inference_only": true,
+  "gpus": 1,
+  "time": "04:00:00",
+  "own_code_sha256": {},
+  "release_template": "norm_control"
+}

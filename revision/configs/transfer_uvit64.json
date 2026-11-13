@@ -1,0 +1,98 @@
+{
+  "report": "@ROOT@/outputs/transfer_uvit64",
+  "code": "@ROOT@",
+  "sources": {
+    "uvit": {
+      "family": "uvit",
+      "name": "Official U-ViT-S/4 CelebA64 noise predictor",
+      "checkpoint": "@ROOT@/assets/pretrained/uvit_celeba64_s4/celeba64_uvit_small.pth",
+      "checkpoint_sha256": "a254d489a6f0ed78709ba65febea7769aa82d3c6208f72c76d3295cb4caed53e",
+      "source_train_count": 162770,
+      "lr": 0.0001,
+      "upstream_revision": "ce551708dc9cde9818d2af7d84dfadfeb7bd9034",
+      "upstream_code": "@ROOT@/external/U-ViT",
+      "model_cfg": {
+        "img_size": 64,
+        "patch_size": 4,
+        "in_chans": 3,
+        "embed_dim": 512,
+        "depth": 12,
+        "num_heads": 8,
+        "mlp_ratio": 4,
+        "qkv_bias": false,
+        "mlp_time_embed": false,
+        "num_classes": -1,
+        "conv": true,
+        "skip": true
+      },
+      "objective": "Native LSimple: uniform t, VPSDE(beta_min=0.1,beta_max=20), N(0,I) noise, epsilon MSE, model time999*t",
+      "schedule": "Five reference epochs warmup then constant1e-4; adaptation AdamW betas(0.99,0.99), wd0, clip1",
+      "precision": "BF16 autocast; native upstream attention path preserved; FP32 parameters, optimizer, loss, effective EMA",
+      "frozen": "All biases, LayerNorm parameters, input/position/time embeddings, six skip-fusion projections, output linear/3x3 convolution, and MLP base matrices"
+    }
+  },
+  "runs": [
+    {
+      "id": "uvit_celeba64_to_aahq64_facecrop_seed0",
+      "family": "uvit",
+      "target": "aahq64",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/aahq64.json",
+      "data_sha256": "20fb3a5c2ae89a20fe26546029b36909581cc863809fc2868c46de5e7ea33334",
+      "output": "@ROOT@/outputs/transfer_uvit64/runs/uvit_celeba64_to_aahq64_facecrop_seed0",
+      "reference_epochs": 200,
+      "expected_reference_steps": 479,
+      "expected_total_updates": 95800,
+      "fresh_source_initialization": true
+    },
+    {
+      "id": "uvit_celeba64_to_afhq_v2_64_facecrop_seed0",
+      "family": "uvit",
+      "target": "afhq_v2_64",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/afhq_v2_64.json",
+      "data_sha256": "89172b49777c5431e241960221bb3263dc72d507201496d5275e8564e17a02c1",
+      "output": "@ROOT@/outputs/transfer_uvit64/runs/uvit_celeba64_to_afhq_v2_64_facecrop_seed0",
+      "reference_epochs": 200,
+      "expected_reference_steps": 425,
+      "expected_total_updates": 85000,
+      "fresh_source_initialization": true
+    },
+    {
+      "id": "uvit_celeba64_to_ffhq64_facecrop_seed0",
+      "family": "uvit",
+      "target": "ffhq64",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/ffhq64.json",
+      "data_sha256": "33fb197ca260ebc6254ec32bd816b47309572afcd1fe67ab89d73709c04966e4",
+      "output": "@ROOT@/outputs/transfer_uvit64/runs/uvit_celeba64_to_ffhq64_facecrop_seed0",
+      "reference_epochs": 100,
+      "expected_reference_steps": 1875,
+      "expected_total_updates": 187500,
+      "fresh_source_initialization": true
+    }
+  ],
+  "reference_epochs_by_target": {
+    "aahq64": 200,
+    "afhq_v2_64": 200,
+    "ffhq64": 100
+  },
+  "group_counts": {
+    "QK": 6815744,
+    "VO": 6815744,
+    "MLP": 6789120
+  },
+  "mlp_rank": 102,
+  "effective_batch": 32,
+  "allowed_gpu_names": [
+    ""
+  ],
+  "scientific_aim": "Diagnostic comparison of QK and VO+MLP compatibility across related face domains.",
+  "deterministic_algorithms": true,
+  "initialization": "Original released CelebA64 source; fresh dense/LoRA optimizer state and effective EMA. Resume only within the new run after preemption.",
+  "checkpoint_policy": "Rolling online checkpoints; effective-weight EMA every25 reference epochs, validation every25, all eight paired hybrid losses at the final endpoint.",
+  "review_flags_retained": "All104989 cropped-data cohort images retained; 615 audit flags, including21 uncertain animal detections with original framing.",
+  "created_utc": "2026-11-08T18:03:59.617946+00:00",
+  "release_template": "transfer_uvit64",
+  "reference_epochs": 200
+}

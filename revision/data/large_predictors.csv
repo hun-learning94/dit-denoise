@@ -1,0 +1,19 @@
+dataset,arch,epoch,training_seed,sampling_seed,fid,training_note
+celeba128,mlp,400,0,54321,14.577119215426963,Native seed0 JiT-inspired large-model campaign.
+celeba128,smlp,400,0,54321,11.093385936677725,Native seed0 JiT-inspired large-model campaign.
+celeba128,mlp,400,0,154321,14.519045421587762,Native seed0 JiT-inspired large-model campaign.
+celeba128,smlp,400,0,154321,11.173031750299913,Native seed0 JiT-inspired large-model campaign.
+celeba128,mlp,400,0,254321,14.429639472612564,Native seed0 JiT-inspired large-model campaign.
+celeba128,smlp,400,0,254321,11.129526435551476,Native seed0 JiT-inspired large-model campaign.
+imagenet128,mlp,400,0,54321,64.96118599965328,"MLP epoch400 is the documented FP32 training / LR2.5e-5 recovery from epoch384, following earlier recovery history. Epoch matching does not remove training-recipe differences. Sampling here is BF16 for both architectures."
+imagenet128,smlp,400,0,54321,57.080467401544645,"Original SMLP seed0 recipe, continued unchanged to epoch400; EMA endpoint."
+imagenet128,mlp,400,0,154321,64.76935627657049,"MLP epoch400 is the documented FP32 training / LR2.5e-5 recovery from epoch384, following earlier recovery history. Epoch matching does not remove training-recipe differences. Sampling here is BF16 for both architectures."
+imagenet128,smlp,400,0,154321,57.023051383674996,"Original SMLP seed0 recipe, continued unchanged to epoch400; EMA endpoint."
+imagenet128,mlp,400,0,254321,64.5230070273034,"MLP epoch400 is the documented FP32 training / LR2.5e-5 recovery from epoch384, following earlier recovery history. Epoch matching does not remove training-recipe differences. Sampling here is BF16 for both architectures."
+imagenet128,smlp,400,0,254321,56.69562831672803,"Original SMLP seed0 recipe, continued unchanged to epoch400; EMA endpoint."
+imagenet256,mlp,400,0,54321,78.22424989657944,One training seed; BF16 sampling at the fixed epoch400 EMA checkpoint.
+imagenet256,smlp,400,0,54321,75.0391706688385,One training seed; BF16 sampling at the fixed epoch400 EMA checkpoint.
+imagenet256,mlp,400,0,154321,78.41641805474072,One training seed; BF16 sampling at the fixed epoch400 EMA checkpoint.
+imagenet256,mlp,400,0,254321,78.36900380881046,One training seed; BF16 sampling at the fixed epoch400 EMA checkpoint.
+imagenet256,smlp,400,0,154321,75.76312907723585,One training seed; BF16 sampling at the fixed epoch400 EMA checkpoint.
+imagenet256,smlp,400,0,254321,75.696796846273,One training seed; BF16 sampling at the fixed epoch400 EMA checkpoint.

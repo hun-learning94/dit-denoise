@@ -2,7 +2,7 @@
 
 Compressed CelebA32 prototype-count experiments (all widths held fixed):
 
-  python train_dpd5.py \
+  envs/pixel-dit/bin/python train_dpd5.py \
     --dataset folder \
     --data_root ./datasets/celeba32/train \
     --resolution 32 --channels 3 \

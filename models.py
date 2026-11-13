@@ -256,6 +256,7 @@ class DiTConfig:
     proj_drop: float = 0.0
     mlp_drop: float = 0.0
     print_params: bool = True
+    output_head_fp32: bool = False
 
 
 class DiTBackbone(nn.Module):
@@ -337,7 +338,14 @@ class DiTBackbone(nn.Module):
         shift, scale = self.final_adaLN(c).chunk(2, dim=-1)
         h = self.final_norm(h)
         h = _modulate(h, shift, scale)
-        h = self.head(h)                                   # [B, N, C*P*P]
+        if self.cfg.output_head_fp32:
+            # The terminal prediction is subtracted from FP32 targets. Keep
+            # this small projection in FP32 to avoid amplified BF16 residual
+            # rounding near a well-trained endpoint.
+            with torch.autocast(device_type=h.device.type, enabled=False):
+                h = self.head(h.float())
+        else:
+            h = self.head(h)                               # [B, N, C*P*P]
         y = self.unpatchify(h)
         return y
 

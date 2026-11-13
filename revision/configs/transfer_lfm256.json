@@ -1,0 +1,104 @@
+{
+  "report": "@ROOT@/outputs/transfer_lfm256",
+  "code": "@ROOT@",
+  "sources": {
+    "lfm": {
+      "family": "lfm",
+      "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+      "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+      "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+      "source_train_count": 27000,
+      "lr": 0.0001,
+      "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+      "schedule": "Constant adaptation LR1e-4; source CelebA-HQ command uses2e-4 with no_lr_decay.",
+      "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+      "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+      "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+      "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+      "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+      "model_type": "DiT-L/2",
+      "constructor": {
+        "img_resolution": 32,
+        "num_classes": 1,
+        "label_dropout": 0.0,
+        "learn_sigma": false
+      },
+      "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+      "group_counts": {
+        "QK": 50331648,
+        "VO": 50331648,
+        "MLP": 50380800
+      },
+      "mlp_rank": 205,
+      "microbatch": 2,
+      "evaluation_batch": 2,
+      "source_preview": true,
+      "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder.",
+      "frozen": "All biases, AdaLN, time/class/position/input embeddings, output head, VAE and base MLP matrices."
+    }
+  },
+  "runs": [
+    {
+      "id": "lfm_celeba_hq256_to_aahq256_seed0",
+      "family": "lfm",
+      "target": "aahq256",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/aahq256.json",
+      "output": "@ROOT@/outputs/transfer_lfm256/runs/lfm_celeba_hq256_to_aahq256_seed0",
+      "expected_reference_steps": 479,
+      "expected_total_updates": 95800,
+      "inherited_data": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/aahq256.json",
+      "inherited_data_sha256": "4b1488462158a43f4dd0e820eeac7a699604f886ec8987e86983339b6309d712",
+      "reference_epochs": 200
+    },
+    {
+      "id": "lfm_celeba_hq256_to_ffhq256_seed0",
+      "family": "lfm",
+      "target": "ffhq256",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/ffhq256.json",
+      "output": "@ROOT@/outputs/transfer_lfm256/runs/lfm_celeba_hq256_to_ffhq256_seed0",
+      "expected_reference_steps": 843,
+      "expected_total_updates": 84300,
+      "inherited_data": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/ffhq256.json",
+      "inherited_data_sha256": "c955c4c89e2210332e8a61f22047385cd3c5b7adb866a234727651ded2c26989",
+      "reference_epochs": 100
+    },
+    {
+      "id": "lfm_celeba_hq256_to_afhq_v2_256_seed0",
+      "family": "lfm",
+      "target": "afhq_v2_256",
+      "seed": 0,
+      "data": "@ROOT@/assets/manifests/afhq_v2_256.json",
+      "output": "@ROOT@/outputs/transfer_lfm256/runs/lfm_celeba_hq256_to_afhq_v2_256_seed0",
+      "expected_reference_steps": 425,
+      "expected_total_updates": 85000,
+      "inherited_data": "@ROOT@/reports/2026-11-06/component_transfer_matched_scale_seed0/data/afhq_v2_256.json",
+      "inherited_data_sha256": "464b5a3ec891dc0a50ca425ffdaf96e741dcb8d7d780b02b3de9ec8bf0445133",
+      "reference_epochs": 200
+    }
+  ],
+  "smoke_data": {
+    "lfm": "@ROOT@/reports/2026-11-07/lfm_face_component_transfer_seed0_e200/data/aahq256.json"
+  },
+  "reference_epochs": 200,
+  "group_counts": {
+    "QK": 50331648,
+    "VO": 50331648,
+    "MLP": 50380800
+  },
+  "mlp_rank": 205,
+  "effective_batch": 32,
+  "deterministic_algorithms": true,
+  "allowed_gpu_names": [
+    ""
+  ],
+  "endpoint_diagnostics": "All8 paired heldout latent velocity losses, update norms; EMA and fixed validation every25 reference epochs.",
+  "scientific_aim": "Diagnostic comparison of QK and VO+MLP compatibility across related face domains.",
+  "release_template": "transfer_lfm256",
+  "reference_epochs_by_target": {
+    "aahq": 200,
+    "afhq": 200,
+    "ffhq": 100
+  }
+}

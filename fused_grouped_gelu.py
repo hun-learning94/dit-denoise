@@ -102,4 +102,7 @@ class _Fused(torch.autograd.Function):
         return gq.reshape(ctx.shape), gk, gb, gv
 
 def fused_grouped_gelu(q, keys, biases, values):
+    if q.shape[-1] != 32:
+        from fused_grouped_gelu_wide import fused_grouped_gelu_wide
+        return fused_grouped_gelu_wide(q, keys, biases, values)
     return _Fused.apply(q, keys, biases, values)

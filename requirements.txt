@@ -1,8 +1,10 @@
-numpy
-scipy
-matplotlib
-pillow
-torch
-torchvision
+-r requirements-plot.txt
+scipy>=1.10
+torch==2.11.0
+torchvision==0.26.0
+timm
+einops
+diffusers
+huggingface-hub
 scikit-learn
 tqdm

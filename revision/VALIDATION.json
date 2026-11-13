@@ -1,0 +1,17 @@
+{
+  "verified_at": "2026-11-13T22:10:59.846017+00:00",
+  "cpu_summary_regeneration": true,
+  "clean_directory_regeneration": true,
+  "metric_and_intervention_tests": 4,
+  "tests_passed": true,
+  "protocol_templates_dry_run": 11,
+  "python_compilation_passed": true,
+  "mlp_parameters": 133936320,
+  "smlp_parameters": 134011584,
+  "local_paths_and_credentials_scan_passed": true,
+  "checkpoints_and_image_banks_absent": true,
+  "legacy_submission_workflow_removed": true,
+  "source_files": 149,
+  "source_bytes": 3253903,
+  "gpu_training_rerun": false
+}

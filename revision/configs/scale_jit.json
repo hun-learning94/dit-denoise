@@ -1,0 +1,460 @@
+{
+  "created_utc": "2026-10-22T16:20:32.530111+00:00",
+  "status": "submitted",
+  "report": "@ROOT@/outputs/scale_jit",
+  "code": "@ROOT@",
+  "runs": [
+    {
+      "run_id": "celeba128_mlp_b1024_e400_seed0",
+      "dataset": "celeba128",
+      "arch": "mlp",
+      "seed": 0,
+      "epochs": 400,
+      "batch": 1024,
+      "count": 162770,
+      "steps_per_epoch": 158,
+      "total_updates": 63200,
+      "images_processed": 64716800,
+      "resolution": 128,
+      "patch_size": 8,
+      "warmup_steps": 790,
+      "noise_scale": 0.5,
+      "outdir": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0",
+      "evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/celeba128_mlp_b1024_e400_seed0",
+      "start_step": 31600,
+      "previous_run_id": "celeba128_mlp_b1024_e200_seed0",
+      "previous_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0",
+      "continuation_checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/checkpoints/step000031600.pt"
+    },
+    {
+      "run_id": "celeba128_smlp_b1024_e400_seed0",
+      "dataset": "celeba128",
+      "arch": "smlp",
+      "seed": 0,
+      "epochs": 400,
+      "batch": 1024,
+      "count": 162770,
+      "steps_per_epoch": 158,
+      "total_updates": 63200,
+      "images_processed": 64716800,
+      "resolution": 128,
+      "patch_size": 8,
+      "warmup_steps": 790,
+      "noise_scale": 0.5,
+      "outdir": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_smlp_b1024_e200_seed0",
+      "evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/celeba128_smlp_b1024_e400_seed0",
+      "start_step": 31600,
+      "previous_run_id": "celeba128_smlp_b1024_e200_seed0",
+      "previous_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/celeba128_smlp_b1024_e200_seed0",
+      "continuation_checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_smlp_b1024_e200_seed0/checkpoints/step000031600.pt"
+    },
+    {
+      "run_id": "imagenet128_mlp_b1024_e400_seed0",
+      "dataset": "imagenet128",
+      "arch": "mlp",
+      "seed": 0,
+      "epochs": 400,
+      "batch": 1024,
+      "count": 1281167,
+      "steps_per_epoch": 1251,
+      "total_updates": 500400,
+      "images_processed": 512409600,
+      "resolution": 128,
+      "patch_size": 8,
+      "warmup_steps": 6255,
+      "noise_scale": 0.5,
+      "outdir": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet128_mlp_b1024_e200_seed0",
+      "evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_mlp_b1024_e400_seed0",
+      "start_step": 51223,
+      "previous_run_id": "imagenet128_mlp_b1024_e200_seed0",
+      "previous_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_mlp_b1024_e200_seed0",
+      "continuation_checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet128_mlp_b1024_e200_seed0/checkpoints/step000051223.pt"
+    },
+    {
+      "run_id": "imagenet128_smlp_b1024_e400_seed0",
+      "dataset": "imagenet128",
+      "arch": "smlp",
+      "seed": 0,
+      "epochs": 400,
+      "batch": 1024,
+      "count": 1281167,
+      "steps_per_epoch": 1251,
+      "total_updates": 500400,
+      "images_processed": 512409600,
+      "resolution": 128,
+      "patch_size": 8,
+      "warmup_steps": 6255,
+      "noise_scale": 0.5,
+      "outdir": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet128_smlp_b1024_e200_seed0",
+      "evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_smlp_b1024_e400_seed0",
+      "start_step": 11284,
+      "previous_run_id": "imagenet128_smlp_b1024_e200_seed0",
+      "previous_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_smlp_b1024_e200_seed0",
+      "continuation_checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet128_smlp_b1024_e200_seed0/checkpoints/step000011284.pt"
+    },
+    {
+      "run_id": "imagenet256_mlp_b1024_e400_seed0",
+      "dataset": "imagenet256",
+      "arch": "mlp",
+      "seed": 0,
+      "epochs": 400,
+      "batch": 1024,
+      "count": 1281167,
+      "steps_per_epoch": 1251,
+      "total_updates": 500400,
+      "images_processed": 512409600,
+      "resolution": 256,
+      "patch_size": 16,
+      "warmup_steps": 6255,
+      "noise_scale": 1.0,
+      "outdir": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet256_mlp_b1024_e200_seed0",
+      "evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet256_mlp_b1024_e400_seed0",
+      "start_step": 59843,
+      "previous_run_id": "imagenet256_mlp_b1024_e200_seed0",
+      "previous_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet256_mlp_b1024_e200_seed0",
+      "continuation_checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet256_mlp_b1024_e200_seed0/checkpoints/step000059843.pt"
+    },
+    {
+      "run_id": "imagenet256_smlp_b1024_e400_seed0",
+      "dataset": "imagenet256",
+      "arch": "smlp",
+      "seed": 0,
+      "epochs": 400,
+      "batch": 1024,
+      "count": 1281167,
+      "steps_per_epoch": 1251,
+      "total_updates": 500400,
+      "images_processed": 512409600,
+      "resolution": 256,
+      "patch_size": 16,
+      "warmup_steps": 6255,
+      "noise_scale": 1.0,
+      "outdir": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet256_smlp_b1024_e200_seed0",
+      "evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet256_smlp_b1024_e400_seed0",
+      "start_step": 33860,
+      "previous_run_id": "imagenet256_smlp_b1024_e200_seed0",
+      "previous_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet256_smlp_b1024_e200_seed0",
+      "continuation_checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/imagenet256_smlp_b1024_e200_seed0/checkpoints/step000033860.pt"
+    }
+  ],
+  "jobs": {
+    "celeba128_mlp_b1024_e400_seed0": {
+      "job_id": "59286576",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--hold",
+        "--export=ALL",
+        "--job-name=jit400-celeba128-mlp",
+        "@ROOT@/reports/2026-10-22/jit_recipe_seed0_e400_b1024/code/20261022T162031Z/scripts/train_jit_complementary.sbatch"
+      ],
+      "start_step": 31600,
+      "final_step": 63200,
+      "phases": [
+        "train",
+        "evaluate"
+      ],
+      "released": true
+    },
+    "celeba128_smlp_b1024_e400_seed0": {
+      "job_id": "59286577",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--hold",
+        "--export=ALL",
+        "--job-name=jit400-celeba128-smlp",
+        "@ROOT@/reports/2026-10-22/jit_recipe_seed0_e400_b1024/code/20261022T162031Z/scripts/train_jit_complementary.sbatch"
+      ],
+      "start_step": 31600,
+      "final_step": 63200,
+      "phases": [
+        "train",
+        "evaluate"
+      ],
+      "released": true
+    },
+    "imagenet128_mlp_b1024_e400_seed0": {
+      "job_id": "59286578",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--hold",
+        "--export=ALL",
+        "--job-name=jit400-imagenet128-mlp",
+        "@ROOT@/reports/2026-10-22/jit_recipe_seed0_e400_b1024/code/20261022T162031Z/scripts/train_jit_complementary.sbatch"
+      ],
+      "start_step": 51223,
+      "final_step": 500400,
+      "phases": [
+        "train",
+        "evaluate"
+      ],
+      "released": true
+    },
+    "imagenet128_smlp_b1024_e400_seed0": {
+      "job_id": "59286579",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--hold",
+        "--export=ALL",
+        "--job-name=jit400-imagenet128-smlp",
+        "@ROOT@/reports/2026-10-22/jit_recipe_seed0_e400_b1024/code/20261022T162031Z/scripts/train_jit_complementary.sbatch"
+      ],
+      "start_step": 11284,
+      "final_step": 500400,
+      "phases": [
+        "train",
+        "evaluate"
+      ],
+      "released": true
+    },
+    "imagenet256_mlp_b1024_e400_seed0": {
+      "job_id": "59286580",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--hold",
+        "--export=ALL",
+        "--job-name=jit400-imagenet256-mlp",
+        "@ROOT@/reports/2026-10-22/jit_recipe_seed0_e400_b1024/code/20261022T162031Z/scripts/train_jit_complementary.sbatch"
+      ],
+      "start_step": 59843,
+      "final_step": 500400,
+      "phases": [
+        "train",
+        "evaluate"
+      ],
+      "released": true
+    },
+    "imagenet256_smlp_b1024_e400_seed0": {
+      "job_id": "61293784",
+      "command": [
+        "sbatch",
+        "--parsable",
+        "--hold",
+        "--export=ALL",
+        "--job-name=jit400-imagenet256-smlp",
+        "@ROOT@/reports/2026-10-22/jit_recipe_seed0_e400_b1024/code/20261022T162031Z/scripts/train_jit_complementary.sbatch"
+      ],
+      "start_step": 33860,
+      "final_step": 500400,
+      "phases": [
+        "train",
+        "evaluate"
+      ],
+      "released": true,
+      "recovery_20261106": {
+        "previous_job_id": "59286581",
+        "job_id": "61293784",
+        "report": "@ROOT@/reports/2026-11-06/imagenet256_smlp_recovery",
+        "reason": "Stale cache read during dataset migration; migration now complete and verified. Resume latest online epoch280 checkpoint."
+      }
+    }
+  },
+  "gpus_per_job": 1,
+  "scheduling": "six independent jobs; account permits two H200s simultaneously",
+  "recipe": {
+    "epochs": 400,
+    "seed": 0,
+    "batch": 1024,
+    "physical_batch": 1024,
+    "gradient_accumulation": 1,
+    "lr": 0.0002,
+    "optimizer": "AdamW",
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "grad_clip": null,
+    "warmup_epochs": 5,
+    "schedule": "linear fractional-epoch warmup from0, then constant",
+    "ema_decay": 0.9999,
+    "hflip": true,
+    "time_logit_mean": -0.8,
+    "time_logit_std": 0.8,
+    "denominator_floor": 0.05,
+    "noise_scale_rule": "image_size/256; 0.5 at128 is an extrapolation",
+    "precision": "BF16 backbone/train/sample; FP32 terminal head/weights/optimizer/EMA; FP32 Inception",
+    "conditioning": "unconditional",
+    "initial_state": "continue original seed-0 online checkpoint; optimizer/EMA/RNG/data position preserved"
+  },
+  "numerical_policy": {
+    "compiled_fused_smlp": true,
+    "prior_fp32_checks": "passed; kernel bytes identical to validated packed-output implementation",
+    "bf16_gradient_difference": "historical CelebA60 compiled-vs-FP32 3.3017%; advisory only",
+    "no_gradient_comparison_launch_gate": true,
+    "no_batch_capacity_preflight": true,
+    "runtime_checks": "CUDA available, finite loss/gradients/samples; online health logs"
+  },
+  "projection_fix": "packed_key_value_partial_and_output_gradients_v2",
+  "kernel_sha256": "3876e41b5aa58df9b6413eade4e29cb37fd22abc03cb89896746920c7e63a6d8",
+  "prior_kernel_validation": {
+    "results": "@ROOT@/reports/2026-10-21/corrected_scale_seed0_e200/validated_numerics/results.json",
+    "script": "@ROOT@/reports/2026-10-21/corrected_scale_seed0_e200/code/20261021T125655Z/scripts/audit_corrected_scale_compiler.py",
+    "script_sha256": "81f100b6888eacb1f34bc04c3d44880fdccf4c1a13393383acde4cbb15559860",
+    "scope": "Four trained states; every parameter; unfused FP32 reference; graph trained60 updates from initialization; matched FP32 output head",
+    "job_id": "59114316",
+    "passed": true,
+    "slurm_state": "COMPLETED",
+    "validated_utc": "2026-10-21T13:04:43.912777+00:00"
+  },
+  "evaluation_references": {
+    "celeba128": {
+      "path": "@ROOT@/reports/2026-10-19/scale_training_seed0_e200/references/celeba128.json",
+      "count": 19867,
+      "sha256": "a6bae3fea174bf0bb97331f756b5abd2cf613d6f6b969775d31b06707e9d23b2"
+    },
+    "imagenet128": {
+      "path": "@ROOT@/reports/2026-10-19/scale_training_seed0_e200/references/imagenet128.json",
+      "count": 50000,
+      "sha256": "dbf57a3a877b4d2cc37c6d24b1ee3b5b5cd40afa49fc7d7c308412d9b6bf7a0f"
+    },
+    "imagenet256": {
+      "path": "@ROOT@/reports/2026-10-19/scale_training_seed0_e200/references/imagenet256.json",
+      "count": 50000,
+      "sha256": "03ef7f9f6100f14c5002cad3fe01693d8b1d143f9704c90afb77a19d0e3b7e82"
+    }
+  },
+  "final_evaluation": {
+    "count": 6,
+    "generated_images_each": 50000,
+    "precision": "bf16 model; FP32 Inception; FP64 moments",
+    "sampler": "VP Heun 50 steps",
+    "latent_seed": 54321,
+    "feature_protocol": "existing project torchvision Inception ImageNet weights; not pytorch-fid weights",
+    "epoch": 400
+  },
+  "checkpoint_retention": "last two online checkpoints, saved every5epochs or on preemption",
+  "diagnostic_schedule": "fixed panel and sample grid at initialization/every10epochs/final",
+  "launch_stages": [
+    "train",
+    "evaluate"
+  ],
+  "previous_campaign": "@ROOT@/reports/2026-10-21/jit_recipe_seed0_e200_b1024/manifest.json",
+  "prior_checkpoints_preserved": true,
+  "sources": [
+    "https://arxiv.org/html/2511.13720#A1",
+    "https://github.com/LTH14/JiT/blob/main/main_jit.py",
+    "https://github.com/LTH14/JiT/blob/main/engine_jit.py",
+    "https://github.com/LTH14/JiT/blob/main/util/lr_sched.py"
+  ],
+  "adaptations": [
+    "existing GELU-MLP/SMLP backbone and unconditional task",
+    "128-resolution extension of noise scaling",
+    "fixed EMA0.9999 without sweep",
+    "shared FP32 output projection; existing Heun FP64 integration state",
+    "existing datasets/crops and project FID protocol"
+  ],
+  "submitted_utc": "2026-10-22T16:23:15.438618+00:00",
+  "submission_verification": {
+    "utc": "2026-10-21T15:21:16.979529+00:00",
+    "all_frozen_hashes_verified": true,
+    "schedule_boundaries_verified": true,
+    "no_batch_capacity_test_submitted": true,
+    "queue": [
+      "59132319|jit-imagenet256-smlp|PENDING|(Priority)",
+      "59132318|jit-imagenet256-mlp|PENDING|(Priority)",
+      "59132317|jit-imagenet128-smlp|PENDING|(Priority)",
+      "59132316|jit-imagenet128-mlp|PENDING|(Priority)",
+      "59132315|jit-celeba128-smlp|PENDING|(Resources)",
+      "59132314|jit-celeba128-mlp|RUNNING|dcc-h200-gpu-ferc-l-ac46-25"
+    ]
+  },
+  "extension": {
+    "from_epochs": 200,
+    "to_epochs": 400,
+    "allowed_recipe_changes": [
+      "epochs",
+      "total_steps"
+    ],
+    "initialization": "existing online checkpoint; no optimizer/EMA/RNG reset",
+    "historical_training_directory_names_retained": true,
+    "evaluation_epochs": [
+      400
+    ]
+  },
+  "recovery_campaigns": {
+    "imagenet128_mlp_b1024_e400_seed0": {
+      "manifest": "@ROOT@/reports/2026-10-31/recoveries_e384_and_seed1_e325/imagenet128_mlp_fp32_lr0p000025_e384/manifest.json",
+      "submission": "@ROOT@/reports/2026-10-31/recoveries_e384_and_seed1_e325/imagenet128_mlp_fp32_lr0p000025_e384/submission.json",
+      "diagnostic_job": "60729335",
+      "pilot_job": "60729336",
+      "continuation_job": "60729336",
+      "new_outdir": "@ROOT@/runs/complementary_scale_jit_recovery_20261031/imagenet128_mlp_fp32_lr0p000025_from_e384_e400_seed0",
+      "new_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_mlp_fp32_lr0p000025_from_e384_e400_seed0",
+      "learning_rate": 2.5e-05,
+      "precision": "fp32",
+      "parent_epoch": 384,
+      "pilot_end_epoch": 390,
+      "kind": "Guarded lower-LR recovery from384 after paired FP32 warning/guard replay"
+    }
+  },
+  "recovery_campaign_history": {
+    "imagenet128_mlp_b1024_e400_seed0": [
+      {
+        "manifest": "@ROOT@/reports/2026-10-25/failure_remedies/imagenet128_mlp_lr0p0001/manifest.json",
+        "submission": "@ROOT@/reports/2026-10-25/failure_remedies/imagenet128_mlp_lr0p0001/submission.json",
+        "diagnostic_job": "59757392",
+        "continuation_job": "59757393",
+        "new_outdir": "@ROOT@/runs/complementary_scale_jit_recovery_20261025/imagenet128_mlp_lr0p0001_from_step171063_e400_seed0",
+        "new_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_mlp_lr0p0001_from_step171063_e400_seed0",
+        "learning_rate": 0.0001,
+        "parent_epoch": 136.74100719424462,
+        "kind": "Changed-LR recovery; original failed campaign preserved separately"
+      },
+      {
+        "manifest": "@ROOT@/reports/2026-10-28/imagenet128_mlp_lr0p00005_e370/manifest.json",
+        "submission": "@ROOT@/reports/2026-10-28/imagenet128_mlp_lr0p00005_e370/submission.json",
+        "diagnostic_job": "60372771",
+        "continuation_job": "60372772",
+        "new_outdir": "@ROOT@/runs/complementary_scale_jit_recovery_20261028/imagenet128_mlp_lr0p00005_from_e370_e400_seed0",
+        "new_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_mlp_lr0p00005_from_e370_e400_seed0",
+        "learning_rate": 5e-05,
+        "parent_epoch": 370,
+        "kind": "Second LR recovery from protected epoch370; previous runs retained separately",
+        "supersedes_job": "59757393"
+      },
+      {
+        "manifest": "@ROOT@/reports/2026-10-28/imagenet128_mlp_fp32_pilot_e374_to381/manifest.json",
+        "submission": "@ROOT@/reports/2026-10-28/imagenet128_mlp_fp32_pilot_e374_to381/submission.json",
+        "diagnostic_job": "60468123",
+        "pilot_job": "60468123",
+        "continuation_job": null,
+        "new_outdir": "@ROOT@/runs/complementary_scale_jit_recovery_20261028/imagenet128_mlp_fp32_lr0p00005_from_e374_pilot_to_e381_seed0",
+        "new_evaluation_outdir": null,
+        "learning_rate": 5e-05,
+        "precision": "fp32",
+        "parent_epoch": 373.99680255795363,
+        "pilot_end_epoch": 381,
+        "kind": "Full-FP32 H200 stability pilot only; no epoch400 continuation",
+        "supersedes_failed_job": "60372772"
+      },
+      {
+        "manifest": "@ROOT@/reports/2026-10-31/imagenet128_mlp_fp32_e381_to400/manifest.json",
+        "submission": "@ROOT@/reports/2026-10-31/imagenet128_mlp_fp32_e381_to400/submission.json",
+        "diagnostic_job": "60468123",
+        "pilot_job": "60468123",
+        "continuation_job": "60696840",
+        "new_outdir": "@ROOT@/runs/complementary_scale_jit_recovery_20261031/imagenet128_mlp_fp32_lr0p00005_from_e381_e400_seed0",
+        "new_evaluation_outdir": "@ROOT@/evals/complementary_scale_jit_20261021/imagenet128_mlp_fp32_lr0p00005_from_e381_e400_seed0",
+        "learning_rate": 5e-05,
+        "precision": "fp32",
+        "parent_epoch": 381,
+        "kind": "Approved FP32 continuation with unchanged validated pilot recipe; endpoint FID uses FP32 sampling"
+      }
+    ]
+  },
+  "scheduler_migration_20261104": {
+    "record": "@ROOT@/reports/2026-11-04/h200_account_migration/verified.json",
+    "launchers": "@ROOT@/reports/2026-11-04/h200_account_migration/launchers.json",
+    "jobs": [
+      "59286579",
+      "59286581"
+    ]
+  },
+  "release_template": "scale_jit"
+}

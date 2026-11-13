@@ -1,0 +1,132 @@
+{
+  "report": "@ROOT@/outputs/metfaces_dit128",
+  "code": "@ROOT@",
+  "source": {
+    "family": "pixel",
+    "name": "CelebA128 pixel MLP DiT epoch400 EMA",
+    "checkpoint": "@ROOT@/runs/complementary_scale_jit_20261021/celeba128_mlp_b1024_e200_seed0/ema_final.pt",
+    "checkpoint_sha256": "715d52ce43d3462b4003176cf8a5874f488d1f06c77fe38802b37efbaf114d86",
+    "source_train_count": 162770,
+    "lr": 0.0001,
+    "objective": "native direct-x VP velocity loss, logit-normal(-0.8,0.8), noise_scale=0.5, denominator_floor=0.05",
+    "schedule": "5 reference epochs linear warmup then constant",
+    "model_cfg": {
+      "img_resolution": 128,
+      "img_channels": 3,
+      "patch_size": 8,
+      "embed_dim": 768,
+      "depth": 12,
+      "num_heads": 12,
+      "mlp_ratio": 4,
+      "attn_drop": 0.0,
+      "proj_drop": 0.0,
+      "mlp_drop": 0.0,
+      "print_params": false,
+      "output_head_fp32": true
+    }
+  },
+  "arms": [
+    "qk",
+    "vo",
+    "mlp",
+    "vo_mlp",
+    "qk_vo_mlp",
+    "full"
+  ],
+  "steps_per_epoch": 33,
+  "data": "@ROOT@/assets/manifests/metfaces_dit128.json",
+  "data_sha256": "2a70bfafea7065b49afbc7f0824a9b931ae1e3e254508b49444fc2228f315e33",
+  "runs": {
+    "qk": "@ROOT@/outputs/metfaces_dit128/runs/qk",
+    "vo": "@ROOT@/outputs/metfaces_dit128/runs/vo",
+    "mlp": "@ROOT@/outputs/metfaces_dit128/runs/mlp",
+    "vo_mlp": "@ROOT@/outputs/metfaces_dit128/runs/vo_mlp",
+    "qk_vo_mlp": "@ROOT@/outputs/metfaces_dit128/runs/qk_vo_mlp",
+    "full": "@ROOT@/outputs/metfaces_dit128/runs/full"
+  },
+  "eval_output": "@ROOT@/outputs/metfaces_dit128/evaluation",
+  "evaluation_tasks": [
+    {
+      "arm": "source",
+      "endpoint": "source",
+      "seed": 202611091,
+      "label": "source_seed202611091"
+    },
+    {
+      "arm": "qk",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "qk_final_seed202611091"
+    },
+    {
+      "arm": "vo",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "vo_final_seed202611091"
+    },
+    {
+      "arm": "mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "mlp_final_seed202611091"
+    },
+    {
+      "arm": "vo_mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "vo_mlp_final_seed202611091"
+    },
+    {
+      "arm": "qk_vo_mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "qk_vo_mlp_final_seed202611091"
+    },
+    {
+      "arm": "full",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "full_final_seed202611091"
+    }
+  ],
+  "feature_weights": "@ROOT@/assets/pretrained/inception_v3_google-0cc3c7bd.pth",
+  "feature_weights_sha256": "0cc3c7bd75056d25e46cba549dc184522069b81e9787eff6df84f397bd52a5ef",
+  "recipe": {
+    "training_seed": 0,
+    "corruption_seed": 20261109,
+    "epochs": 1000,
+    "global_batch": 32,
+    "microbatch": 8,
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.95
+    ],
+    "weight_decay": 0,
+    "clip": 1,
+    "warmup_target_epochs": 5,
+    "ema_decay": 0.9999,
+    "precision": "BF16 body; FP32 parameters/optimizer/loss/output head",
+    "validation_every_epochs": 25,
+    "validation_seed": 2026110901,
+    "corruption_rng": "One paired global-batch flip/time/noise draw before microbatching"
+  },
+  "evaluation": {
+    "generated_images": 5000,
+    "batch": 64,
+    "seeds": [
+      202611091,
+      202611092,
+      202611093
+    ],
+    "sampling_steps": 50,
+    "network_evaluations": 99,
+    "initial_noise_scale": 0.5,
+    "solver_precision": "FP64, preserved native vp_heun_sampler",
+    "extractor": "torchvision Inception IMAGENET1K_V1; bilinear299, ImageNet normalization; not standard pytorch-fid",
+    "precision": "BF16 body; FP32 output head/features; FP64 solver state"
+  },
+  "restricted_parameters": 2211840,
+  "full_parameters": 133936320,
+  "release_template": "metfaces_dit128"
+}

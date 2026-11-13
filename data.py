@@ -3,6 +3,8 @@
 #
 # What this file provides:
 #   1) Dataset loader: recursively scans a directory for image files.
+#      Prepared ImageNet views can instead index shared originals and apply
+#      their recorded upstream center crop before the caller's transform.
 #   2) Preprocessing transform: converts images to float tensors in [-1, 1].
 #      - No cropping
 #      - Optional resize (only if it is required to enforce resolution).
@@ -13,6 +15,8 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Optional, Tuple, List, Literal
+import hashlib
+import json
 
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -25,6 +29,29 @@ NormalizeTo = Literal["zero_to_one", "neg_one_to_one"]
 # Common image extensions we’ll accept when scanning a folder.
 IMG_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 _TENSOR_CACHE_REGISTRY = {}
+
+
+def _image_view(root: str):
+    """Read an explicit crop-on-read view; ordinary folders are unchanged."""
+    marker = Path(root) / ".image_view.json"
+    if not marker.is_file():
+        return None
+    view = json.loads(marker.read_text())
+    if (view.get("format") != "pixel-dit-image-view-v1"
+            or view.get("preprocessing") != "upstream_adm_center_crop_rgb"):
+        raise ValueError(f"Unsupported image view: {marker}")
+    from scripts import imagenet_center_crop
+    crop_hash = hashlib.sha256(Path(imagenet_center_crop.__file__).read_bytes()).hexdigest()
+    if crop_hash != view["crop_sha256"]:
+        raise ValueError(f"Image view crop implementation changed: {marker}")
+    return view
+
+
+def _prepare_view_image(image, view):
+    if view is None:
+        return image
+    from scripts.imagenet_center_crop import center_crop_arr
+    return center_crop_arr(image.convert("RGB"), int(view["resolution"]))
 
 
 def _list_images(root: str) -> List[Path]:
@@ -40,6 +67,18 @@ def _list_images(root: str) -> List[Path]:
         Sorted list of Paths to images.
     """
     root = Path(root)
+    view = _image_view(root)
+    if view is not None:
+        index_bytes = Path(view["index"]).read_bytes()
+        if hashlib.sha256(index_bytes).hexdigest() != view["index_sha256"]:
+            raise ValueError(f"Image view filename index changed: {root}")
+        source = Path(view["source_root"])
+        if not source.is_dir():
+            raise FileNotFoundError(f"Image view source is unavailable: {source}")
+        names = index_bytes.decode("utf-8").splitlines()
+        if len(names) != int(view["count"]):
+            raise ValueError(f"Image view count mismatch: {root}")
+        return [source / name for name in names]
     paths: List[Path] = []
     for p in root.rglob("*"):
         if p.is_file() and p.suffix.lower() in IMG_EXTS:
@@ -66,6 +105,7 @@ class ImageFolderFlat(Dataset):
     """
     def __init__(self, root: str, transform=None):
         self.root = root
+        self.image_view = _image_view(root)
         self.paths = _list_images(root)
         self.transform = transform
 
@@ -75,13 +115,13 @@ class ImageFolderFlat(Dataset):
     def __getitem__(self, idx: int):
         path = self.paths[idx]
 
-        # PIL opens images as HxWxC (or other modes); convert to RGB explicitly.
-        # img = Image.open(path).convert("RGB")
-        img = Image.open(path)  # do NOT convert here; let transform decide RGB vs grayscale
-
-        # Apply preprocessing (ToTensor + normalization, etc.)
-        if self.transform is not None:
-            img = self.transform(img)
+        with Image.open(path) as original:
+            img = _prepare_view_image(original, self.image_view)
+            # Ordinary folders retain the caller's RGB/grayscale convention.
+            if self.transform is not None:
+                img = self.transform(img)
+            if isinstance(img, Image.Image):
+                img = img.copy()
 
         # Unconditional training => dummy label.
         label = 0
@@ -133,6 +173,18 @@ def make_tensor_image_dataset(
     if channels not in (1, 3):
         raise ValueError(f"channels must be 1 or 3, got {channels}")
 
+    view = _image_view(root)
+    if view is not None:
+        if int(view["resolution"]) != resolution:
+            raise ValueError(f"Image view resolution is {view['resolution']}, requested {resolution}")
+        # This API stacks the entire dataset in host RAM. Full ImageNet views
+        # are 59/235 GiB before temporary tensors; use the streaming loader.
+        if int(view["count"]) * channels * resolution * resolution > 8 * 1024**3:
+            raise ValueError(
+                "This image view is too large for the in-memory tensor cache. "
+                "Use ImageFolderFlat / make_dataloader; set folder_tensor_cache=false in evaluations."
+            )
+
     cache_file = Path(cache_path) if cache_path else _default_tensor_cache_path(root, resolution, channels)
     cache_key = str(cache_file.resolve())
 
@@ -178,7 +230,7 @@ def make_tensor_image_dataset(
     images = []
     for i, path in enumerate(paths):
         with Image.open(path) as img:
-            images.append(tfm(img))
+            images.append(tfm(_prepare_view_image(img, view)))
         if (i + 1) % 10000 == 0 or (i + 1) == len(paths):
             print(f"[data.py] cached {i + 1}/{len(paths)} images")
 

@@ -1,0 +1,314 @@
+{
+  "uvit": {
+    "0": {
+      "training_seed": 0,
+      "corruption_seed": 20261109,
+      "epochs": 1000,
+      "global_batch": 32,
+      "microbatch": 8,
+      "lr": 0.0001,
+      "betas": [
+        0.99,
+        0.99
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_target_epochs": 5,
+      "ema_decay": 0.9999,
+      "precision": "bf16",
+      "validation_every_epochs": 25
+    },
+    "1": {
+      "training_seed": 1,
+      "corruption_seed": 20261110,
+      "epochs": 1000,
+      "global_batch": 32,
+      "microbatch": 8,
+      "lr": 0.0001,
+      "betas": [
+        0.99,
+        0.99
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_target_epochs": 5,
+      "ema_decay": 0.9999,
+      "precision": "bf16",
+      "validation_every_epochs": 25
+    },
+    "2": {
+      "training_seed": 2,
+      "corruption_seed": 20261111,
+      "epochs": 1000,
+      "global_batch": 32,
+      "microbatch": 8,
+      "lr": 0.0001,
+      "betas": [
+        0.99,
+        0.99
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_target_epochs": 5,
+      "ema_decay": 0.9999,
+      "precision": "bf16",
+      "validation_every_epochs": 25
+    }
+  },
+  "pixel": {
+    "0": {
+      "training_seed": 0,
+      "corruption_seed": 20261109,
+      "epochs": 1000,
+      "global_batch": 32,
+      "microbatch": 8,
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_target_epochs": 5,
+      "ema_decay": 0.9999,
+      "precision": "BF16 body; FP32 parameters/optimizer/loss/output head",
+      "validation_every_epochs": 25,
+      "validation_seed": 2026110901,
+      "corruption_rng": "One paired global-batch flip/time/noise draw before microbatching"
+    },
+    "1": {
+      "training_seed": 1,
+      "corruption_seed": 20261110,
+      "epochs": 1000,
+      "global_batch": 32,
+      "microbatch": 8,
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_target_epochs": 5,
+      "ema_decay": 0.9999,
+      "precision": "BF16 body; FP32 parameters/optimizer/loss/output head",
+      "validation_every_epochs": 25,
+      "validation_seed": 2026110901,
+      "corruption_rng": "One paired global-batch flip/time/noise draw before microbatching"
+    },
+    "2": {
+      "training_seed": 2,
+      "corruption_seed": 20261111,
+      "epochs": 1000,
+      "global_batch": 32,
+      "microbatch": 8,
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.95
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_target_epochs": 5,
+      "ema_decay": 0.9999,
+      "precision": "BF16 body; FP32 parameters/optimizer/loss/output head",
+      "validation_every_epochs": 25,
+      "validation_seed": 2026110901,
+      "corruption_rng": "One paired global-batch flip/time/noise draw before microbatching"
+    }
+  },
+  "lfm": {
+    "0": {
+      "seed": 0,
+      "noise_seed": 20261110,
+      "epochs": 1000,
+      "steps": 33000,
+      "steps_per_epoch": 33,
+      "batch": 32,
+      "microbatch": 2,
+      "accumulation": 16,
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_steps": 165,
+      "ema": 0.9999,
+      "validation_interval_epochs": 25,
+      "validation_seed": 2026111001,
+      "checkpoint_steps": 250,
+      "checkpoint_seconds": 300,
+      "precision": "BF16 eager denoiser; FP32 weights/loss/optimizer/effective EMA and VAE; no torch.compile",
+      "objective": "native LFM uniform-t flow velocity MSE; sigma_min 1e-5; posterior sample scaled .18215",
+      "trainable_restricted": 5898240,
+      "denoiser_parameters": 457062416,
+      "ranks": {
+        "qk": [
+          60,
+          0,
+          0
+        ],
+        "vo": [
+          0,
+          60,
+          0
+        ],
+        "mlp": [
+          0,
+          0,
+          24
+        ],
+        "vo_mlp": [
+          0,
+          30,
+          12
+        ],
+        "qk_vo_mlp": [
+          20,
+          20,
+          8
+        ]
+      },
+      "alpha_over_rank": 1,
+      "selection": "minimum fixed-corruption EMA validation loss, ties earlier",
+      "retained_epochs": [
+        25,
+        50,
+        100,
+        200,
+        500,
+        1000
+      ]
+    },
+    "1": {
+      "seed": 1,
+      "noise_seed": 1020261117,
+      "epochs": 1000,
+      "steps": 33000,
+      "steps_per_epoch": 33,
+      "batch": 32,
+      "microbatch": 2,
+      "accumulation": 16,
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_steps": 165,
+      "ema": 0.9999,
+      "validation_interval_epochs": 25,
+      "validation_seed": 2026111001,
+      "checkpoint_steps": 250,
+      "checkpoint_seconds": 300,
+      "precision": "BF16 eager denoiser; FP32 weights/loss/optimizer/effective EMA and VAE; no torch.compile",
+      "objective": "native LFM uniform-t flow velocity MSE; sigma_min 1e-5; posterior sample scaled .18215",
+      "trainable_restricted": 5898240,
+      "denoiser_parameters": 457062416,
+      "ranks": {
+        "qk": [
+          60,
+          0,
+          0
+        ],
+        "vo": [
+          0,
+          60,
+          0
+        ],
+        "mlp": [
+          0,
+          0,
+          24
+        ],
+        "vo_mlp": [
+          0,
+          30,
+          12
+        ],
+        "qk_vo_mlp": [
+          20,
+          20,
+          8
+        ]
+      },
+      "alpha_over_rank": 1,
+      "selection": "minimum fixed-corruption EMA validation loss, ties earlier",
+      "retained_epochs": [
+        25,
+        50,
+        100,
+        200,
+        500,
+        1000
+      ]
+    },
+    "2": {
+      "seed": 2,
+      "noise_seed": 2020261124,
+      "epochs": 1000,
+      "steps": 33000,
+      "steps_per_epoch": 33,
+      "batch": 32,
+      "microbatch": 2,
+      "accumulation": 16,
+      "lr": 0.0001,
+      "betas": [
+        0.9,
+        0.999
+      ],
+      "weight_decay": 0,
+      "clip": 1,
+      "warmup_steps": 165,
+      "ema": 0.9999,
+      "validation_interval_epochs": 25,
+      "validation_seed": 2026111001,
+      "checkpoint_steps": 250,
+      "checkpoint_seconds": 300,
+      "precision": "BF16 eager denoiser; FP32 weights/loss/optimizer/effective EMA and VAE; no torch.compile",
+      "objective": "native LFM uniform-t flow velocity MSE; sigma_min 1e-5; posterior sample scaled .18215",
+      "trainable_restricted": 5898240,
+      "denoiser_parameters": 457062416,
+      "ranks": {
+        "qk": [
+          60,
+          0,
+          0
+        ],
+        "vo": [
+          0,
+          60,
+          0
+        ],
+        "mlp": [
+          0,
+          0,
+          24
+        ],
+        "vo_mlp": [
+          0,
+          30,
+          12
+        ],
+        "qk_vo_mlp": [
+          20,
+          20,
+          8
+        ]
+      },
+      "alpha_over_rank": 1,
+      "selection": "minimum fixed-corruption EMA validation loss, ties earlier",
+      "retained_epochs": [
+        25,
+        50,
+        100,
+        200,
+        500,
+        1000
+      ]
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "project": "@ROOT@/.",
+  "report": "@ROOT@/outputs/metfaces_lfm256",
+  "code": "@ROOT@",
+  "python": "@ROOT@/assets/external/python",
+  "source": {
+    "family": "lfm",
+    "name": "Released LFM CelebA-HQ256 DiT-L/2 checkpoint475",
+    "checkpoint": "@ROOT@/assets/pretrained/lfm_celeba_hq256_dit_l2/model_475.pth",
+    "checkpoint_sha256": "3d0ef3cf90b775bf175efd38bb76ad9b943821743e708cfb23b537304e8339af",
+    "source_train_count": 27000,
+    "objective": "native latent flow velocity MSE, uniform t, sigma_min=1e-5, posterior sample scaled0.18215",
+    "conditioning": "Native unconditional one-class index0; num_classes1, label_dropout0; no CFG.",
+    "lfm_model_source": "@ROOT@/external/LFM/models/DiT.py",
+    "upstream_revision": "50d263b0a4471384c0ab073c8f904b73c024c6c0",
+    "vae": "@ROOT@/assets/pretrained/sd-vae-ft-mse",
+    "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+    "model_type": "DiT-L/2",
+    "constructor": {
+      "img_resolution": 32,
+      "num_classes": 1,
+      "label_dropout": 0.0,
+      "learn_sigma": false
+    },
+    "source_train_count_provenance": "Official CelebA-HQ LMDB train27000/valid3000 convention; pinned loader source retained.",
+    "source_preview": true,
+    "precision": "BF16 transformer body; FP32 loss, weights, optimizer, effective EMA and VAE encoder/decoder."
+  },
+  "data": "@ROOT@/assets/manifests/metfaces_lfm256.json",
+  "data_sha256": "48945439fc57b940dcedeacc090ad14749965477e486282cf8feb77ca8f55c10",
+  "source_view": {
+    "path": "@ROOT@/assets/manifests/lfm_source_validation.txt",
+    "sha256": "e8065a0b6e97840578df70304924b3a9e76ce5bd8580d97552a8be96b00ca039",
+    "count": 1024,
+    "selection_seed": 2026111002,
+    "population": "all 3000 native CelebA-HQ GLOW validation images",
+    "provenance": "@ROOT@/reports/2026-11-10/lfm_jarvis/PREPARED.json"
+  },
+  "cache": "@ROOT@/assets/datasets/lfm_metfaces_posteriors_20261110",
+  "cache_identity": {
+    "version": 1,
+    "data_sha256": "48945439fc57b940dcedeacc090ad14749965477e486282cf8feb77ca8f55c10",
+    "vae_sha256": "a1d993488569e928462932c8c38a0760b874d166399b14414135bd9c42df5815",
+    "source_view_sha256": "e8065a0b6e97840578df70304924b3a9e76ce5bd8580d97552a8be96b00ca039",
+    "representation": "FP32 posterior mean/logvar for original and independently encoded pixel-flipped target images; source original only; draw posterior afresh"
+  },
+  "runs": {
+    "qk": "@ROOT@/outputs/metfaces_lfm256/runs/qk",
+    "vo": "@ROOT@/outputs/metfaces_lfm256/runs/vo",
+    "mlp": "@ROOT@/outputs/metfaces_lfm256/runs/mlp",
+    "vo_mlp": "@ROOT@/outputs/metfaces_lfm256/runs/vo_mlp",
+    "qk_vo_mlp": "@ROOT@/outputs/metfaces_lfm256/runs/qk_vo_mlp",
+    "full": "@ROOT@/outputs/metfaces_lfm256/runs/full"
+  },
+  "recipe": {
+    "seed": 0,
+    "noise_seed": 20261110,
+    "epochs": 1000,
+    "steps": 33000,
+    "steps_per_epoch": 33,
+    "batch": 32,
+    "microbatch": 2,
+    "accumulation": 16,
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "weight_decay": 0,
+    "clip": 1,
+    "warmup_steps": 165,
+    "ema": 0.9999,
+    "validation_interval_epochs": 25,
+    "validation_seed": 2026111001,
+    "checkpoint_steps": 250,
+    "checkpoint_seconds": 300,
+    "precision": "BF16 eager denoiser; FP32 weights/loss/optimizer/effective EMA and VAE; no torch.compile",
+    "objective": "native LFM uniform-t flow velocity MSE; sigma_min 1e-5; posterior sample scaled .18215",
+    "trainable_restricted": 5898240,
+    "denoiser_parameters": 457062416,
+    "ranks": {
+      "qk": [
+        60,
+        0,
+        0
+      ],
+      "vo": [
+        0,
+        60,
+        0
+      ],
+      "mlp": [
+        0,
+        0,
+        24
+      ],
+      "vo_mlp": [
+        0,
+        30,
+        12
+      ],
+      "qk_vo_mlp": [
+        20,
+        20,
+        8
+      ]
+    },
+    "alpha_over_rank": 1,
+    "selection": "minimum fixed-corruption EMA validation loss, ties earlier",
+    "retained_epochs": [
+      25,
+      50,
+      100,
+      200,
+      500,
+      1000
+    ]
+  },
+  "eval_output": "@ROOT@/outputs/metfaces_lfm256/evaluation",
+  "evaluation_tasks": [
+    {
+      "arm": "source",
+      "endpoint": "source",
+      "seed": 202611091,
+      "label": "source_seed202611091"
+    },
+    {
+      "arm": "qk",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "qk_final_seed202611091"
+    },
+    {
+      "arm": "vo",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "vo_final_seed202611091"
+    },
+    {
+      "arm": "mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "mlp_final_seed202611091"
+    },
+    {
+      "arm": "vo_mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "vo_mlp_final_seed202611091"
+    },
+    {
+      "arm": "qk_vo_mlp",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "qk_vo_mlp_final_seed202611091"
+    },
+    {
+      "arm": "full",
+      "endpoint": "final",
+      "seed": 202611091,
+      "label": "full_final_seed202611091"
+    }
+  ],
+  "loss_tasks": [],
+  "evaluation": {
+    "seeds": [
+      202611091,
+      202611092,
+      202611093
+    ],
+    "images": 5000,
+    "batch": 64,
+    "sampler": "Heun50 backward from 1 to 0, 100 NFE, BF16 body / FP32 solver / FP32 VAE decode batch2, latent scale .18215, uint8 rounding",
+    "features": "torchvision Inception IMAGENET1K_V1 FP32; bilinear299 and ImageNet normalization",
+    "metrics": "exact unbiased cubic KID primary, empirical small-reference FID secondary"
+  },
+  "feature_weights": "@ROOT@/assets/pretrained/inception_v3_google-0cc3c7bd.pth",
+  "feature_weights_sha256": "0cc3c7bd75056d25e46cba549dc184522069b81e9787eff6df84f397bd52a5ef",
+  "execution": {
+    "gpus": 1,
+    "hours": 4,
+    "time_min_hours": 1,
+    "train_slots": "<=6, measured memory gate",
+    "evaluation_slots": "<=4, measured memory gate",
+    "automatic_requeue": true
+  },
+  "release_template": "metfaces_lfm256"
+}

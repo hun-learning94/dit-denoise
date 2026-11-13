@@ -182,6 +182,7 @@ from edm import (
 )
 from models import DiTConfig, UNetConfig, ResNetConfig, DiTBackbone, UNetBackbone, ResNetBackbone
 import data as data_utils
+from checkpointing import save_training_checkpoint
 
 
 # -----------------------------
@@ -221,7 +222,7 @@ def load_initial_weights(net: nn.Module, checkpoint: dict, source: str) -> None:
 
 def configure_dit_trainable_groups(net: nn.Module, group: str):
     """Freeze a DiT by functional group and mask branch-specific AdaLN rows."""
-    if group not in {"all", "block", "block_weights", "attn", "attn_weights", "mlp", "mlp_weights", "qk_weights", "mlp_vo_weights"}:
+    if group not in {"all", "block", "block_weights", "attn", "attn_weights", "mlp", "mlp_weights", "qk_weights", "vo_weights", "qk_mlp_weights", "mlp_vo_weights"}:
         raise ValueError(f"unknown trainable group: {group}")
     backbone = net.model
     if not isinstance(backbone, DiTBackbone):
@@ -231,6 +232,12 @@ def configure_dit_trainable_groups(net: nn.Module, group: str):
         return trainable, {}, {}, []
 
     dim = int(backbone.cfg.embed_dim)
+    restricted_parts = {
+        "qk_weights": (True, False, False),
+        "vo_weights": (False, True, False),
+        "qk_mlp_weights": (True, False, True),
+        "mlp_vo_weights": (False, True, True),
+    }
     row_masks = {}
     hooks = []
     counts = {"global": 0, "attn": 0, "mlp": 0}
@@ -252,18 +259,20 @@ def configure_dit_trainable_groups(net: nn.Module, group: str):
 
         if family != "adaln":
             counts[family] += parameter.numel()
-            if group in {"qk_weights", "mlp_vo_weights"}:
+            if group in restricted_parts:
+                use_qk, use_vo, use_mlp = restricted_parts[group]
                 is_qkv = family == "attn" and ".attn.qkv." in name
-                enabled = is_qkv or (group == "mlp_vo_weights" and
-                    (family == "mlp" or (family == "attn" and ".attn.proj." in name)))
+                enabled = (is_qkv and (use_qk or use_vo)) or (use_mlp and family == "mlp") or (
+                    use_vo and family == "attn" and ".attn.proj." in name
+                )
                 parameter.requires_grad_(enabled)
                 if is_qkv:
                     if parameter.shape[0] != 3 * dim:
                         raise RuntimeError(f"unexpected QKV shape: {name}")
                     mask = torch.zeros_like(parameter)
-                    if group == "qk_weights":
+                    if use_qk:
                         mask[:2 * dim] = 1
-                    else:
+                    if use_vo:
                         mask[2 * dim:] = 1
                     row_masks[name] = mask
                     hooks.append(parameter.register_hook(lambda grad, mask=mask: grad * mask))
@@ -891,6 +900,8 @@ def main() -> None:
     p.add_argument("--outdir", type=str, default="./runs/exp")
     p.add_argument("--log_every", type=int, default=100)
     p.add_argument("--ckpt_every", type=int, default=5000)
+    p.add_argument("--latest_every", type=int, default=0,
+                   help="Overwrite checkpoints/latest.pt at this update interval; 0 disables rolling saves")
     p.add_argument("--checkpoint_steps", type=int, nargs="*", default=[],
                    help="Additional exact optimizer-step checkpoints, alongside ckpt_every")
     p.add_argument("--sample_every", type=int, default=5000)
@@ -953,7 +964,7 @@ def main() -> None:
     p.add_argument("--init_weights", choices=["ema", "net"], default="ema")
     p.add_argument(
         "--trainable_groups",
-        choices=["all", "block", "block_weights", "attn", "attn_weights", "mlp", "mlp_weights", "qk_weights", "mlp_vo_weights"],
+        choices=["all", "block", "block_weights", "attn", "attn_weights", "mlp", "mlp_weights", "qk_weights", "vo_weights", "qk_mlp_weights", "mlp_vo_weights"],
         default=None,
     )
     p.add_argument("--adapt_steps", type=int, default=None,
@@ -1198,7 +1209,7 @@ def main() -> None:
         net, args.trainable_groups,
     )
     del gradient_hooks  # Hooks remain registered on their parameters.
-    if args.trainable_groups in {"attn", "mlp", "qk_weights", "mlp_vo_weights"} and args.weight_decay != 0:
+    if args.trainable_groups in {"attn", "mlp", "qk_weights", "vo_weights", "qk_mlp_weights", "mlp_vo_weights"} and args.weight_decay != 0:
         raise ValueError("row-masked fine-tuning requires --weight_decay 0 to preserve frozen coordinates")
 
     # Save config
@@ -1331,7 +1342,10 @@ def main() -> None:
             running_count = 0
 
         # Save checkpoint
-        if (step + 1) % args.ckpt_every == 0 or (step + 1) == args.steps or (step + 1) in checkpoint_steps:
+        save_archive = ((step + 1) % args.ckpt_every == 0 or (step + 1) == args.steps
+                        or (step + 1) in checkpoint_steps)
+        save_latest = args.latest_every > 0 and ((step + 1) % args.latest_every == 0 or save_archive)
+        if save_archive or save_latest:
             assert_frozen_unchanged(net, frozen_snapshot)
             ckpt_path = outdir / "checkpoints" / f"ckpt_step{step+1}.pt"
             payload = {
@@ -1389,8 +1403,13 @@ def main() -> None:
                 payload["scaler"] = scaler.state_dict()
             if ema is not None:
                 payload["ema"] = {k: v.clone().cpu() for k, v in ema.shadow.items()}
-            torch.save(payload, ckpt_path)
-            print(f"[train] saved checkpoint: {ckpt_path}")
+            save_training_checkpoint(payload,
+                archive_path=ckpt_path if save_archive else None,
+                latest_path=outdir / "checkpoints/latest.pt" if save_latest else None)
+            if save_archive:
+                print(f"[train] saved checkpoint: {ckpt_path}")
+            if save_latest:
+                print(f"[train] updated latest checkpoint at step {step+1}")
 
         # Samples
         if (step + 1) % args.sample_every == 0 or (step + 1) == args.steps:
