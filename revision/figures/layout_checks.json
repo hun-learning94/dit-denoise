@@ -8,7 +8,8 @@
     "pale_prediction": "#FFF2E8",
     "edge": "#D4DAE1",
     "key": "#4D4D4D",
-    "target_patch": "#D74353"
+    "target_patch": "#D74353",
+    "context_outline": "#F0C44D"
   },
   "text_outside_canvas": [],
   "text_overlaps": [],
@@ -109,7 +110,7 @@
   "predictor_connection": "Upper example only; no pooling between examples",
   "feature_label": "aggregated patch (once per aggregator box); s on each feature",
   "citations_in_art": false,
-  "context_encoding": "Binary masks for PLD and attention illustrations; excluded cells black; white grid",
+  "context_encoding": "Binary masks for PLD and attention illustrations; excluded cells black; white grid; gold perimeter around retained context, including PLD training examples",
   "matrix_labels": "S_m,t above masked input; [Attn(Y_t;Q,K)]_m,l O V for attention",
   "context_to_feature_gap_pt": 31,
   "input_faces": "Man and woman; training cartoons vary position and gaze",
@@ -122,8 +123,8 @@
   ],
   "smallest_text_pt": 7.5,
   "output_sha256": {
-    "pdf": "fa611c0b98c36b302f0447f41e196d0d1cd4dae35f4cf1ee2d3d818280a091e0",
-    "svg": "099500bf39f7d06cb80552fad7fa5eca8257ae45a43b83e6ac57a2517b47920c",
-    "png": "0f9ba204a2933f28c337aba0bf3625aff089adad41ab7c0c3770ac17918843ae"
+    "pdf": "ac49ec424a90303ef6188319dfa2036ba67d10674f6f3c52ae747febe7d66913",
+    "svg": "c9683a0ca5b653f53512269fdfe773241ab79160fb2b5eca43d482442a16537c",
+    "png": "ecadc4e4b019eb1f3fac1bf4a55efba945bdb32faf40f7dbd255a02b0e9e4bd7"
   }
 }

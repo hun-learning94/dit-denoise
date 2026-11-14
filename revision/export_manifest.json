@@ -492,14 +492,14 @@
     {
       "source": "draft_revision/metfaces/final_checkpoint/replicated_summary/per_seed.csv",
       "destination": "revision/data/metfaces_per_seed.csv",
-      "original_sha256": "790ed4ac61f4a7d14ae9a58b65f4a8fea8f78a86ea8d741711000b8334ee170e",
-      "exported_sha256": "227317a38a3408162ddf5fe53bef21e7006a3779d97999c6f2dcff039085098d"
+      "original_sha256": "eb989ae1fdee1053693a309abb0f8eb30ea0706dc9ec1366c51026883ae789bc",
+      "exported_sha256": "0698845441e4e29f6a711421c57a9e3ebd279d82f7394563f44abf23bda0bc32"
     },
     {
       "source": "draft_revision/metfaces/final_checkpoint/replicated_summary/summary.csv",
       "destination": "revision/data/metfaces_summary.csv",
-      "original_sha256": "0bde93232acd7b77bff15765a283960497de4c6d59bb54c0e9f2a610e3f851ee",
-      "exported_sha256": "282796e66ba9717e335a8ef00ba4a81f4a49c8b34613a08b5c4ab8d25834e484"
+      "original_sha256": "afd09e374c49b57b0de8305a84d5144ef1e7e5225274692be19aeedbaea85a0d",
+      "exported_sha256": "741d5eb673e60f699eb1c9e8b5e30cb545ca477010cd31fcd55a3b43d0cd4d4b"
     },
     {
       "source": "draft_revision/metfaces/final_checkpoint/uvit_dpm/per_bank.csv",
@@ -522,8 +522,8 @@
     {
       "source": "reports/2026-11-13/aggregator_predictor_overview/build_figure.py",
       "destination": "revision/figures/overview.py",
-      "original_sha256": "efca596a9dacc1a559c0fdd25eddf56f64d9198481f3635160601e65f10bb138",
-      "exported_sha256": "a1e84b6e775fc433a0eb7d83f599a7a5e91cd71570ad341f7b8f83ac45c17eae"
+      "original_sha256": "550494918c6bf57219e28b838dcd83c82d7c4b2a9e4f598dcf0aef4e017bf361",
+      "exported_sha256": "1a706a7f6cdb9527a683b79bb81dca08d452e44848be9df447c99938c98755c2"
     },
     {
       "source": "reports/2026-11-11/predictor_architecture/build.py",

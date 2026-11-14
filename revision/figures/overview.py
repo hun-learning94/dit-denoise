@@ -12,6 +12,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
+from matplotlib.collections import LineCollection
 from matplotlib.patches import Rectangle, FancyBboxPatch, FancyArrowPatch, Polygon
 from matplotlib.path import Path as MplPath
 import numpy as np
@@ -24,7 +25,8 @@ WIDTH, HEIGHT = 384, 230
 GRID, SIZE, TARGET = 6, 240, (2, 2)
 C = dict(ink='#263344', muted='#6A7582', selection='#0072B2',
          pale_selection='#EAF4FA', prediction='#D55E00', pale_prediction='#FFF2E8',
-         edge='#D4DAE1', key='#4D4D4D', target_patch='#D74353')
+         edge='#D4DAE1', key='#4D4D4D', target_patch='#D74353',
+         context_outline='#F0C44D')
 
 for name in ['Cantarell-Regular.otf', 'Cantarell-Bold.otf']:
     font_manager.fontManager.addfont(str(ROOT / 'revision/fonts' / name))
@@ -135,6 +137,26 @@ def tile(rgb, x, y, w, weights=None, mark=True, grid=True, z=4, memory=False):
                      facecolor=C['target_patch'], alpha=.93, edgecolor='none', zorder=z+2))
     ax.add_patch(Rectangle((x, y), w, w, fill=False,
                  edgecolor=C['edge'], linewidth=.45, zorder=z+3))
+    if weights is not None:
+        # Trace only the perimeter of the retained context, leaving the white
+        # internal patch grid visible and preserving irregular attention masks.
+        selected = weights > 0
+        step = w/GRID
+        segments = []
+        for r, c in np.argwhere(selected):
+            left, top = x+c*step, y+r*step
+            right, bottom = left+step, top+step
+            if r == 0 or not selected[r-1, c]:
+                segments.append([(left, top), (right, top)])
+            if r == GRID-1 or not selected[r+1, c]:
+                segments.append([(left, bottom), (right, bottom)])
+            if c == 0 or not selected[r, c-1]:
+                segments.append([(left, top), (left, bottom)])
+            if c == GRID-1 or not selected[r, c+1]:
+                segments.append([(right, top), (right, bottom)])
+        ax.add_collection(LineCollection(segments, colors=C['context_outline'],
+                          linewidths=.7 if memory else .95,
+                          capstyle='projecting', zorder=z+4))
 
 
 def feature(x, y, face_width=10, depth=34):
@@ -262,7 +284,7 @@ checks = dict(palette=C, text_outside_canvas=outside, text_overlaps=overlaps,
               inputs_per_estimator=2, predictors_per_estimator=1,
               predictor_connection='Upper example only; no pooling between examples',
               feature_label='aggregated patch (once per aggregator box); s on each feature', citations_in_art=False,
-              context_encoding='Binary masks for PLD and attention illustrations; excluded cells black; white grid',
+              context_encoding='Binary masks for PLD and attention illustrations; excluded cells black; white grid; gold perimeter around retained context, including PLD training examples',
               matrix_labels='S_m,t above masked input; [Attn(Y_t;Q,K)]_m,l O V for attention',
               context_to_feature_gap_pt=FEATURE_X-(CONTEXT_X+IMAGE_W),
               input_faces='Man and woman; training cartoons vary position and gaze',
@@ -272,7 +294,7 @@ checks = dict(palette=C, text_outside_canvas=outside, text_overlaps=overlaps,
               point_size=[WIDTH, HEIGHT], smallest_text_pt=min(a.get_fontsize() for a in texts),
               output_sha256={s: hashlib.sha256((OUT/f'aggregator_predictor_overview.{s}').read_bytes()).hexdigest()
                              for s in ['pdf', 'svg', 'png']})
-(HERE/'layout_checks.json').write_text(json.dumps(checks, indent=2)+'\n')
+(OUT/'overview_layout_checks.json').write_text(json.dumps(checks, indent=2)+'\n')
 assert not outside, outside
 assert not overlaps, overlaps
 plt.close(fig)

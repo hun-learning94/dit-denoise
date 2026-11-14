@@ -33,7 +33,7 @@ Larger MLP/SMLP models use depth12, width768,12 spatial-attention heads, and256 
 
 The JiT-based recipe uses batch1024, AdamW betas(0.9,0.95), LR2e-4 with five-epoch warmup, no clipping, EMA0.9999, random horizontal flips and logit-normal time(-0.8,0.8). Pixel noise scale is resolution/256. The source campaign starts with200 epochs and extends the horizon to400 while validating unchanged recipe fields in `epoch_extension.py`. `scripts/train_jit_complementary.py --help` gives the manifest-driven entry point, and `scripts/evaluate_complementary.py --help` gives the saved-checkpoint evaluator.
 
-The released FID table uses epoch400 with one training seed and generation seeds54321/154321/254321. ImageNet128 MLP used an FP32/lower-LR recovery, reaching LR2.5e-5 from epoch384. FID uses50,000 samples and the recorded torchvision Inception convention. Parameter matching is not computation matching, and epoch matching does not erase recovery-recipe differences.
+The released FID table uses epoch400 with one training seed and generation seeds54321/154321/254321. ImageNet128 MLP used an FP32/lower-LR recovery, reaching LR2.5e-5 from epoch384. FID uses50,000 samples and the recorded torchvision Inception convention. Epoch matching does not erase recovery-recipe differences.
 
 ## Related-domain component transplantation
 
@@ -87,7 +87,7 @@ python -m revision.run_metfaces score --manifest outputs/lfm_seed0.json --task 0
 
 Task0 is Source; tasks1–6 are the six final methods. U-ViT/DiT generation completes its exact KID/FID scoring internally. LFM provides a separate CPU score stage. Use the same generation seed across independently trained allocations. U-ViT uses official DPM-Solver-fast50 NFE; DiT uses native VP Heun50; LFM uses latent Heun50 with100 denoiser calls and FP32 VAE decoding. KID is exact unbiased cubic MMD; FID is the empirical small-reference Bures calculation. The143-image test set makes KID the primary measure, with FID secondary.
 
-Reported U-ViT/DiT mean±SD is over training seeds0/1/2 at generation seed202611091. Reported LFM mean±SD is over generation seeds202611091–202611093 from training seed0. The unfinished LFM training replicas are excluded. SD uses ddof=1; image banks are scored separately, not pooled. No test KID/FID selects the final checkpoint.
+Reported U-ViT64, DiT128 and LFM256 mean±SD is over training seeds0/1/2, each evaluated with generation seed202611091. SD uses ddof=1; image banks are scored separately, not pooled. No test KID/FID selects the final checkpoint.
 
 ## Reproducibility limits
 

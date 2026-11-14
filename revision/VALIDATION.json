@@ -1,5 +1,5 @@
 {
-  "verified_at": "2026-11-13T22:10:59.846017+00:00",
+  "verified_at": "2026-11-14T16:02:16.162334+00:00",
   "cpu_summary_regeneration": true,
   "clean_directory_regeneration": true,
   "metric_and_intervention_tests": 4,
@@ -11,7 +11,16 @@
   "local_paths_and_credentials_scan_passed": true,
   "checkpoints_and_image_banks_absent": true,
   "legacy_submission_workflow_removed": true,
-  "source_files": 149,
-  "source_bytes": 3253903,
-  "gpu_training_rerun": false
+  "source_files": 151,
+  "source_bytes": 3255120,
+  "gpu_training_rerun": false,
+  "metfaces_training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "metfaces_generation_seed": 202611091,
+  "metfaces_matches_manuscript": true,
+  "schematic_matches_manuscript_pixels": true,
+  "standalone_schematic_without_outputs_passed": true
 }

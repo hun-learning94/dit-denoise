@@ -24,7 +24,7 @@ Figure numbers can change during editing; LaTeX labels identify the correspondin
 | Manuscript content | Included numerical reproduction | Measurement implementation |
 |---|---|---|
 | Locality/context, `fig:imagenet-locality` | `python reproduce_revision.py locality` | `experiments/functional_context/`, `experiments/attention_context_transfer/` |
-| PLD/DiT schematic, `fig:aggregator-predictor-overview` | `python reproduce_revision.py schematics` | `revision/figures/overview.py`; all images are schematic cartoons |
+| PLD/DiT schematic, `fig:aggregator-predictor-overview` | `python reproduce_revision.py schematics` | `revision/figures/overview.py`; schematic cartoons with gold outlines marking the selected context |
 | Context-selection comparison, `fig:attention-context` | `python reproduce_revision.py attention` | Donor/recipient masking, current/average attention, sensitivity, covariance and distance selectors in `experiments/attention_context_transfer/` |
 | MLP/SMLP schematic, `fig:mlp-smlp-architecture` | `python reproduce_revision.py schematics` | `models.py`, `model_grouped_dpd6.py` and `revision/figures/architecture.py` |
 | Larger MLP/SMLP comparison, `tab:predictor-scale` | `python reproduce_revision.py tables` | `scripts/train_jit_complementary.py`, `experiments/complementary_training/`, `scripts/evaluate_complementary.py` |
@@ -41,9 +41,9 @@ The attention command regenerates the numerical curve portion of the attention f
 
 - **ImageNet locality:** all 14 measured noise levels remain in the numerical inputs. The compact plot shows σ≤32 on a reversed linear time axis, `t=1/(1+σ)`, from 1 to 1/33. Curves have no point markers. The vertical axis includes all 256 image patches.
 - **Small predictors:** 21 configurations, two training seeds, epoch 400. FID intervals are the two-seed minimum/maximum, with numerical recoveries recorded in the input CSV.
-- **Larger predictors:** CelebA128 and ImageNet128/256, epoch 400, one training seed per architecture and three generation seeds. ImageNet128 MLP's FP32/lower-learning-rate recovery is disclosed. Parameters are closely matched; measured computation is not matched.
+- **Larger predictors:** CelebA128 and ImageNet128/256, epoch 400, one training seed per architecture and three generation seeds. ImageNet128 MLP's FP32/lower-learning-rate recovery is disclosed. Parameter counts are closely matched.
 - **Transplants:** U-ViT64, pixel DiT128 and latent LFM256 to AAHQ/AFHQ at epoch 100 and FFHQ at epoch 50. Each setting has one adaptation seed and 1,024 paired generations for DINO distances. DINO and spatial DINO distances use separate descriptors and the same Source–Target normalization principle.
-- **MetFaces:** epoch 1,000 / 33,000 optimizer updates, six independently trained allocation methods. U-ViT64 and DiT128 report three training seeds with one shared generation seed. The current LFM256 table reports one training seed and three generation seeds. Additional LFM training replicas are unfinished and excluded from the released measurements. Each KID/FID bank has 5,000 generated images and 143 held-out real portraits. U-ViT uses the official 50-evaluation DPM-Solver-fast sampler.
+- **MetFaces:** epoch 1,000 / 33,000 optimizer updates, six independently trained allocation methods. All three backbones report means and sample SDs across training seeds 0/1/2, evaluated with the same generation seed (202611091). Each KID/FID bank has 5,000 generated images and 143 held-out real portraits. U-ViT uses the official 50-evaluation DPM-Solver-fast sampler.
 
 Generation seeds do not count as training replication. The included FID/KID implementations use the project's frozen torchvision Inception feature convention; scores need that same convention for comparison. Norm matching controls total effective-weight displacement, while equal LoRA counts control trainable factor budgets. See [protocols and limitations](docs/experiments.md).
 

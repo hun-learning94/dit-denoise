@@ -149,7 +149,7 @@ def metfaces(out):
         ax.bar(np.arange(6), [1000 * float(r['kid_mean']) for r in selected],
                yerr=[1000 * float(r['kid_sd']) for r in selected], color=['#0072B2', '#009E73', '#E69F00', '#D55E00', '#CC79A7', '.6'], capsize=2)
         ax.set_xticks(np.arange(6), ['QK', 'VO', 'MLP', 'VO+MLP', 'All', 'Full'], rotation=50, ha='right')
-        ax.set(title=f'{family.upper()}: ' + ('3 generation seeds' if family == 'lfm' else '3 training seeds'), ylabel='KID × 1,000')
+        ax.set(title=f'{family.upper()}: 3 training seeds', ylabel='KID × 1,000')
     fig.tight_layout()
     save(fig, out, 'metfaces_kid')
     plt.close(fig)
@@ -198,6 +198,12 @@ def check():
     for r in summary:
         values = [x for x in observations if x['family'] == r['family'] and x['arm'] == r['arm']]
         assert len(values) == 3
+        assert {int(x['training_seed']) for x in values} == {0, 1, 2}
+        assert {int(x['generation_seed']) for x in values} == {202611091}
+        assert int(r['training_seeds']) == 3 and int(r['generation_seeds']) == 1
+        assert r['sd_axis'] == 'training seed'
+        assert all(int(x['epoch']) == 1000 and int(x['images']) == 5000
+                   and int(x['real_images']) == 143 for x in values)
         for metric in ['kid', 'fid']:
             v = [float(x[metric]) for x in values]
             np.testing.assert_allclose([statistics.mean(v), statistics.stdev(v)], [float(r[metric + '_mean']), float(r[metric + '_sd'])], rtol=1e-10)
