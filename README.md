@@ -2,6 +2,27 @@
 
 Reproduction code and numerical inputs for the revised manuscript. The active workflow covers population local denoising, transferable attention-based context selection, alternative patch predictors, related-domain component transplantation, and matched-budget MetFaces fine-tuning.
 
+## Reproduce the arXiv figures
+
+With the plotting dependencies installed, run `python reproduce_revision.py arxiv --output outputs/arxiv`.
+The command builds the twelve experimental figures on CPU from saved measurements, score fields, and the exact displayed image draws.
+
+| Figure | Output PDF stem |
+|---|---|
+| 1 | aahq_draw09 |
+| 2 | locality_summary |
+| 4 | attention_context |
+| 6 | comparison_1x3 |
+| 7 | lfm_draw01 |
+| 8 | denoising_excess_context |
+| 9 | attention_pooled |
+| 10 | spatial_dino_1x3 |
+| 11–13 | aahq_draw04, afhq_v2_draw04, ffhq_draw12 |
+| 14 | norm_matched_transplants |
+
+Figures 3 and 5 are architectural drawings available with `python reproduce_revision.py schematics`.
+The transfer grids use the displayed draws from the original sampling banks. The score gallery uses the three noisy observations and the fields measured for each. The remaining panels use saved numerical results. Full sampling and training protocols are described below.
+
 ## Regenerate the numerical figures and tables
 
 Python 3.11 is recommended. The saved-result workflow runs on CPU and needs no datasets, model weights, or cloud account:
@@ -15,7 +36,7 @@ python reproduce_revision.py all
 
 Outputs are written to `outputs/revision/`, including `tables.md`, locality/context curves, the three-metric small-predictor comparison, DINO and spatial DINO distance panels, MetFaces KID comparisons, and both architectural schematics. `python reproduce_revision.py check` independently checks numerical coverage and recomputes seed means and sample SDs. Individual commands are `locality`, `attention`, `predictors`, `transplants`, `metfaces`, `tables`, and `schematics`.
 
-These commands render measured summaries. Recomputing model outputs requires the datasets and source checkpoints described in [the experiment guide](docs/experiments.md). Dataset pixels, generated-image banks, checkpoints, private filesystem paths, and cluster/cloud orchestration are excluded.
+These commands render measured summaries. Recomputing model outputs requires the datasets and source checkpoints described in [the experiment guide](docs/experiments.md). The arXiv figure release includes selected display inputs. Complete datasets, sample banks and checkpoints are acquired separately.
 
 ## Revised manuscript map
 
@@ -35,7 +56,7 @@ Figure numbers can change during editing; LaTeX labels identify the correspondin
 | Norm-matched control | `revision/data/update_norms.csv`; measurement code included | `experiments/norm_matched/worker.py` |
 | MetFaces allocations/results, `tab:metfaces-allocations`, `tab:metfaces-results` | `python reproduce_revision.py metfaces` and `tables` | `experiments/{uvit_metfaces,celeba128_metfaces,lfm_metfaces}/`, `revision/run_metfaces.py` |
 
-The attention command regenerates the numerical curve portion of the attention figure. Representative score maps, generated-image examples, the flagship image panels, and the image-only MetFaces figure require regenerated image/feature banks; they are not replaced with artificial examples. Source-faithful sampling and transplant construction are included. See [experiment details](docs/experiments.md) and [data preparation](docs/data.md).
+
 
 ## Results and reporting conventions
 

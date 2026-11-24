@@ -1,0 +1,35 @@
+[
+  {
+    "key": "celeba128",
+    "gallery_time": 0.9,
+    "donor": "smlp",
+    "recipient": "mlp",
+    "curve_title": "MLP",
+    "curve_methods": [
+      "self_attention_current",
+      "self_attention_calibrated",
+      "attention_current",
+      "attention_calibrated"
+    ],
+    "images": [
+      "170810.jpg",
+      "176266.jpg"
+    ]
+  },
+  {
+    "key": "imagenet256",
+    "gallery_time": 0.1,
+    "donor": "jit_b",
+    "recipient": "jit_l",
+    "curve_title": "JiT-L",
+    "curve_methods": [
+      "attention_current",
+      "attention_calibrated",
+      "self_attention_current",
+      "self_attention_calibrated"
+    ],
+    "images": [
+      "ILSVRC2012_val_00023435.JPEG"
+    ]
+  }
+]

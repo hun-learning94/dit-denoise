@@ -6,3 +6,5 @@
 - Cantarell fonts are bundled unmodified for the explanatory schematic. Copyright and the SIL Open Font License1.1 are preserved in`revision/fonts/OFL.txt`. Other plots use Matplotlib's DejaVu Sans defaults.
 
 Datasets and pretrained weights are not redistributed by this artifact. Their original acquisition and licensing conditions apply independently.
+
+The transfer figures use the original Font Awesome 4 wrench and fire glyphs by Dave Gandy. The accompanying font and SIL Open Font License are in [revision/fonts](../revision/fonts/FontAwesome-LICENSE.txt).

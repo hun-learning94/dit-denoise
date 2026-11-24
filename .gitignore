@@ -28,3 +28,5 @@ slurm-*
 experiments/functional_context/manifest.json
 experiments/functional_context/jit_b/
 experiments/functional_context/jit_l/
+
+!revision/data/arxiv/*.npz

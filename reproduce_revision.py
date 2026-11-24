@@ -214,14 +214,26 @@ def check():
     print('Verified revised numerical inputs, paired settings, and seed aggregation.')
 
 
+def arxiv(out):
+    """Render the twelve experimental figures from their selected measurements."""
+    commands = [
+        ("flagship", "original"), ("locality",), ("attention",), ("predictors",),
+        ("metfaces",), ("appendix_curves",), ("spatial",), ("examples",),
+        ("flagship", "norm_matched"),
+    ]
+    for script, *options in commands:
+        subprocess.run([sys.executable, str(ROOT / "revision/arxiv" / (script + ".py")),
+                        str(out.resolve()), *options], check=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('asset', choices=['all', 'locality', 'attention', 'predictors', 'transplants', 'metfaces', 'tables', 'schematics', 'check'])
+    parser.add_argument('asset', choices=['all', 'arxiv', 'locality', 'attention', 'predictors', 'transplants', 'metfaces', 'tables', 'schematics', 'check'])
     parser.add_argument('--output', type=Path, default=ROOT / 'outputs/revision')
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     check()
-    selected = ['locality', 'attention', 'predictors', 'transplants', 'metfaces', 'tables', 'schematics'] if args.asset == 'all' else [args.asset]
+    selected = ['arxiv', 'locality', 'attention', 'predictors', 'transplants', 'metfaces', 'tables', 'schematics'] if args.asset == 'all' else [args.asset]
     for name in selected:
         if name == 'transplants':
             distances(args.output)
@@ -233,7 +245,7 @@ def main():
         elif name != 'check':
             globals()[name](args.output)
     (args.output / 'reproduction.json').write_text(json.dumps(dict(
-        assets=selected, inference_performed=False, inputs={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in DATA.iterdir() if p.is_file()}), indent=2) + '\n')
+        assets=selected, inference_performed=False, inputs={str(p.relative_to(DATA)): hashlib.sha256(p.read_bytes()).hexdigest() for p in DATA.rglob("*") if p.is_file()}), indent=2) + '\n')
     print(f'Wrote revised-paper artifacts to {args.output}')
 
 
